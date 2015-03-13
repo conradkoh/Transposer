@@ -18,9 +18,6 @@ public:
 	~Song(void);
 	Song(string filename);
 	void transpose(KEY startKEY, KEY endKEY);
-	void writeToFile();
-	void display();
-	void displayChords();
 	void save(string filename);
 	vector<string> transposeLine(vector<string> lineChords, KEY startKEY, KEY endKEY);
 	string isolateChord(string input);

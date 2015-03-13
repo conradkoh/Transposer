@@ -26,6 +26,7 @@ namespace UI_Transposer {
 			transposer->Update();
 			DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
 			DISPLAY_SONGLYRICS->Text = gcnew String(transposer->DISPLAY_SONGLYRICS.c_str());
+			DISPLAY_FEEDBACK->Text = gcnew String(transposer->DISPLAY_FEEDBACK.c_str());
 
 		}
 
@@ -51,6 +52,7 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::Button^  BUTTON_SEND;
 	private: System::Windows::Forms::Button^  button_transpose_up;
 	private: System::Windows::Forms::Button^  button_transpose_down;
+	private: System::Windows::Forms::TextBox^  DISPLAY_FEEDBACK;
 
 
 	protected:
@@ -83,21 +85,19 @@ namespace UI_Transposer {
 			this->BUTTON_SEND = (gcnew System::Windows::Forms::Button());
 			this->button_transpose_up = (gcnew System::Windows::Forms::Button());
 			this->button_transpose_down = (gcnew System::Windows::Forms::Button());
+			this->DISPLAY_FEEDBACK = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
-			// DISPLAY_SONGLYRICS
+			// INPUT_COMMAND_LINE
 			// 
-			this->DISPLAY_SONGLYRICS->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
+			this->INPUT_COMMAND_LINE->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->DISPLAY_SONGLYRICS->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->DISPLAY_SONGLYRICS->Location = System::Drawing::Point(13, 13);
-			this->DISPLAY_SONGLYRICS->Multiline = true;
-			this->DISPLAY_SONGLYRICS->Name = L"DISPLAY_SONGLYRICS";
-			this->DISPLAY_SONGLYRICS->ReadOnly = true;
-			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(904, 795);
-			this->DISPLAY_SONGLYRICS->TabIndex = 0;
+			this->INPUT_COMMAND_LINE->Location = System::Drawing::Point(13, 813);
+			this->INPUT_COMMAND_LINE->Name = L"INPUT_COMMAND_LINE";
+			this->INPUT_COMMAND_LINE->Size = System::Drawing::Size(988, 31);
+			this->INPUT_COMMAND_LINE->TabIndex = 0;
+			this->INPUT_COMMAND_LINE->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::INPUT_COMMAND_LINE_TextChanged);
+			
 			// 
 			// BUTTON_NEXT
 			// 
@@ -134,20 +134,26 @@ namespace UI_Transposer {
 			this->DISPLAY_SONGLIST->Size = System::Drawing::Size(340, 298);
 			this->DISPLAY_SONGLIST->TabIndex = 3;
 			this->DISPLAY_SONGLIST->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::DISPLAY_SONGLIST_TextChanged);
+
 			// 
-			// INPUT_COMMAND_LINE
+			// DISPLAY_SONGLYRICS
 			// 
-			this->INPUT_COMMAND_LINE->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+			this->DISPLAY_SONGLYRICS->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->INPUT_COMMAND_LINE->Location = System::Drawing::Point(13, 832);
-			this->INPUT_COMMAND_LINE->Name = L"INPUT_COMMAND_LINE";
-			this->INPUT_COMMAND_LINE->Size = System::Drawing::Size(988, 31);
-			this->INPUT_COMMAND_LINE->TabIndex = 4;
+			this->DISPLAY_SONGLYRICS->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->DISPLAY_SONGLYRICS->Location = System::Drawing::Point(13, 13);
+			this->DISPLAY_SONGLYRICS->Multiline = true;
+			this->DISPLAY_SONGLYRICS->Name = L"DISPLAY_SONGLYRICS";
+			this->DISPLAY_SONGLYRICS->ReadOnly = true;
+			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(904, 781);
+			this->DISPLAY_SONGLYRICS->TabIndex = 4;
 			// 
 			// BUTTON_SEND
 			// 
 			this->BUTTON_SEND->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_SEND->Location = System::Drawing::Point(1031, 813);
+			this->BUTTON_SEND->Location = System::Drawing::Point(1031, 803);
 			this->BUTTON_SEND->Name = L"BUTTON_SEND";
 			this->BUTTON_SEND->Size = System::Drawing::Size(248, 50);
 			this->BUTTON_SEND->TabIndex = 5;
@@ -184,12 +190,26 @@ namespace UI_Transposer {
 			this->button_transpose_down->UseVisualStyleBackColor = true;
 			this->button_transpose_down->Click += gcnew System::EventHandler(this, &UI_Transposer::button_transpose_down_Click);
 			// 
+			// DISPLAY_FEEDBACK
+			// 
+			this->DISPLAY_FEEDBACK->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->DISPLAY_FEEDBACK->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->DISPLAY_FEEDBACK->Location = System::Drawing::Point(13, 860);
+			this->DISPLAY_FEEDBACK->Multiline = true;
+			this->DISPLAY_FEEDBACK->Name = L"DISPLAY_FEEDBACK";
+			this->DISPLAY_FEEDBACK->ReadOnly = true;
+			this->DISPLAY_FEEDBACK->Size = System::Drawing::Size(565, 37);
+			this->DISPLAY_FEEDBACK->TabIndex = 8;
+			this->DISPLAY_FEEDBACK->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::DISPLAY_FEEDBACK_TextChanged);
+			// 
 			// UI_Transposer
 			// 
 			this->AcceptButton = this->BUTTON_SEND;
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1300, 909);
+			this->Controls->Add(this->DISPLAY_FEEDBACK);
 			this->Controls->Add(this->button_transpose_down);
 			this->Controls->Add(this->button_transpose_up);
 			this->Controls->Add(this->BUTTON_SEND);
@@ -224,6 +244,7 @@ namespace UI_Transposer {
 		transposer->Update();
 		DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
 		DISPLAY_SONGLYRICS->Text = gcnew String(transposer->DISPLAY_SONGLYRICS.c_str());
+		DISPLAY_FEEDBACK->Text = gcnew String(transposer->DISPLAY_FEEDBACK.c_str());
 		INPUT_COMMAND_LINE->Text = "";
 	}
 private: System::Void button_transpose_up_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -235,6 +256,10 @@ private: System::Void button_transpose_down_Click(System::Object^  sender, Syste
 	transposer->TransposeDown();
 	DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
 	DISPLAY_SONGLYRICS->Text = gcnew String(transposer->DISPLAY_SONGLYRICS.c_str());
+}
+private: System::Void DISPLAY_FEEDBACK_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void INPUT_COMMAND_LINE_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

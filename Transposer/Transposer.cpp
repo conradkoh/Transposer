@@ -8,6 +8,7 @@ Transposer::Transposer()
 	DISPLAY_SONGLIST = "";
 	INPUT_COMMAND_LINE = "";
 	curIdx = 0;
+	DISPLAY_FEEDBACK = "INITIALIZED";
 }
 
 
@@ -32,7 +33,12 @@ void Transposer::Previous(){
 void Transposer::Update(){
 	string dbg1 = INPUT_COMMAND_LINE;
 	COMMAND command = Parse(INPUT_COMMAND_LINE);
-	Execute(command, INPUT_COMMAND_LINE);
+	if (Execute(command, INPUT_COMMAND_LINE)){
+		DISPLAY_FEEDBACK = "Success!";
+	}
+	else{
+		DISPLAY_FEEDBACK = "Failed.";
+	}
 	string dbg2 = DISPLAY_SONGLIST;
 	string dbg3 = DISPLAY_SONGLYRICS;
 	return;
@@ -109,6 +115,9 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 				myList->transpose(atoi(songRef.c_str()), startkey, endkey);
 				DISPLAY_SONGLYRICS = myList->SongToString(atoi(songRef.c_str()));
 			}
+			else{
+				return false;
+			}
 			
 			break;
 		}
@@ -130,17 +139,21 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			break;
 		}
 		case EXIT:{
-			return true;
+			return false;
 		}
 		case SAVE:{
 			istringstream getfilename(input);
 			string buffer;
 			string filename;
 			getfilename >> buffer; //remove command
-			getfilename >> buffer; //remove songRef
+			int index = curIdx + 1;
 			if (getline(getfilename, filename)){
 				filename = filename.substr(1, (filename.length() - 1));
-				myList->saveSong(atoi(songRef.c_str()), filename);
+				//myList->saveSong(atoi(songRef.c_str()), filename);
+				myList->saveSong(index, filename);
+			}
+			else{
+				return false;
 			}
 			
 			break;
@@ -151,10 +164,10 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			break;
 		}
 		case INVALID:{
-			cout << "invalid command" << endl;
+			return false;
 		}
 
 	}
 	DISPLAY_SONGLIST = myList->ToString();
-	return false;
+	return true;
 }

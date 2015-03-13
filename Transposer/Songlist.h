@@ -20,10 +20,7 @@ public:
 	~Songlist();
 	void loadAll();
 	void addSong();
-	void displayList();
 	string ToString();
-	void displaySong(int index);
-	void displaySongChords(int index);
 	string ChordsToString(int index);
 	string SongToString(int index);
 	void transpose(int index, string startkey, string endkey);

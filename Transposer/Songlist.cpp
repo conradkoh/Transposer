@@ -21,32 +21,18 @@ Songlist::~Songlist()
 }
 
 void Songlist::loadAll(){
-	cout << "filename: " << FILENAME.c_str() << "\r\n";
 	ifstream songFileNames(FILENAME.c_str());
 	string filename_current_song;
 	while (getline(songFileNames, filename_current_song)){
-		cout << "loading: " << filename_current_song << "\r\n";
 		Song* currentSong = new Song(filename_current_song);
 		songs.push_back(currentSong);
-		cout << "debug" << "\r\n";
 	}
-	cout << "loaded" << "\r\n";
 	return;
 
 }
 
 void Songlist::addSong(){
 
-}
-
-void Songlist::displayList(){
-	int index = 1;
-	ifstream songFileNames(FILENAME);
-	string filename_current_song;
-	while (getline(songFileNames, filename_current_song)){
-		cout << index <<". " << filename_current_song << "\r\n";
-		index++;
-	}
 }
 
 string Songlist::ToString(){
@@ -60,19 +46,6 @@ string Songlist::ToString(){
 		index++;
 	}
 	return oss.str();
-}
-
-void Songlist::displaySong(int index){
-	if(index <= songCount){
-		songs[index-1]->display();
-	}
-	
-}
-
-void Songlist::displaySongChords(int index){
-	if (index <= songCount){
-		songs[index - 1]->displayChords();
-	}
 }
 
 string Songlist::ChordsToString(int index){

@@ -10,6 +10,7 @@ class Transposer
 public:
 	string DISPLAY_SONGLYRICS;
 	string DISPLAY_SONGLIST;
+	string DISPLAY_FEEDBACK;
 	string INPUT_COMMAND_LINE;
 	Songlist* myList;
 	int curIdx; // 0 based

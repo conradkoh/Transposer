@@ -57,28 +57,6 @@ void Song::transpose(KEY startKEY, KEY endKEY){
 		chords[i] = newChordsLine;
 
 	}
-
-	display();
-}
-
-void Song::writeToFile(){
-
-}
-
-void Song::display(){
-	for(int i = 0; i< lineCount; i++){
-		cout << chords[i] << "\r\n";
-		cout << lyrics[i] << "\r\n";
-	}
-	cout << "=========================================================" << "\r\n" << "\r\n";
-
-}
-
-void Song::displayChords(){
-	for (int i = 0; i< lineCount; i++){
-		cout << chords[i] << "\r\n";
-	}
-	cout << "=========================================================" << "\r\n" << "\r\n";
 }
 
 vector<string> Song::transposeLine(vector<string> lineChords, KEY startKEY, KEY endKEY){
@@ -215,7 +193,6 @@ void Song::save(string filename){
 		out << chords[i] << "\r\n";
 		out << lyrics[i] << "\r\n";
 	}
-	cout << "song saved as " << filename << "\r\n";
 	return;
 }
 

@@ -49,6 +49,22 @@ namespace Test_Transposer
 			offset = key2 - key1;
 			output = mySong->offSet(test_Chord, offset);
 			Assert::AreEqual(correct_output, output);
+
+			test_Chord = "Eb";
+			correct_output = "F";
+			key1 = Song::KEY::DSHARP;
+			key2 = Song::KEY::F;
+			offset = key2 - key1;
+			output = mySong->offSet(test_Chord, offset);
+			Assert::AreEqual(correct_output, output);
+
+			test_Chord = "E";
+			correct_output = "F#";
+			key1 = Song::KEY::E;
+			key2 = Song::KEY::FSHARP;
+			offset = key2 - key1;
+			output = mySong->offSet(test_Chord, offset);
+			Assert::AreEqual(correct_output, output);
 		}
 
 		TEST_METHOD(isolateDetails){
