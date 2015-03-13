@@ -19,6 +19,7 @@ public:
 	Songlist(string FILENAME_ALL_SONG_FILENAMES);
 	~Songlist();
 	void loadAll();
+	bool FileExists(string filename);
 	void addSong();
 	string ToString();
 	string ChordsToString(int index);

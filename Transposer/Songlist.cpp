@@ -26,11 +26,25 @@ void Songlist::loadAll(){
 	ifstream songFileNames(FILENAME.c_str());
 	string filename_current_song;
 	while (getline(songFileNames, filename_current_song)){
-		Song* currentSong = new Song(filename_current_song);
-		songs.push_back(currentSong);
+		if (FileExists(filename_current_song)){
+			Song* currentSong = new Song(filename_current_song);
+			songs.push_back(currentSong);
+		}
 	}
 	return;
 
+}
+
+bool Songlist::FileExists(string filename){
+	ifstream in;
+	string test;
+	in.open(filename.c_str());
+	if (in >> test){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 void Songlist::addSong(){
@@ -39,13 +53,19 @@ void Songlist::addSong(){
 
 string Songlist::ToString(){
 	ostringstream oss;
-	int index = 1;
+	/*int index = 1;
 	ifstream songFileNames(FILENAME);
 	string filename_current_song;
 	while (getline(songFileNames, filename_current_song)){
 		
 		oss << index << ". " << filename_current_song << "\r\n";
 		index++;
+	}*/
+	vector<Song*>::iterator iter;
+	int index = 1;
+	for (iter = songs.begin(); iter != songs.end(); ++iter){
+		oss << index << ". " << (*iter)->FILENAME << "\r\n";
+			index++;
 	}
 	return oss.str();
 }
