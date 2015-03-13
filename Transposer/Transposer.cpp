@@ -5,7 +5,7 @@ Transposer::Transposer()
 {
 	FILENAME_ACTIVE = GetActiveFile();
 	myList = new Songlist(FILENAME_ACTIVE);
-	DISPLAY_SONGLYRICS = DISPLAY_SONGLYRICS = myList->SongToString(1);;
+	DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 	DISPLAY_SONGLIST = myList->ToString();
 	INPUT_COMMAND_LINE = "";
 	curIdx = 0;
@@ -21,14 +21,14 @@ void Transposer::Next(){
 	int offset = myList->songCount;
 	curIdx = (offset + curIdx + 1) % myList->songCount; // 0 based indexing
 	int idx = curIdx + 1; //change to 1 based
-	DISPLAY_SONGLYRICS = myList->SongToString(idx);
+	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
 }
 
 void Transposer::Previous(){
 	int offset = myList->songCount;
 	curIdx = (offset + curIdx - 1) % myList->songCount; // 0 based indexing
 	int idx = curIdx + 1; //change to 1 based
-	DISPLAY_SONGLYRICS = myList->SongToString(idx);
+	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
 }
 
 void Transposer::Update(){
@@ -46,13 +46,13 @@ void Transposer::Update(){
 void Transposer::TransposeUp(){
 	int idx = curIdx + 1;
 	myList->transpose(idx, "e", "f");
-	DISPLAY_SONGLYRICS = myList->SongToString(idx);
+	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
 	return;
 }
 void Transposer::TransposeDown(){
 	int idx = curIdx + 1;
 	myList->transpose(idx, "f", "e");
-	DISPLAY_SONGLYRICS = myList->SongToString(idx);
+	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
 	return;
 }
 
@@ -119,8 +119,9 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 				int index = atoi(songRef.c_str());
 				if (IndexIsValid(index)){
 					myList->transpose(index, startkey, endkey);
-					DISPLAY_SONGLYRICS = myList->SongToString(atoi(songRef.c_str()));
+					DISPLAY_SONGLYRICS = to_string(index) + ". " + myList->SongToString(atoi(songRef.c_str()));
 					DISPLAY_FEEDBACK = "Transpose.";
+					curIdx = index - 1;
 				}
 				else{
 					DISPLAY_FEEDBACK = "Invalid index.";
@@ -144,8 +145,9 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 				int index = atoi(songRef.c_str());
 				if (IndexIsValid(index)){
 					if (myList->ChordsToString(atoi(songRef.c_str())) != ""){
-						DISPLAY_SONGLYRICS = myList->ChordsToString(index);
+						DISPLAY_SONGLYRICS = to_string(index) + ". " + myList->ChordsToString(index);
 						DISPLAY_FEEDBACK = "Chords.";
+						curIdx = index - 1;
 					}
 					else{
 						return false;
@@ -161,10 +163,11 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			break;
 		}
 		case SELECT:{
-			int songIdx = atoi(songRef.c_str());
-			if (songRef != "" && songIdx <= myList->songCount && songIdx > 0){
-				DISPLAY_SONGLYRICS = myList->SongToString(songIdx);
+			int index = atoi(songRef.c_str());
+			if (songRef != "" && index <= myList->songCount && index > 0){
+				DISPLAY_SONGLYRICS = to_string(index) + ". " + myList->SongToString(index);
 				DISPLAY_FEEDBACK = "Selected.";
+				curIdx = index - 1;
 			}
 			else{
 				DISPLAY_FEEDBACK = "Invalid song index.";
@@ -195,7 +198,7 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 		case RELOAD:{
 			delete myList;
 			myList = new Songlist(FILENAME_ACTIVE);
-			DISPLAY_SONGLYRICS = DISPLAY_SONGLYRICS = myList->SongToString(1);;
+			DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 			DISPLAY_SONGLIST = myList->ToString();
 			INPUT_COMMAND_LINE = "";
 			curIdx = 0;
@@ -212,7 +215,7 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 				if (FileExists(filename)){
 					delete myList;
 					myList = new Songlist(filename);
-					DISPLAY_SONGLYRICS = DISPLAY_SONGLYRICS = myList->SongToString(1);;
+					DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 					DISPLAY_SONGLIST = myList->ToString();
 					INPUT_COMMAND_LINE = "";
 					curIdx = 0;
