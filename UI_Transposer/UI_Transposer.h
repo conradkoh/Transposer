@@ -85,54 +85,6 @@ namespace UI_Transposer {
 			this->DISPLAY_FEEDBACK = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
-			// INPUT_COMMAND_LINE
-			// 
-			this->INPUT_COMMAND_LINE->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->INPUT_COMMAND_LINE->Location = System::Drawing::Point(13, 813);
-			this->INPUT_COMMAND_LINE->Name = L"INPUT_COMMAND_LINE";
-			this->INPUT_COMMAND_LINE->Size = System::Drawing::Size(988, 31);
-			this->INPUT_COMMAND_LINE->TabIndex = 0;
-			this->INPUT_COMMAND_LINE->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::INPUT_COMMAND_LINE_TextChanged);
-			
-			// 
-			// BUTTON_NEXT
-			// 
-			this->BUTTON_NEXT->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_NEXT->Location = System::Drawing::Point(1031, 13);
-			this->BUTTON_NEXT->Name = L"BUTTON_NEXT";
-			this->BUTTON_NEXT->Size = System::Drawing::Size(248, 219);
-			this->BUTTON_NEXT->TabIndex = 1;
-			this->BUTTON_NEXT->Text = L"NEXT";
-			this->BUTTON_NEXT->UseVisualStyleBackColor = true;
-			this->BUTTON_NEXT->Click += gcnew System::EventHandler(this, &UI_Transposer::button_next_Click);
-			// 
-			// BUTTON_PREVIOUS
-			// 
-			this->BUTTON_PREVIOUS->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_PREVIOUS->Location = System::Drawing::Point(1031, 250);
-			this->BUTTON_PREVIOUS->Name = L"BUTTON_PREVIOUS";
-			this->BUTTON_PREVIOUS->Size = System::Drawing::Size(248, 223);
-			this->BUTTON_PREVIOUS->TabIndex = 2;
-			this->BUTTON_PREVIOUS->Text = L"PREVIOUS";
-			this->BUTTON_PREVIOUS->UseVisualStyleBackColor = true;
-			this->BUTTON_PREVIOUS->Click += gcnew System::EventHandler(this, &UI_Transposer::button_previous_Click);
-			// 
-			// DISPLAY_SONGLIST
-			// 
-			this->DISPLAY_SONGLIST->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->DISPLAY_SONGLIST->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.125F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->DISPLAY_SONGLIST->Location = System::Drawing::Point(939, 496);
-			this->DISPLAY_SONGLIST->Multiline = true;
-			this->DISPLAY_SONGLIST->Name = L"DISPLAY_SONGLIST";
-			this->DISPLAY_SONGLIST->ReadOnly = true;
-			this->DISPLAY_SONGLIST->Size = System::Drawing::Size(340, 298);
-			this->DISPLAY_SONGLIST->TabIndex = 3;
-			this->DISPLAY_SONGLIST->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::DISPLAY_SONGLIST_TextChanged);
-
-			// 
 			// DISPLAY_SONGLYRICS
 			// 
 			this->DISPLAY_SONGLYRICS->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
@@ -144,8 +96,58 @@ namespace UI_Transposer {
 			this->DISPLAY_SONGLYRICS->Multiline = true;
 			this->DISPLAY_SONGLYRICS->Name = L"DISPLAY_SONGLYRICS";
 			this->DISPLAY_SONGLYRICS->ReadOnly = true;
-			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(904, 781);
+			this->DISPLAY_SONGLYRICS->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(846, 781);
 			this->DISPLAY_SONGLYRICS->TabIndex = 4;
+			// 
+			// BUTTON_NEXT
+			// 
+			this->BUTTON_NEXT->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_NEXT->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->BUTTON_NEXT->Location = System::Drawing::Point(1005, 13);
+			this->BUTTON_NEXT->Name = L"BUTTON_NEXT";
+			this->BUTTON_NEXT->Size = System::Drawing::Size(283, 287);
+			this->BUTTON_NEXT->TabIndex = 1;
+			this->BUTTON_NEXT->Text = L"NEXT";
+			this->BUTTON_NEXT->UseVisualStyleBackColor = true;
+			this->BUTTON_NEXT->Click += gcnew System::EventHandler(this, &UI_Transposer::button_next_Click);
+			// 
+			// BUTTON_PREVIOUS
+			// 
+			this->BUTTON_PREVIOUS->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_PREVIOUS->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->BUTTON_PREVIOUS->Location = System::Drawing::Point(1005, 339);
+			this->BUTTON_PREVIOUS->Name = L"BUTTON_PREVIOUS";
+			this->BUTTON_PREVIOUS->Size = System::Drawing::Size(283, 288);
+			this->BUTTON_PREVIOUS->TabIndex = 2;
+			this->BUTTON_PREVIOUS->Text = L"PREVIOUS";
+			this->BUTTON_PREVIOUS->UseVisualStyleBackColor = true;
+			this->BUTTON_PREVIOUS->Click += gcnew System::EventHandler(this, &UI_Transposer::button_previous_Click);
+			// 
+			// DISPLAY_SONGLIST
+			// 
+			this->DISPLAY_SONGLIST->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->DISPLAY_SONGLIST->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.125F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->DISPLAY_SONGLIST->Location = System::Drawing::Point(884, 650);
+			this->DISPLAY_SONGLIST->Multiline = true;
+			this->DISPLAY_SONGLIST->Name = L"DISPLAY_SONGLIST";
+			this->DISPLAY_SONGLIST->ReadOnly = true;
+			this->DISPLAY_SONGLIST->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+			this->DISPLAY_SONGLIST->Size = System::Drawing::Size(395, 144);
+			this->DISPLAY_SONGLIST->TabIndex = 3;
+			this->DISPLAY_SONGLIST->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::DISPLAY_SONGLIST_TextChanged);
+			// 
+			// INPUT_COMMAND_LINE
+			// 
+			this->INPUT_COMMAND_LINE->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->INPUT_COMMAND_LINE->Location = System::Drawing::Point(13, 813);
+			this->INPUT_COMMAND_LINE->Name = L"INPUT_COMMAND_LINE";
+			this->INPUT_COMMAND_LINE->Size = System::Drawing::Size(988, 31);
+			this->INPUT_COMMAND_LINE->TabIndex = 0;
+			this->INPUT_COMMAND_LINE->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::INPUT_COMMAND_LINE_TextChanged);
 			// 
 			// BUTTON_SEND
 			// 
@@ -161,13 +163,14 @@ namespace UI_Transposer {
 			// button_transpose_up
 			// 
 			this->button_transpose_up->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->button_transpose_up->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->button_transpose_up->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button_transpose_up.BackgroundImage")));
 			this->button_transpose_up->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->button_transpose_up->Font = (gcnew System::Drawing::Font(L"Bauhaus 93", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button_transpose_up->Location = System::Drawing::Point(939, 13);
+			this->button_transpose_up->Location = System::Drawing::Point(884, 13);
 			this->button_transpose_up->Name = L"button_transpose_up";
-			this->button_transpose_up->Size = System::Drawing::Size(75, 219);
+			this->button_transpose_up->Size = System::Drawing::Size(94, 287);
 			this->button_transpose_up->TabIndex = 6;
 			this->button_transpose_up->UseVisualStyleBackColor = true;
 			this->button_transpose_up->Click += gcnew System::EventHandler(this, &UI_Transposer::button_transpose_up_Click);
@@ -175,14 +178,15 @@ namespace UI_Transposer {
 			// button_transpose_down
 			// 
 			this->button_transpose_down->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->button_transpose_down->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->button_transpose_down->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button_transpose_down.BackgroundImage")));
 			this->button_transpose_down->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->button_transpose_down->Font = (gcnew System::Drawing::Font(L"Bauhaus 93", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button_transpose_down->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->button_transpose_down->Location = System::Drawing::Point(939, 250);
+			this->button_transpose_down->Location = System::Drawing::Point(884, 339);
 			this->button_transpose_down->Name = L"button_transpose_down";
-			this->button_transpose_down->Size = System::Drawing::Size(75, 223);
+			this->button_transpose_down->Size = System::Drawing::Size(94, 288);
 			this->button_transpose_down->TabIndex = 7;
 			this->button_transpose_down->UseVisualStyleBackColor = true;
 			this->button_transpose_down->Click += gcnew System::EventHandler(this, &UI_Transposer::button_transpose_down_Click);
