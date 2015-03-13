@@ -11,9 +11,11 @@ class Song
 public:
 	enum KEY { C, CSHARP, D, DSHARP, E, F, FSHARP, G, GSHARP, A, ASHARP, B, INVALID };
 	enum NOTES {C1, C2, D1, D2, E1, F1, F2, G1, G2, A1, A2, B1};
+	string FILENAME;
 	vector<string> chords;
 	vector<string> lyrics;
 	int lineCount;
+
 	Song(void);
 	~Song(void);
 	Song(string filename);

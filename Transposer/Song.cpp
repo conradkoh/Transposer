@@ -13,6 +13,7 @@ Song::Song(void)
 
 Song::Song(string filename)
 {
+	FILENAME = filename;
 	ifstream lyricStream(filename.c_str());
 	int count = 1;
 	string currentLine;
@@ -198,6 +199,9 @@ void Song::save(string filename){
 
 string Song::ToString(){
 	ostringstream oss;
+	int found = FILENAME.find_last_of(".");
+	string title = FILENAME.substr(0, found);
+	oss << title << "\r\n" << "\r\n";
 		for (int i = 0; i< lineCount; i++){
 			oss << chords[i] << "\r\n";
 			oss << lyrics[i] << "\r\n";
