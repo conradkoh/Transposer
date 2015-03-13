@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <sstream>
+#include <fstream>
 #include "Song.h"
 #include "Songlist.h"
 #include <Windows.h>
@@ -13,6 +14,8 @@ public:
 	string DISPLAY_FEEDBACK;
 	string INPUT_COMMAND_LINE;
 	Songlist* myList;
+	string FILENAME_ACTIVE_CONTAINER = "active.tsys";
+	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
 	
 	Transposer();
@@ -24,6 +27,10 @@ public:
 	void TransposeDown();
 	COMMAND Parse(string input);
 	bool Execute(COMMAND command, string input);
+	bool IndexIsValid(int index); //1 based index
+	string GetActiveFile();
+	string UpdateActiveFile(string filename);
+	bool FileExists(string filename);
 	
 };
 

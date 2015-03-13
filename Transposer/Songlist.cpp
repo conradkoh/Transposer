@@ -7,7 +7,7 @@ using namespace std;
 
 Songlist::Songlist()
 {
-	FILENAME = "songlist.txt";
+	FILENAME = "songlist.slist";
 	loadAll();
 	songCount = songs.size();
 }
