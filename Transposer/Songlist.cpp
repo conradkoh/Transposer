@@ -13,7 +13,9 @@ Songlist::Songlist()
 }
 
 Songlist::Songlist(string FILENAME_ALL_SONG_FILENAMES){
-	
+	FILENAME = FILENAME_ALL_SONG_FILENAMES;
+	loadAll();
+	songCount = songs.size();
 }
 
 Songlist::~Songlist()

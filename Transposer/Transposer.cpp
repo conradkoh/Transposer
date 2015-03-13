@@ -4,8 +4,8 @@
 Transposer::Transposer()
 {
 	myList = new Songlist();
-	DISPLAY_SONGLYRICS = "";
-	DISPLAY_SONGLIST = "";
+	DISPLAY_SONGLYRICS = DISPLAY_SONGLYRICS = myList->SongToString(1);;
+	DISPLAY_SONGLIST = myList->ToString();
 	INPUT_COMMAND_LINE = "";
 	curIdx = 0;
 	DISPLAY_FEEDBACK = "INITIALIZED";
@@ -91,6 +91,10 @@ Transposer::COMMAND Transposer::Parse(string input){
 	if (command == "reload"){
 		return COMMAND::RELOAD;
 	}
+
+	if (command == "load"){
+		return COMMAND::LOAD;
+	}
 	return COMMAND::INVALID;
 }
 
@@ -128,7 +132,15 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 		}
 		case CHORDS:{
 			if (songRef != ""){
-				DISPLAY_SONGLYRICS = myList->ChordsToString(atoi(songRef.c_str()));
+				if (myList->ChordsToString(atoi(songRef.c_str())) != ""){
+					DISPLAY_SONGLYRICS = myList->ChordsToString(atoi(songRef.c_str()));
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				return false;
 			}
 			break;
 		}
@@ -162,6 +174,21 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			delete myList;
 			myList = new Songlist();
 			break;
+		}
+		case LOAD:{
+			istringstream getfilename(input);
+			string buffer;
+			string filename;
+			getfilename >> buffer; //remove command
+			if (getline(getfilename, filename)){
+				filename = filename.substr(1, (filename.length() - 1));
+			}
+			myList = new Songlist(filename);
+			DISPLAY_SONGLYRICS = DISPLAY_SONGLYRICS = myList->SongToString(1);;
+			DISPLAY_SONGLIST = myList->ToString();
+			INPUT_COMMAND_LINE = "";
+			curIdx = 0;
+			DISPLAY_FEEDBACK = "INITIALIZED";
 		}
 		case INVALID:{
 			return false;

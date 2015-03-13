@@ -21,9 +21,6 @@ namespace UI_Transposer {
 			InitializeComponent();
 			//CONSTRUCTOR CODE
 			transposer = new Transposer();
-			transposer->INPUT_COMMAND_LINE = "display";
-			transposer->INPUT_COMMAND_LINE = "select 1";
-			transposer->Update();
 			DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
 			DISPLAY_SONGLYRICS->Text = gcnew String(transposer->DISPLAY_SONGLYRICS.c_str());
 			DISPLAY_FEEDBACK->Text = gcnew String(transposer->DISPLAY_FEEDBACK.c_str());
