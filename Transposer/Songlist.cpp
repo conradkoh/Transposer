@@ -4,16 +4,16 @@
 #include <string>
 
 using namespace std;
-
+const string Songlist::songListDIR = "";
 Songlist::Songlist()
 {
-	FILENAME = "songlist.slist";
+	FILENAME = songListDIR + "songlist.slist";
 	loadAll();
 	songCount = songs.size();
 }
 
 Songlist::Songlist(string FILENAME_ALL_SONG_FILENAMES){
-	FILENAME = FILENAME_ALL_SONG_FILENAMES;
+	FILENAME = songListDIR + FILENAME_ALL_SONG_FILENAMES;
 	loadAll();
 	songCount = songs.size();
 }
@@ -23,14 +23,15 @@ Songlist::~Songlist()
 }
 
 void Songlist::loadAll(){
-	ifstream songFileNames(FILENAME.c_str());
+	ifstream songFileNames(songListDIR + FILENAME.c_str());
 	string filename_current_song;
 	while (getline(songFileNames, filename_current_song)){
-		if (FileExists(filename_current_song)){
+		if (FileExists(Song::songDIR + filename_current_song)){
 			Song* currentSong = new Song(filename_current_song);
 			songs.push_back(currentSong);
 		}
 	}
+	songFileNames.close();
 	return;
 
 }
@@ -40,9 +41,11 @@ bool Songlist::FileExists(string filename){
 	string test;
 	in.open(filename.c_str());
 	if (in >> test){
+		in.close();
 		return true;
 	}
 	else{
+		in.close();
 		return false;
 	}
 }
@@ -100,7 +103,7 @@ void Songlist::transpose(int index, string startkey, string endkey){
 
 void Songlist::saveSong(int index, string filename){
 	if (index <= songCount){
-		songs[index - 1]->save(filename);
+		songs[index - 1]->save(Song::saveDIR + filename);
 	}
 	return;
 }

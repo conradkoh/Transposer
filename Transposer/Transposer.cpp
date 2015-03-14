@@ -5,9 +5,11 @@ Transposer::Transposer()
 {
 	FILENAME_ACTIVE = GetActiveFile();
 	myList = new Songlist(FILENAME_ACTIVE);
+	s = new Song();
 	DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 	DISPLAY_SONGLIST = myList->ToString();
 	INPUT_COMMAND_LINE = "";
+	INPUT_QUICKTRANSPOSE = "";
 	curIdx = 0;
 	DISPLAY_FEEDBACK = "INITIALIZED";
 }
@@ -32,27 +34,26 @@ void Transposer::Previous(){
 }
 
 void Transposer::Update(){
-	string dbg1 = INPUT_COMMAND_LINE;
 	COMMAND command = Parse(INPUT_COMMAND_LINE);
 	if (Execute(command, INPUT_COMMAND_LINE)){
 	}
 	else{
 		DISPLAY_FEEDBACK = "Failed.";
 	}
-	string dbg2 = DISPLAY_SONGLIST;
-	string dbg3 = DISPLAY_SONGLYRICS;
 	return;
 }
 void Transposer::TransposeUp(){
 	int idx = curIdx + 1;
 	myList->transpose(idx, "e", "f");
 	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
+	INPUT_QUICKTRANSPOSE = s->TransposeStr(INPUT_QUICKTRANSPOSE, Song::E, Song::F);
 	return;
 }
 void Transposer::TransposeDown(){
 	int idx = curIdx + 1;
 	myList->transpose(idx, "f", "e");
 	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
+	INPUT_QUICKTRANSPOSE = s->TransposeStr(INPUT_QUICKTRANSPOSE, Song::F, Song::E);
 	return;
 }
 
@@ -254,7 +255,9 @@ string Transposer::GetActiveFile(){
 	in.open(FILENAME_ACTIVE_CONTAINER);
 	if (getline(in, filename)){
 		return filename;
+		in.close();
 	}
+	in.close();
 	return "temp.slist";
 }
 
@@ -271,9 +274,11 @@ bool Transposer::FileExists(string filename){
 	string test;
 	in.open(filename.c_str());
 		if (in >> test){
+			in.close();
 			return true;
 		}
 		else{
+			in.close();
 			return false;
 	}
 }

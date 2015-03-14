@@ -6,6 +6,8 @@
 using namespace std;
 
 //enum KEY { C, D, E, F, G, A, B, INVALID };
+const string Song::songDIR = ".\\Songs\\";
+const string Song::saveDIR = ".\\Saved\\";
 
 Song::Song(void)
 {
@@ -14,7 +16,7 @@ Song::Song(void)
 Song::Song(string filename)
 {
 	FILENAME = filename;
-	ifstream lyricStream(filename.c_str());
+	ifstream lyricStream(songDIR + filename.c_str());
 	int count = 1;
 	string currentLine;
 	while (getline(lyricStream, currentLine)){		
@@ -28,6 +30,7 @@ Song::Song(string filename)
 		lineCount = lyrics.size();
 		count++;
 	}
+	lyricStream.close();
 }
 
 Song::~Song(void)
@@ -39,29 +42,62 @@ void Song::transpose(KEY startKEY, KEY endKEY){
 		istringstream line(chords[i]);
 		string newChordsLine;
 		vector<string> lineChords;
-		string spaces = "    ";
-		
+				
 		string chord;
 		while(line >> chord){
 			lineChords.push_back(chord);
 		}
 
 		vector<string> newChords = transposeLine(lineChords, startKEY, endKEY);
-
 		//reconstructing new chord line
 		newChordsLine = newChords.front();
 		for(int j = 1; j< newChords.size(); j++){
-			newChordsLine += spaces;
-			newChordsLine += newChords[j];
+			if (newChords[j] != spaces){
+				newChordsLine += spaces;
+				newChordsLine += newChords[j];
+			}
+		
 		}
-
+		//need to trim or edit vector size
 		chords[i] = newChordsLine;
 
 	}
 }
 
+string Song::TransposeStr(string input, KEY startKEY, KEY endKEY){
+	string currentLine;
+	string output;
+	istringstream in(input);
+	while (getline(in, currentLine)){
+		istringstream line(currentLine);
+		vector<string> lineChords;
+		string chord;
+		while (line >> chord){
+			lineChords.push_back(chord);
+		}
+		vector<string> transposedLn = transposeLine(lineChords, startKEY, endKEY);
+		vector<string>::iterator iter;
+		string chordline;
+		for (iter = transposedLn.begin(); iter != transposedLn.end(); ++iter){
+			if (iter + 1 != transposedLn.end()){
+				chordline = chordline + *iter + spaces;
+			}
+			else{
+				chordline = chordline + *iter;
+			}
+			
+		}
+		chordline += "\r\n";
+		output += chordline;
+	}
+	return output;
+}
+
 vector<string> Song::transposeLine(vector<string> lineChords, KEY startKEY, KEY endKEY){
-	vector<string> newChords(20);
+	vector<string> newChords;
+	for (int i = 0; i < 20; i++){
+		newChords.push_back(spaces);
+	}
 
 	int debugsize = lineChords.size();
 
@@ -74,10 +110,27 @@ vector<string> Song::transposeLine(vector<string> lineChords, KEY startKEY, KEY 
 		string transposedChord = offSet(base, offset);
 		details = transposeSlashChord(details, offset);
 		transposedChord += details;
-		newChords[i] = transposedChord;
+		if (transposedChord != "    "){
+			newChords[i] = transposedChord;
+		}
+
 	}
-	
-	return newChords;
+
+	vector<string> output;
+	vector<string>::iterator iter;
+	for (iter = newChords.begin(); iter != newChords.end(); ++iter){
+		if (*iter != spaces){
+			output.push_back(*iter);
+		}
+	}
+	//handle bug when output is uninitialized
+	if (output.empty()){
+		output.push_back("");
+		return output;
+	}
+	else{
+		return output;
+	}
 }
 
 string Song::isolateChord(string input){
@@ -134,7 +187,7 @@ string Song::offSet(string base, int offset){
 	notes[Song::NOTES::G1] = "G";
 	notes[Song::NOTES::G2] = "G#";
 	notes[Song::NOTES::A1] = "A";
-	notes[Song::NOTES::A2] = "A#";
+	notes[Song::NOTES::A2] = "Bb";
 	notes[Song::NOTES::B1] = "B";
 
 	notes_alias[Song::NOTES::C1] = "B#";
@@ -147,7 +200,7 @@ string Song::offSet(string base, int offset){
 	notes_alias[Song::NOTES::G1] = "G";
 	notes_alias[Song::NOTES::G2] = "Ab";
 	notes_alias[Song::NOTES::A1] = "A";
-	notes_alias[Song::NOTES::A2] = "Bb";
+	notes_alias[Song::NOTES::A2] = "A#";
 	notes_alias[Song::NOTES::B1] = "Cb";
 	for (int i = 0; i < 12; i++){
 		if (base == notes[i] || base == notes_alias[i]){
@@ -172,6 +225,7 @@ string Song::transposeSlashChord(string remainder, int offset){
 		string after_slash_details = isolateDetails(after_slash);
 		string newChord = offSet(currentChord, offset);
 		if (newChord == ""){
+			//assumption: newChord == currentChord == ""
 			newSlashChord = before_slash + "/" + after_slash;
 			output = newSlashChord;
 		}

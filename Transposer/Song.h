@@ -2,6 +2,7 @@
 #define SONG_H
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 
@@ -15,12 +16,16 @@ public:
 	vector<string> chords;
 	vector<string> lyrics;
 	int lineCount;
+	string spaces = "    ";
+	static const string songDIR;
+	static const string saveDIR;
 
 	Song(void);
 	~Song(void);
 	Song(string filename);
 	void transpose(KEY startKEY, KEY endKEY);
 	void save(string filename);
+	string TransposeStr(string input, KEY startKEY, KEY endKEY);
 	vector<string> transposeLine(vector<string> lineChords, KEY startKEY, KEY endKEY);
 	string isolateChord(string input);
 	string isolateDetails(string input);

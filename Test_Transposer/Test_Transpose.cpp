@@ -107,7 +107,15 @@ namespace Test_Transposer
 			transposed_expected = "F";
 			Assert::AreEqual(transposed, transposed_expected);
 		}
-
+		TEST_METHOD(transposeStr){
+			Song* s = new Song();
+			string t1 = s->TransposeStr("A E F# D", Song::KEY::E, Song::KEY::F);
+			Assert::AreEqual(t1.c_str(), "Bb    F    G    Eb\r\n");
+			string t2 = s->TransposeStr("A E F# D", Song::KEY::F, Song::KEY::E);
+			Assert::AreEqual(t2.c_str(), "G#    Eb    F    C#\r\n");
+			string t3 = s->TransposeStr("A E F# D\nA E F# D", Song::KEY::E, Song::KEY::F);
+			Assert::AreEqual(t3.c_str(), "Bb    F    G    Eb\r\nBb    F    G    Eb\r\n");
+		}
 		TEST_METHOD(transposeLine){
 			Song* mySong = new Song();
 			vector<string> line;

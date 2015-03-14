@@ -13,8 +13,11 @@ public:
 	string DISPLAY_SONGLIST;
 	string DISPLAY_FEEDBACK;
 	string INPUT_COMMAND_LINE;
+	string INPUT_QUICKTRANSPOSE;
+	string INPUT_ACTIVE;
 	Songlist* myList;
-	string FILENAME_ACTIVE_CONTAINER = "active.tsys";
+	Song* s; // used to access methods from Song
+	string FILENAME_ACTIVE_CONTAINER = "SYSTEM\\active.tsys";
 	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
 	
