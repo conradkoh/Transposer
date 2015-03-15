@@ -18,7 +18,9 @@ public:
 	Songlist* myList;
 	Song* s; // used to access methods from Song
 	string FILENAME_ACTIVE_CONTAINER = "SYSTEM\\active.tsys";
+	string ALL_SONGS = "ALL.slist";
 	string songListDIR = "Playlists\\";
+	string songDIR = Song::songDIR;
 	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
 	
@@ -35,6 +37,7 @@ public:
 	string GetActiveFile();
 	string UpdateActiveFile(string filename);
 	bool FileExists(string filename);
-	
+
+
 };
 

@@ -212,7 +212,8 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			string filename;
 			getfilename >> buffer; //remove command
 			if (getline(getfilename, filename)){
-				string filenamedir = songListDIR + filename.substr(1, (filename.length() - 1));
+				filename = filename.substr(1, filename.length() - 1);
+				string filenamedir = songListDIR + filename;
 				if (FileExists(filenamedir)){
 					delete myList;
 					myList = new Songlist(filenamedir);
