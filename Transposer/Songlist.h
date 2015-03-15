@@ -14,7 +14,6 @@ public:
 	int songCount;
 	vector<string> filenames;
 	vector<Song*> songs;
-	static const string songListDIR;
 
 	Songlist();
 	Songlist(string FILENAME_ALL_SONG_FILENAMES);

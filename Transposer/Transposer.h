@@ -18,6 +18,7 @@ public:
 	Songlist* myList;
 	Song* s; // used to access methods from Song
 	string FILENAME_ACTIVE_CONTAINER = "SYSTEM\\active.tsys";
+	string songListDIR = "Playlists\\";
 	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
 	

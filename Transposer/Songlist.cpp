@@ -4,16 +4,15 @@
 #include <string>
 
 using namespace std;
-const string Songlist::songListDIR = "";
 Songlist::Songlist()
 {
-	FILENAME = songListDIR + "songlist.slist";
+	FILENAME = "songlist.slist";
 	loadAll();
 	songCount = songs.size();
 }
 
 Songlist::Songlist(string FILENAME_ALL_SONG_FILENAMES){
-	FILENAME = songListDIR + FILENAME_ALL_SONG_FILENAMES;
+	FILENAME = FILENAME_ALL_SONG_FILENAMES;
 	loadAll();
 	songCount = songs.size();
 }
@@ -23,7 +22,7 @@ Songlist::~Songlist()
 }
 
 void Songlist::loadAll(){
-	ifstream songFileNames(songListDIR + FILENAME.c_str());
+	ifstream songFileNames(FILENAME.c_str());
 	string filename_current_song;
 	while (getline(songFileNames, filename_current_song)){
 		if (FileExists(Song::songDIR + filename_current_song)){

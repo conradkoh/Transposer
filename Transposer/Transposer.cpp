@@ -4,7 +4,7 @@
 Transposer::Transposer()
 {
 	FILENAME_ACTIVE = GetActiveFile();
-	myList = new Songlist(FILENAME_ACTIVE);
+	myList = new Songlist(songListDIR + FILENAME_ACTIVE);
 	s = new Song();
 	DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 	DISPLAY_SONGLIST = myList->ToString();
@@ -212,10 +212,10 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			string filename;
 			getfilename >> buffer; //remove command
 			if (getline(getfilename, filename)){
-				filename = filename.substr(1, (filename.length() - 1));
-				if (FileExists(filename)){
+				string filenamedir = songListDIR + filename.substr(1, (filename.length() - 1));
+				if (FileExists(filenamedir)){
 					delete myList;
-					myList = new Songlist(filename);
+					myList = new Songlist(filenamedir);
 					DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 					DISPLAY_SONGLIST = myList->ToString();
 					INPUT_COMMAND_LINE = "";
