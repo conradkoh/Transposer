@@ -23,6 +23,7 @@ public:
 	string songDIR = Song::songDIR;
 	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
+	bool spawn = false;
 	
 	Transposer();
 	~Transposer();
@@ -31,6 +32,7 @@ public:
 	void Previous();
 	void TransposeUp();
 	void TransposeDown();
+	void NewWindow();
 	COMMAND Parse(string input);
 	bool Execute(COMMAND command, string input);
 	bool IndexIsValid(int index); //1 based index

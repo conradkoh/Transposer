@@ -283,3 +283,8 @@ bool Transposer::FileExists(string filename){
 			return false;
 	}
 }
+
+void Transposer::NewWindow(){
+	spawn = true;
+	return;
+}

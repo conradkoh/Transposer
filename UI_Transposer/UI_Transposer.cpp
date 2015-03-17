@@ -9,5 +9,5 @@ void main(array<String^>^ args){
 	Application::SetCompatibleTextRenderingDefault(false);
 
 	UI_Transposer::UI_Transposer mainWindow;
-	Application::Run(%mainWindow);
+	Application::Run(%mainWindow); //Run is a continuous loop. Any code following that will be executed after the window is closed
 }
