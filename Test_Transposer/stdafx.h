@@ -11,3 +11,4 @@
 // TODO: reference additional headers your program requires here
 #include "Song.h"
 #include "Songlist.h"
+#include "StringMethods.h"

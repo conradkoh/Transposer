@@ -55,7 +55,13 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::TabControl^  tabControl1;
 	private: System::Windows::Forms::TabPage^  main_tab;
 	private: System::Windows::Forms::TabPage^  tabPage2;
-	//private: System::Windows::Forms::TabPage^ new_page;
+	private: System::Windows::Forms::Button^  Button_New;
+
+
+
+
+
+			 //private: System::Windows::Forms::TabPage^ new_page;
 
 
 
@@ -94,6 +100,7 @@ namespace UI_Transposer {
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->main_tab = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->Button_New = (gcnew System::Windows::Forms::Button());
 			this->tabControl1->SuspendLayout();
 			this->main_tab->SuspendLayout();
 			this->SuspendLayout();
@@ -106,12 +113,12 @@ namespace UI_Transposer {
 			this->DISPLAY_SONGLYRICS->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->DISPLAY_SONGLYRICS->ForeColor = System::Drawing::SystemColors::ControlLightLight;
-			this->DISPLAY_SONGLYRICS->Location = System::Drawing::Point(-4, 0);
+			this->DISPLAY_SONGLYRICS->Location = System::Drawing::Point(3, 3);
 			this->DISPLAY_SONGLYRICS->Multiline = true;
 			this->DISPLAY_SONGLYRICS->Name = L"DISPLAY_SONGLYRICS";
 			this->DISPLAY_SONGLYRICS->ReadOnly = true;
 			this->DISPLAY_SONGLYRICS->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(740, 876);
+			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(722, 881);
 			this->DISPLAY_SONGLYRICS->TabIndex = 4;
 			this->DISPLAY_SONGLYRICS->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::DISPLAY_SONGLYRICS_TextChanged);
 			// 
@@ -119,7 +126,7 @@ namespace UI_Transposer {
 			// 
 			this->BUTTON_NEXT->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->BUTTON_NEXT->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->BUTTON_NEXT->Location = System::Drawing::Point(1217, 0);
+			this->BUTTON_NEXT->Location = System::Drawing::Point(1207, 3);
 			this->BUTTON_NEXT->Name = L"BUTTON_NEXT";
 			this->BUTTON_NEXT->Size = System::Drawing::Size(283, 287);
 			this->BUTTON_NEXT->TabIndex = 1;
@@ -131,7 +138,7 @@ namespace UI_Transposer {
 			// 
 			this->BUTTON_PREVIOUS->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->BUTTON_PREVIOUS->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->BUTTON_PREVIOUS->Location = System::Drawing::Point(1217, 285);
+			this->BUTTON_PREVIOUS->Location = System::Drawing::Point(1207, 288);
 			this->BUTTON_PREVIOUS->Name = L"BUTTON_PREVIOUS";
 			this->BUTTON_PREVIOUS->Size = System::Drawing::Size(283, 288);
 			this->BUTTON_PREVIOUS->TabIndex = 2;
@@ -145,12 +152,12 @@ namespace UI_Transposer {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->DISPLAY_SONGLIST->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DISPLAY_SONGLIST->Location = System::Drawing::Point(1125, 573);
+			this->DISPLAY_SONGLIST->Location = System::Drawing::Point(1115, 579);
 			this->DISPLAY_SONGLIST->Multiline = true;
 			this->DISPLAY_SONGLIST->Name = L"DISPLAY_SONGLIST";
 			this->DISPLAY_SONGLIST->ReadOnly = true;
 			this->DISPLAY_SONGLIST->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->DISPLAY_SONGLIST->Size = System::Drawing::Size(375, 303);
+			this->DISPLAY_SONGLIST->Size = System::Drawing::Size(374, 305);
 			this->DISPLAY_SONGLIST->TabIndex = 3;
 			this->DISPLAY_SONGLIST->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::DISPLAY_SONGLIST_TextChanged);
 			// 
@@ -158,16 +165,16 @@ namespace UI_Transposer {
 			// 
 			this->INPUT_COMMAND_LINE->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->INPUT_COMMAND_LINE->Location = System::Drawing::Point(3, 893);
+			this->INPUT_COMMAND_LINE->Location = System::Drawing::Point(6, 909);
 			this->INPUT_COMMAND_LINE->Name = L"INPUT_COMMAND_LINE";
-			this->INPUT_COMMAND_LINE->Size = System::Drawing::Size(1212, 31);
+			this->INPUT_COMMAND_LINE->Size = System::Drawing::Size(1208, 31);
 			this->INPUT_COMMAND_LINE->TabIndex = 0;
 			this->INPUT_COMMAND_LINE->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::INPUT_COMMAND_LINE_TextChanged);
 			// 
 			// BUTTON_SEND
 			// 
 			this->BUTTON_SEND->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_SEND->Location = System::Drawing::Point(1245, 883);
+			this->BUTTON_SEND->Location = System::Drawing::Point(1237, 890);
 			this->BUTTON_SEND->Name = L"BUTTON_SEND";
 			this->BUTTON_SEND->Size = System::Drawing::Size(248, 50);
 			this->BUTTON_SEND->TabIndex = 5;
@@ -183,7 +190,7 @@ namespace UI_Transposer {
 			this->button_transpose_up->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->button_transpose_up->Font = (gcnew System::Drawing::Font(L"Bauhaus 93", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button_transpose_up->Location = System::Drawing::Point(1125, 0);
+			this->button_transpose_up->Location = System::Drawing::Point(1115, 3);
 			this->button_transpose_up->Name = L"button_transpose_up";
 			this->button_transpose_up->Size = System::Drawing::Size(94, 287);
 			this->button_transpose_up->TabIndex = 6;
@@ -199,7 +206,7 @@ namespace UI_Transposer {
 			this->button_transpose_down->Font = (gcnew System::Drawing::Font(L"Bauhaus 93", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button_transpose_down->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->button_transpose_down->Location = System::Drawing::Point(1125, 285);
+			this->button_transpose_down->Location = System::Drawing::Point(1115, 288);
 			this->button_transpose_down->Name = L"button_transpose_down";
 			this->button_transpose_down->Size = System::Drawing::Size(94, 288);
 			this->button_transpose_down->TabIndex = 7;
@@ -211,7 +218,7 @@ namespace UI_Transposer {
 			this->DISPLAY_FEEDBACK->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->DISPLAY_FEEDBACK->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->DISPLAY_FEEDBACK->Location = System::Drawing::Point(3, 930);
+			this->DISPLAY_FEEDBACK->Location = System::Drawing::Point(12, 989);
 			this->DISPLAY_FEEDBACK->Multiline = true;
 			this->DISPLAY_FEEDBACK->Name = L"DISPLAY_FEEDBACK";
 			this->DISPLAY_FEEDBACK->ReadOnly = true;
@@ -224,10 +231,10 @@ namespace UI_Transposer {
 			this->INPUT_QUICKTRANSPOSE->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->INPUT_QUICKTRANSPOSE->BackColor = System::Drawing::SystemColors::ControlLightLight;
-			this->INPUT_QUICKTRANSPOSE->Location = System::Drawing::Point(742, 0);
+			this->INPUT_QUICKTRANSPOSE->Location = System::Drawing::Point(731, 3);
 			this->INPUT_QUICKTRANSPOSE->Multiline = true;
 			this->INPUT_QUICKTRANSPOSE->Name = L"INPUT_QUICKTRANSPOSE";
-			this->INPUT_QUICKTRANSPOSE->Size = System::Drawing::Size(377, 876);
+			this->INPUT_QUICKTRANSPOSE->Size = System::Drawing::Size(377, 881);
 			this->INPUT_QUICKTRANSPOSE->TabIndex = 9;
 			this->INPUT_QUICKTRANSPOSE->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::INPUT_QUICKTRANSPOSE_TextChanged);
 			// 
@@ -238,17 +245,17 @@ namespace UI_Transposer {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->tabControl1->Controls->Add(this->main_tab);
 			this->tabControl1->Controls->Add(this->tabPage2);
-			this->tabControl1->Location = System::Drawing::Point(1, 3);
+			this->tabControl1->Location = System::Drawing::Point(5, 3);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->Padding = System::Drawing::Point(6, 12);
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(1508, 1029);
+			this->tabControl1->Size = System::Drawing::Size(1504, 1023);
 			this->tabControl1->TabIndex = 10;
+			this->tabControl1->TabIndexChanged += gcnew System::EventHandler(this, &UI_Transposer::button1_Click);
 			// 
 			// main_tab
 			// 
 			this->main_tab->Controls->Add(this->DISPLAY_SONGLYRICS);
-			this->main_tab->Controls->Add(this->DISPLAY_FEEDBACK);
 			this->main_tab->Controls->Add(this->INPUT_QUICKTRANSPOSE);
 			this->main_tab->Controls->Add(this->BUTTON_SEND);
 			this->main_tab->Controls->Add(this->button_transpose_up);
@@ -260,21 +267,32 @@ namespace UI_Transposer {
 			this->main_tab->Location = System::Drawing::Point(4, 52);
 			this->main_tab->Name = L"main_tab";
 			this->main_tab->Padding = System::Windows::Forms::Padding(3);
-			this->main_tab->Size = System::Drawing::Size(1500, 973);
-			this->main_tab->TabIndex = 0;
+			this->main_tab->Size = System::Drawing::Size(1496, 967);
+			this->main_tab->TabIndex = 11;
 			this->main_tab->Text = L"Main";
 			this->main_tab->UseVisualStyleBackColor = true;
+			this->INPUT_COMMAND_LINE->Focus();
 			// 
 			// tabPage2
 			// 
 			this->tabPage2->Location = System::Drawing::Point(4, 52);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(1500, 973);
-			this->tabPage2->TabIndex = 1;
+			this->tabPage2->Size = System::Drawing::Size(1496, 967);
+			this->tabPage2->TabIndex = 12;
 			this->tabPage2->Text = L"tabPage2";
 			this->tabPage2->UseVisualStyleBackColor = true;
-			//this->tabPage2->Click += gcnew System::EventHandler(this, &UI_Transposer::new_tab_Click);
+			// 
+			// Button_New
+			// 
+			this->Button_New->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->Button_New->Location = System::Drawing::Point(1323, 988);
+			this->Button_New->Name = L"Button_New";
+			this->Button_New->Size = System::Drawing::Size(171, 38);
+			this->Button_New->TabIndex = 13;
+			this->Button_New->Text = L"New Tab";
+			this->Button_New->UseVisualStyleBackColor = true;
+			this->Button_New->Click += gcnew System::EventHandler(this, &UI_Transposer::button1_Click);
 			// 
 			// UI_Transposer
 			// 
@@ -283,13 +301,17 @@ namespace UI_Transposer {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1506, 1031);
 			this->Controls->Add(this->tabControl1);
+			this->Controls->Add(this->DISPLAY_FEEDBACK);
+			this->Controls->Add(this->Button_New);
 			this->Name = L"UI_Transposer";
 			this->Text = L"UI_Transposer";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
+			this->Load += gcnew System::EventHandler(this, &UI_Transposer::UI_Transposer_Load);
 			this->tabControl1->ResumeLayout(false);
 			this->main_tab->ResumeLayout(false);
 			this->main_tab->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -346,5 +368,38 @@ private: System::Void DISPLAY_SONGLYRICS_TextChanged(System::Object^  sender, Sy
 			 this->new_page->UseVisualStyleBackColor = true;
 			 this->tabControl1->Controls->Add(this->new_page);
 		 }*/
+
+private: System::Void flowLayoutPanel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		System::Windows::Forms::TabPage^ newTab = (gcnew System::Windows::Forms::TabPage());
+
+		newTab->Location = System::Drawing::Point(4, 52);
+		newTab->Name = L"newTab";
+		newTab->Padding = System::Windows::Forms::Padding(3);
+		newTab->Size = System::Drawing::Size(1500, 973);
+		newTab->TabIndex = 1;
+		newTab->Text = L"newTab";
+		newTab->UseVisualStyleBackColor = true;
+
+		//new transposer
+		
+
+		//
+
+		//
+
+		//controlling the tabs
+		static int i = 2;
+		this->tabControl1->Controls->Add(newTab);
+		this->tabControl1->SelectTab(i);
+		this->tabControl1->Focus();
+		this->DISPLAY_FEEDBACK->Text = gcnew String(to_string(this->tabControl1->SelectedIndex).c_str());
+		i++;
+	
+}
+private: System::Void UI_Transposer_Load(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 }

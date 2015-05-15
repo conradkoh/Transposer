@@ -3,7 +3,6 @@
 #include <string>
 #include "Song.cpp"
 #include "Songlist.cpp"
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace Test_Transposer
@@ -110,12 +109,16 @@ namespace Test_Transposer
 		TEST_METHOD(transposeStr){
 			Song* s = new Song();
 			string t1 = s->TransposeStr("A E F# D", Song::KEY::E, Song::KEY::F);
-			Assert::AreEqual(t1.c_str(), "Bb    F    G    Eb\r\n");
-			string t2 = s->TransposeStr("A E F# D", Song::KEY::F, Song::KEY::E);
-			Assert::AreEqual(t2.c_str(), "G#    Eb    F    C#\r\n");
+			Assert::AreEqual(t1.c_str(), "Bb F G Eb\n");
+			string t2 = s->TransposeStr(" A E F# D", Song::KEY::F, Song::KEY::E);
+			Assert::AreEqual(t2.c_str(), " G# Eb F C#\n");
 			string t3 = s->TransposeStr("A E F# D\nA E F# D", Song::KEY::E, Song::KEY::F);
-			Assert::AreEqual(t3.c_str(), "Bb    F    G    Eb\r\nBb    F    G    Eb\r\n");
+			Assert::AreEqual(t3.c_str(), "Bb F G Eb\nBb F G Eb\n");
+			string t4 = s->TransposeStr("A  E F# D", Song::KEY::E, Song::KEY::F);
+			Assert::AreEqual(t4.c_str(), "Bb  F G Eb\n");
+
 		}
+
 		TEST_METHOD(transposeLine){
 			Song* mySong = new Song();
 			vector<string> line;
@@ -163,5 +166,57 @@ namespace Test_Transposer
 
 		}
 
+		TEST_METHOD(TOKENIZEWITHSPACES){
+			vector<string> output = StringMethods::TokenizeWithSpaces("hello how are you");
+			string expected = "hello how are you";
+			string actual = StringMethods::VectToStr(output);
+			Assert::AreEqual(expected, actual);
+
+			output = StringMethods::TokenizeWithSpaces("  hello how are you  ");
+			expected = "  hello how are you  ";
+			actual = StringMethods::VectToStr(output);
+			Assert::AreEqual(expected, actual);
+
+			output = StringMethods::TokenizeWithSpaces("  hello    how are you  ");
+			expected = "  hello    how are you  ";
+			actual = StringMethods::VectToStr(output);
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(REPLACESTR){
+			string input;
+			string expected;
+			string actual;
+			
+			input = "what a fine day";
+			actual = StringMethods::ReplaceStr(input, "fine", "very fine");
+			expected = "what a very fine day";
+			Assert::AreEqual(expected, actual);
+
+			input = "A	B";
+			actual = StringMethods::ReplaceStr(input, "	", "    ");
+			expected = "A    B";
+			Assert::AreEqual(expected, actual);
+
+			input = "A	B";
+			actual = StringMethods::ReplaceStr(input, "", "");
+			expected = "A	B";
+			Assert::AreEqual(expected, actual);
+
+			input = "A	B";
+			actual = StringMethods::ReplaceStr(input, "C", "");
+			expected = "A	B";
+			Assert::AreEqual(expected, actual);
+
+			input = "A	B";
+			actual = StringMethods::ReplaceStr(input, "", "C");
+			expected = "A	B";
+			Assert::AreEqual(expected, actual);
+
+			input = "A	B	C	D";
+			actual = StringMethods::ReplaceStr(input, "	", "    ");
+			expected = "A    B    C    D";
+			Assert::AreEqual(expected, actual);
+		}
 	};
 }

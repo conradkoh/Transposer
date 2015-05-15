@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "StringMethods.h"
 using namespace std;
 
 
@@ -17,12 +18,19 @@ public:
 	vector<string> lyrics;
 	int lineCount;
 	string spaces = "    ";
+	string title_visible;
 	static const string songDIR;
 	static const string saveDIR;
+
+	static string notes[12];
+	static string notes_alias[12];
+
+	bool isInitalized = false;
 
 	Song(void);
 	~Song(void);
 	Song(string filename);
+	void Initialize();
 	void transpose(KEY startKEY, KEY endKEY);
 	void save(string filename);
 	string TransposeStr(string input, KEY startKEY, KEY endKEY);
@@ -33,6 +41,9 @@ public:
 	string transposeSlashChord(string remainder, int offset);
 	string ToString();
 	string Chords();
+
+	bool IsValidChord(string base, string details);
+	int CountValidChords(vector<string> chordline);
 };
 
 #endif

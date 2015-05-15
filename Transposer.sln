@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Transposer", "Transposer\Transposer.vcxproj", "{CBC67E34-B5EA-424C-AD63-18019A3A8875}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_Transposer", "Test_Transposer\Test_Transposer.vcxproj", "{D9793825-81E9-4920-B10D-4B787ADF3C31}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI_Transposer", "UI_Transposer\UI_Transposer.vcxproj", "{317BA78A-99A5-4C51-A7F1-4412D0092FF6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleEXE", "ConsoleEXE\ConsoleEXE.vcxproj", "{38AA046B-662E-4077-A3B9-7E6E41BACA7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{317BA78A-99A5-4C51-A7F1-4412D0092FF6}.Debug|Win32.Build.0 = Debug|Win32
 		{317BA78A-99A5-4C51-A7F1-4412D0092FF6}.Release|Win32.ActiveCfg = Release|Win32
 		{317BA78A-99A5-4C51-A7F1-4412D0092FF6}.Release|Win32.Build.0 = Release|Win32
+		{38AA046B-662E-4077-A3B9-7E6E41BACA7B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38AA046B-662E-4077-A3B9-7E6E41BACA7B}.Debug|Win32.Build.0 = Debug|Win32
+		{38AA046B-662E-4077-A3B9-7E6E41BACA7B}.Release|Win32.ActiveCfg = Release|Win32
+		{38AA046B-662E-4077-A3B9-7E6E41BACA7B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

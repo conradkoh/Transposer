@@ -24,6 +24,9 @@
     <ClInclude Include="Transposer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StringMethods.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Song.cpp">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Transposer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringMethods.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
