@@ -49,8 +49,13 @@ bool Songlist::FileExists(string filename){
 	}
 }
 
-void Songlist::addSong(){
-
+void Songlist::addSong(string filename){
+	if (FileExists(Song::songDIR + filename)){
+		Song* currentSong = new Song(filename);
+		songs.push_back(currentSong);
+		songCount++;
+	}
+	return;
 }
 
 string Songlist::ToString(){
@@ -68,6 +73,24 @@ string Songlist::ToString(){
 	for (iter = songs.begin(); iter != songs.end(); ++iter){
 		oss << index << ". " << (*iter)->FILENAME << "\r\n";
 			index++;
+	}
+	return oss.str();
+}
+
+string Songlist::SongListTitles(){
+	ostringstream oss;
+	vector<Song*>::iterator iter;
+	int index = 1;
+	for (iter = songs.begin(); iter != songs.end(); ++iter){
+		if (iter + 1 != songs.end()){
+			oss << (*iter)->FILENAME << "\n";
+			index++;
+		}
+		else{
+			oss << (*iter)->FILENAME;
+			index++;
+		}
+		
 	}
 	return oss.str();
 }

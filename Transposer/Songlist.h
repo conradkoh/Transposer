@@ -20,13 +20,14 @@ public:
 	~Songlist();
 	void loadAll();
 	bool FileExists(string filename);
-	void addSong();
+	void addSong(string filename);
 	string ToString();
 	string ChordsToString(int index);
 	string SongToString(int index);
 	void transpose(int index, string startkey, string endkey);
 	void saveSong(int index, string filename);
 	Song::KEY stringToKEY(string input);
+	string SongListTitles();
 };
 
 #endif

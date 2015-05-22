@@ -33,12 +33,18 @@ public:
 	void TransposeUp();
 	void TransposeDown();
 	void NewWindow();
+	void AddSong(string directory);
+	void CreateSong(string filename, vector<string> songContent);
+
+
 	COMMAND Parse(string input);
 	bool Execute(COMMAND command, string input);
 	bool IndexIsValid(int index); //1 based index
 	string GetActiveFile();
 	string UpdateActiveFile(string filename);
-	bool FileExists(string filename);
+	string UpdateSongListFile();
+	bool FileExists(string directory);
+	
 
 
 };

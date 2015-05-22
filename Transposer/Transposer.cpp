@@ -186,7 +186,6 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			int index = curIdx + 1;
 			if (getline(getfilename, filename)){
 				filename = filename.substr(1, (filename.length() - 1));
-				//myList->saveSong(atoi(songRef.c_str()), filename);
 				myList->saveSong(index, filename);
 				DISPLAY_FEEDBACK = "Saved.";
 			}
@@ -198,7 +197,7 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 		}
 		case RELOAD:{
 			delete myList;
-			myList = new Songlist(FILENAME_ACTIVE);
+			myList = new Songlist(songListDIR + FILENAME_ACTIVE);
 			DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 			DISPLAY_SONGLIST = myList->ToString();
 			INPUT_COMMAND_LINE = "";
@@ -270,6 +269,16 @@ string Transposer::UpdateActiveFile(string filename){
 	return "filename updated";
 }
 
+string Transposer::UpdateSongListFile(){
+	string output;
+
+	ofstream of;
+	of.open(songListDIR + FILENAME_ACTIVE, ios::trunc);
+	of << myList->SongListTitles();
+
+	return output;
+}
+
 bool Transposer::FileExists(string filename){
 	ifstream in;
 	string test;
@@ -286,5 +295,49 @@ bool Transposer::FileExists(string filename){
 
 void Transposer::NewWindow(){
 	spawn = true;
+	return;
+}
+
+void Transposer::AddSong(string directory){
+	//get the expected filename
+	int startIdx = directory.find_last_of("/");
+	int startIdx2 = directory.find_last_of("\\");
+	if (startIdx2 > startIdx){
+		startIdx = startIdx2;
+	}
+
+	int length = directory.length() - startIdx - 1;
+	string filename = directory.substr(startIdx + 1, length);
+	
+	//open the file to be added
+	ifstream newSongFile;
+	newSongFile.open(directory.c_str());
+	vector<string> newSongContent;
+	string buffer;
+	while (getline(newSongFile, buffer)){
+		newSongContent.push_back(buffer);
+	}
+
+	//create song in song directory
+	CreateSong(filename, newSongContent);
+	
+
+
+	myList->addSong(filename);
+
+	//update views
+	DISPLAY_SONGLIST = myList->ToString();
+	UpdateSongListFile();
+}
+
+void Transposer::CreateSong(string filename, vector<string> songContent){
+	ofstream of;
+	of.open(Song::songDIR + filename.c_str());
+
+	vector<string>::iterator iter;
+	for (iter = songContent.begin(); iter != songContent.end(); ++iter){
+		of << (*iter) << endl;
+	}
+
 	return;
 }
