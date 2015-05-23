@@ -327,8 +327,8 @@ bool Song::IsValidChord(string base, string details){
 	bool isInvalidAug = true;
 	bool isInvalid = true;
 	
-	int findInvalidDetail = details.find_first_of("cefhklopqrstvwxyzHKLOPQRTVWXYZ");
-	int findInvalidBase = base.find_first_of("cefhklopqrstvwxyzHKLOPQRTVWXYZ");
+	int findInvalidDetail = details.find_first_of("cefhklopqrtvwxyzHKLOPQRTVWXYZ");
+	int findInvalidBase = base.find_first_of("cefhklopqrtvwxyzHKLOPQRTVWXYZ");
 	if (findInvalidDetail == string::npos && findInvalidBase == string::npos){
 		isInvalid = false;
 	}
