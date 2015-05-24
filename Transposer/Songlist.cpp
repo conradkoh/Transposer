@@ -130,6 +130,17 @@ void Songlist::saveSong(int index, string filename){
 	return;
 }
 
+string Songlist::saveSong(int index){
+	string feedback;
+	if (index <= songCount){
+		feedback = songs[index - 1]->save();
+	}
+	else{
+		feedback = "Invalid Index, Save Song Failed";
+	}
+	return feedback;
+}
+
 Song::KEY Songlist::stringToKEY(string input){
 	if (input == "c" || input == "C"){
 		return Song::KEY::C;

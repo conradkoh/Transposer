@@ -26,6 +26,7 @@ public:
 	string SongToString(int index);
 	void transpose(int index, string startkey, string endkey);
 	void saveSong(int index, string filename);
+	string saveSong(int index);
 	Song::KEY stringToKEY(string input);
 	string SongListTitles();
 };

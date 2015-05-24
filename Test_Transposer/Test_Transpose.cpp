@@ -218,5 +218,19 @@ namespace Test_Transposer
 			expected = "A    B    C    D";
 			Assert::AreEqual(expected, actual);
 		}
+
+		TEST_METHOD(REMOVENEWLINE){
+			string input;
+			string actual;
+			string expected;
+			
+			input = "abcdef\n";
+			expected = "abcdef";
+			actual = StringMethods::RemoveNewlines(input);
+			Assert::AreEqual(expected, actual);
+
+
+		}
+
 	};
 }

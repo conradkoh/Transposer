@@ -85,3 +85,23 @@ string StringMethods::ReplaceStr(string input, string to_replace, string replace
 
 	return input;
 }
+
+string StringMethods::RemoveNewlines(string input){
+	string output = input;
+	int found = 0;
+	do{
+		found = output.find_first_of("\n");
+		if (found != string::npos){
+			int length = output.length();
+			string prefix = input.substr(0, found);
+			string suffix = "";
+
+			if (found + 1 < length){
+				suffix = input.substr(found + 2, length - found);
+			}
+			output = prefix + suffix;
+		}
+	} while (found != string::npos);
+	return output;
+
+}

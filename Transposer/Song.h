@@ -33,6 +33,7 @@ public:
 	void Initialize();
 	void transpose(KEY startKEY, KEY endKEY);
 	void save(string filename);
+	string save();
 	string TransposeStr(string input, KEY startKEY, KEY endKEY);
 	vector<string> transposeLine(vector<string> lineChords, KEY startKEY, KEY endKEY);
 	string isolateChord(string input);

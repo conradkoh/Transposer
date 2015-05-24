@@ -341,3 +341,17 @@ void Transposer::CreateSong(string filename, vector<string> songContent){
 
 	return;
 }
+
+//==============================================
+//MAIN TAB
+//==============================================
+
+void Transposer::SavePlaylist(){
+
+}
+
+void Transposer::SaveSong(){
+	int index = curIdx + 1;
+	DISPLAY_SAVE_TAB_STATUSBAR = myList->saveSong(index);
+	return;
+}

@@ -98,20 +98,14 @@ string Song::TransposeStr(string input, KEY startKEY, KEY endKEY){
 	while (getline(in, currentLine)){
 		istringstream line(currentLine);
 		vector<string> lineChords;
-	/*	string chord;
-		while (line >> chord){
-			lineChords.push_back(chord);
-		}*/
-		lineChords = StringMethods::TokenizeWithSpaces(currentLine);
 
+		lineChords = StringMethods::TokenizeWithSpaces(currentLine);
 		vector<string> transposedLn = transposeLine(lineChords, startKEY, endKEY);
+		
 		vector<string>::iterator iter;
 		string chordline;
 		for (iter = transposedLn.begin(); iter != transposedLn.end(); ++iter){
 			if (iter + 1 != transposedLn.end()){
-				string dbg = "";
-				dbg = *iter;
-				/*chordline = chordline + *iter + spaces;*/
 				chordline = chordline + *iter;
 			}
 			else{
@@ -119,7 +113,6 @@ string Song::TransposeStr(string input, KEY startKEY, KEY endKEY){
 			}
 			
 		}
-		chordline += "\n";
 		output += chordline;
 	}
 	return output;
@@ -163,9 +156,6 @@ vector<string> Song::transposeLine(vector<string> lineChords, KEY startKEY, KEY 
 	vector<string> output;
 	vector<string>::iterator iter;
 	for (iter = newChords.begin(); iter != newChords.end(); ++iter){
-		//if (*iter != spaces){
-		//	output.push_back(*iter);
-		//}
 		output.push_back(*iter);
 	}
 
@@ -262,12 +252,24 @@ string Song::transposeSlashChord(string remainder, int offset){
 }
 
 void Song::save(string filename){
+
 	ofstream out(filename.c_str());
 	for (int i = 0; i< lineCount; i++){
-		out << chords[i] << "\r\n";
-		out << lyrics[i] << "\r\n";
+		out << chords[i] << "\n";
+		out << lyrics[i] << "\n";
 	}
 	return;
+}
+
+string Song::save(){
+	string title_valid = StringMethods::RemoveNewlines(title_visible);
+	string filename = songDIR + title_valid + ".txt";
+	ofstream out(filename);
+	for (int i = 0; i< lineCount; i++){
+		out << chords[i] << "\n";
+		out << lyrics[i] << "\n";
+	}
+	return filename;
 }
 
 string Song::ToString(){

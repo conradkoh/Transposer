@@ -8,5 +8,6 @@ public:
 	static vector<string> TokenizeWithSpaces(string input);
 	static string VectToStr(vector<string> input);
 	static string ReplaceStr(string input, string to_replace, string replacer);
+	static string RemoveNewlines(string input);
 };
 

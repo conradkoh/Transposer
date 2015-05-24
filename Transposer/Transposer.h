@@ -24,7 +24,9 @@ public:
 	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
 	bool spawn = false;
-	
+	//==============================================
+	//MAIN TAB
+	//==============================================
 	Transposer();
 	~Transposer();
 	void Update();
@@ -36,7 +38,20 @@ public:
 	void AddSong(string directory);
 	void CreateSong(string filename, vector<string> songContent);
 
+	//==============================================
+	//OPTIONS TAB
+	//==============================================
+	//SAVE
+	string DISPLAY_SAVE_TAB_STATUSBAR;
+	void SavePlaylist();
+	void SaveSong();
 
+
+
+
+	//==============================================
+	//MISC
+	//==============================================
 	COMMAND Parse(string input);
 	bool Execute(COMMAND command, string input);
 	bool IndexIsValid(int index); //1 based index
