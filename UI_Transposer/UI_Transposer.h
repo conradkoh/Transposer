@@ -78,6 +78,7 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::Button^  BUTTON_SAVE_PLAYLIST;
 	private: System::Windows::Forms::Button^  BUTTON_OPEN_SONG_DIR;
 	private: System::Windows::Forms::Button^  BUTTON_OPEN_PLAYLIST_DIR;
+	private: System::Windows::Forms::Panel^  PANEL_OPTIONS_EDITSAVE;
 
 
 
@@ -152,12 +153,14 @@ namespace UI_Transposer {
 			this->DISPLAY_SAVE_TAB_STATUSBAR = (gcnew System::Windows::Forms::ToolStripStatusLabel());
 			this->BUTTON_SAVE_PLAYLIST = (gcnew System::Windows::Forms::Button());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->PANEL_OPTIONS_EDITSAVE = (gcnew System::Windows::Forms::Panel());
 			this->TABCONTROL_MENU->SuspendLayout();
 			this->main_tab->SuspendLayout();
 			this->options_tab->SuspendLayout();
 			this->TABCONTROL_OPTIONS->SuspendLayout();
 			this->options_save_tab->SuspendLayout();
 			this->statusStrip1->SuspendLayout();
+			this->PANEL_OPTIONS_EDITSAVE->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// DISPLAY_SONGLYRICS
@@ -353,16 +356,8 @@ namespace UI_Transposer {
 			// 
 			// options_save_tab
 			// 
-			this->options_save_tab->Controls->Add(this->BUTTON_OPEN_SONG_DIR);
-			this->options_save_tab->Controls->Add(this->BUTTON_OPEN_PLAYLIST_DIR);
-			this->options_save_tab->Controls->Add(this->BUTTON_HOME);
-			this->options_save_tab->Controls->Add(this->BUTTON_EDIT_SONG);
-			this->options_save_tab->Controls->Add(this->BUTTON_EDIT_PLAYLIST);
-			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_ALL);
-			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_ALL_SONGS);
-			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_CURRENT_SONG);
 			this->options_save_tab->Controls->Add(this->statusStrip1);
-			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_PLAYLIST);
+			this->options_save_tab->Controls->Add(this->PANEL_OPTIONS_EDITSAVE);
 			this->options_save_tab->Location = System::Drawing::Point(4, 52);
 			this->options_save_tab->Name = L"options_save_tab";
 			this->options_save_tab->Padding = System::Windows::Forms::Padding(3);
@@ -373,7 +368,7 @@ namespace UI_Transposer {
 			// 
 			// BUTTON_OPEN_SONG_DIR
 			// 
-			this->BUTTON_OPEN_SONG_DIR->Location = System::Drawing::Point(433, 753);
+			this->BUTTON_OPEN_SONG_DIR->Location = System::Drawing::Point(418, 734);
 			this->BUTTON_OPEN_SONG_DIR->Name = L"BUTTON_OPEN_SONG_DIR";
 			this->BUTTON_OPEN_SONG_DIR->Size = System::Drawing::Size(369, 85);
 			this->BUTTON_OPEN_SONG_DIR->TabIndex = 9;
@@ -383,7 +378,7 @@ namespace UI_Transposer {
 			// 
 			// BUTTON_OPEN_PLAYLIST_DIR
 			// 
-			this->BUTTON_OPEN_PLAYLIST_DIR->Location = System::Drawing::Point(34, 753);
+			this->BUTTON_OPEN_PLAYLIST_DIR->Location = System::Drawing::Point(19, 734);
 			this->BUTTON_OPEN_PLAYLIST_DIR->Name = L"BUTTON_OPEN_PLAYLIST_DIR";
 			this->BUTTON_OPEN_PLAYLIST_DIR->Size = System::Drawing::Size(369, 85);
 			this->BUTTON_OPEN_PLAYLIST_DIR->TabIndex = 8;
@@ -396,7 +391,7 @@ namespace UI_Transposer {
 			this->BUTTON_HOME->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->BUTTON_HOME->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->BUTTON_HOME->Location = System::Drawing::Point(1214, 28);
+			this->BUTTON_HOME->Location = System::Drawing::Point(1199, 9);
 			this->BUTTON_HOME->Name = L"BUTTON_HOME";
 			this->BUTTON_HOME->Size = System::Drawing::Size(264, 843);
 			this->BUTTON_HOME->TabIndex = 7;
@@ -406,7 +401,7 @@ namespace UI_Transposer {
 			// 
 			// BUTTON_EDIT_SONG
 			// 
-			this->BUTTON_EDIT_SONG->Location = System::Drawing::Point(433, 510);
+			this->BUTTON_EDIT_SONG->Location = System::Drawing::Point(418, 491);
 			this->BUTTON_EDIT_SONG->Name = L"BUTTON_EDIT_SONG";
 			this->BUTTON_EDIT_SONG->Size = System::Drawing::Size(369, 211);
 			this->BUTTON_EDIT_SONG->TabIndex = 6;
@@ -416,7 +411,7 @@ namespace UI_Transposer {
 			// 
 			// BUTTON_EDIT_PLAYLIST
 			// 
-			this->BUTTON_EDIT_PLAYLIST->Location = System::Drawing::Point(34, 510);
+			this->BUTTON_EDIT_PLAYLIST->Location = System::Drawing::Point(19, 491);
 			this->BUTTON_EDIT_PLAYLIST->Name = L"BUTTON_EDIT_PLAYLIST";
 			this->BUTTON_EDIT_PLAYLIST->Size = System::Drawing::Size(369, 211);
 			this->BUTTON_EDIT_PLAYLIST->TabIndex = 5;
@@ -428,7 +423,7 @@ namespace UI_Transposer {
 			// 
 			this->BUTTON_SAVE_ALL->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_SAVE_ALL->Location = System::Drawing::Point(36, 28);
+			this->BUTTON_SAVE_ALL->Location = System::Drawing::Point(21, 9);
 			this->BUTTON_SAVE_ALL->Name = L"BUTTON_SAVE_ALL";
 			this->BUTTON_SAVE_ALL->Size = System::Drawing::Size(1159, 214);
 			this->BUTTON_SAVE_ALL->TabIndex = 4;
@@ -438,7 +433,7 @@ namespace UI_Transposer {
 			// 
 			// BUTTON_SAVE_ALL_SONGS
 			// 
-			this->BUTTON_SAVE_ALL_SONGS->Location = System::Drawing::Point(827, 266);
+			this->BUTTON_SAVE_ALL_SONGS->Location = System::Drawing::Point(812, 247);
 			this->BUTTON_SAVE_ALL_SONGS->Name = L"BUTTON_SAVE_ALL_SONGS";
 			this->BUTTON_SAVE_ALL_SONGS->Size = System::Drawing::Size(368, 211);
 			this->BUTTON_SAVE_ALL_SONGS->TabIndex = 3;
@@ -448,7 +443,7 @@ namespace UI_Transposer {
 			// 
 			// BUTTON_SAVE_CURRENT_SONG
 			// 
-			this->BUTTON_SAVE_CURRENT_SONG->Location = System::Drawing::Point(433, 266);
+			this->BUTTON_SAVE_CURRENT_SONG->Location = System::Drawing::Point(418, 247);
 			this->BUTTON_SAVE_CURRENT_SONG->Name = L"BUTTON_SAVE_CURRENT_SONG";
 			this->BUTTON_SAVE_CURRENT_SONG->Size = System::Drawing::Size(369, 211);
 			this->BUTTON_SAVE_CURRENT_SONG->TabIndex = 2;
@@ -475,7 +470,7 @@ namespace UI_Transposer {
 			// 
 			// BUTTON_SAVE_PLAYLIST
 			// 
-			this->BUTTON_SAVE_PLAYLIST->Location = System::Drawing::Point(34, 266);
+			this->BUTTON_SAVE_PLAYLIST->Location = System::Drawing::Point(19, 247);
 			this->BUTTON_SAVE_PLAYLIST->Name = L"BUTTON_SAVE_PLAYLIST";
 			this->BUTTON_SAVE_PLAYLIST->Size = System::Drawing::Size(369, 211);
 			this->BUTTON_SAVE_PLAYLIST->TabIndex = 0;
@@ -486,6 +481,23 @@ namespace UI_Transposer {
 			// saveFileDialog1
 			// 
 			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &UI_Transposer::saveFileDialog1_FileOk);
+			// 
+			// PANEL_OPTIONS_EDITSAVE
+			// 
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_OPEN_SONG_DIR);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_EDIT_PLAYLIST);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_OPEN_PLAYLIST_DIR);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_SAVE_PLAYLIST);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_HOME);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_SAVE_CURRENT_SONG);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_EDIT_SONG);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_SAVE_ALL_SONGS);
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_SAVE_ALL);
+			this->PANEL_OPTIONS_EDITSAVE->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->PANEL_OPTIONS_EDITSAVE->Location = System::Drawing::Point(3, 3);
+			this->PANEL_OPTIONS_EDITSAVE->Name = L"PANEL_OPTIONS_EDITSAVE";
+			this->PANEL_OPTIONS_EDITSAVE->Size = System::Drawing::Size(1478, 907);
+			this->PANEL_OPTIONS_EDITSAVE->TabIndex = 10;
 			// 
 			// UI_Transposer
 			// 
@@ -507,6 +519,7 @@ namespace UI_Transposer {
 			this->options_save_tab->PerformLayout();
 			this->statusStrip1->ResumeLayout(false);
 			this->statusStrip1->PerformLayout();
+			this->PANEL_OPTIONS_EDITSAVE->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
