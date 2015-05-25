@@ -79,6 +79,10 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::Button^  BUTTON_OPEN_SONG_DIR;
 	private: System::Windows::Forms::Button^  BUTTON_OPEN_PLAYLIST_DIR;
 	private: System::Windows::Forms::Panel^  PANEL_OPTIONS_EDITSAVE;
+	private: System::Windows::Forms::Button^  BUTTON_EDIT_PLAYLIST_MAIN;
+	private: System::Windows::Forms::Button^  BUTTON_EDIT_SONG_MAIN;
+	private: System::Windows::Forms::Button^  BUTTON_QUICKTRANSPOSE_DOWN;
+	private: System::Windows::Forms::Button^  BUTTON_QUICKTRANSPOSE_UP;
 
 
 
@@ -138,22 +142,26 @@ namespace UI_Transposer {
 			this->INPUT_QUICKTRANSPOSE = (gcnew System::Windows::Forms::TextBox());
 			this->TABCONTROL_MENU = (gcnew System::Windows::Forms::TabControl());
 			this->main_tab = (gcnew System::Windows::Forms::TabPage());
+			this->BUTTON_QUICKTRANSPOSE_DOWN = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_QUICKTRANSPOSE_UP = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_EDIT_SONG_MAIN = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_EDIT_PLAYLIST_MAIN = (gcnew System::Windows::Forms::Button());
 			this->options_tab = (gcnew System::Windows::Forms::TabPage());
 			this->TABCONTROL_OPTIONS = (gcnew System::Windows::Forms::TabControl());
 			this->options_save_tab = (gcnew System::Windows::Forms::TabPage());
-			this->BUTTON_OPEN_SONG_DIR = (gcnew System::Windows::Forms::Button());
-			this->BUTTON_OPEN_PLAYLIST_DIR = (gcnew System::Windows::Forms::Button());
-			this->BUTTON_HOME = (gcnew System::Windows::Forms::Button());
-			this->BUTTON_EDIT_SONG = (gcnew System::Windows::Forms::Button());
-			this->BUTTON_EDIT_PLAYLIST = (gcnew System::Windows::Forms::Button());
-			this->BUTTON_SAVE_ALL = (gcnew System::Windows::Forms::Button());
-			this->BUTTON_SAVE_ALL_SONGS = (gcnew System::Windows::Forms::Button());
-			this->BUTTON_SAVE_CURRENT_SONG = (gcnew System::Windows::Forms::Button());
 			this->statusStrip1 = (gcnew System::Windows::Forms::StatusStrip());
 			this->DISPLAY_SAVE_TAB_STATUSBAR = (gcnew System::Windows::Forms::ToolStripStatusLabel());
-			this->BUTTON_SAVE_PLAYLIST = (gcnew System::Windows::Forms::Button());
-			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->PANEL_OPTIONS_EDITSAVE = (gcnew System::Windows::Forms::Panel());
+			this->BUTTON_OPEN_SONG_DIR = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_EDIT_PLAYLIST = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_OPEN_PLAYLIST_DIR = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_SAVE_PLAYLIST = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_HOME = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_SAVE_CURRENT_SONG = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_EDIT_SONG = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_SAVE_ALL_SONGS = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_SAVE_ALL = (gcnew System::Windows::Forms::Button());
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->TABCONTROL_MENU->SuspendLayout();
 			this->main_tab->SuspendLayout();
 			this->options_tab->SuspendLayout();
@@ -171,12 +179,12 @@ namespace UI_Transposer {
 			this->DISPLAY_SONGLYRICS->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->DISPLAY_SONGLYRICS->ForeColor = System::Drawing::SystemColors::ControlLightLight;
-			this->DISPLAY_SONGLYRICS->Location = System::Drawing::Point(3, 3);
+			this->DISPLAY_SONGLYRICS->Location = System::Drawing::Point(3, 56);
 			this->DISPLAY_SONGLYRICS->Multiline = true;
 			this->DISPLAY_SONGLYRICS->Name = L"DISPLAY_SONGLYRICS";
 			this->DISPLAY_SONGLYRICS->ReadOnly = true;
 			this->DISPLAY_SONGLYRICS->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(727, 889);
+			this->DISPLAY_SONGLYRICS->Size = System::Drawing::Size(727, 836);
 			this->DISPLAY_SONGLYRICS->TabIndex = 4;
 			this->DISPLAY_SONGLYRICS->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::DISPLAY_SONGLYRICS_TextChanged);
 			// 
@@ -186,7 +194,7 @@ namespace UI_Transposer {
 			this->BUTTON_NEXT->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BUTTON_NEXT->Location = System::Drawing::Point(1212, 3);
 			this->BUTTON_NEXT->Name = L"BUTTON_NEXT";
-			this->BUTTON_NEXT->Size = System::Drawing::Size(283, 287);
+			this->BUTTON_NEXT->Size = System::Drawing::Size(283, 258);
 			this->BUTTON_NEXT->TabIndex = 1;
 			this->BUTTON_NEXT->Text = L"NEXT";
 			this->BUTTON_NEXT->UseVisualStyleBackColor = true;
@@ -196,9 +204,9 @@ namespace UI_Transposer {
 			// 
 			this->BUTTON_PREVIOUS->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->BUTTON_PREVIOUS->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->BUTTON_PREVIOUS->Location = System::Drawing::Point(1212, 288);
+			this->BUTTON_PREVIOUS->Location = System::Drawing::Point(1212, 263);
 			this->BUTTON_PREVIOUS->Name = L"BUTTON_PREVIOUS";
-			this->BUTTON_PREVIOUS->Size = System::Drawing::Size(283, 288);
+			this->BUTTON_PREVIOUS->Size = System::Drawing::Size(283, 259);
 			this->BUTTON_PREVIOUS->TabIndex = 2;
 			this->BUTTON_PREVIOUS->Text = L"PREVIOUS";
 			this->BUTTON_PREVIOUS->UseVisualStyleBackColor = true;
@@ -249,7 +257,7 @@ namespace UI_Transposer {
 				static_cast<System::Byte>(0)));
 			this->button_transpose_up->Location = System::Drawing::Point(1120, 3);
 			this->button_transpose_up->Name = L"button_transpose_up";
-			this->button_transpose_up->Size = System::Drawing::Size(94, 287);
+			this->button_transpose_up->Size = System::Drawing::Size(94, 258);
 			this->button_transpose_up->TabIndex = 6;
 			this->button_transpose_up->UseVisualStyleBackColor = true;
 			this->button_transpose_up->Click += gcnew System::EventHandler(this, &UI_Transposer::button_transpose_up_Click);
@@ -263,9 +271,9 @@ namespace UI_Transposer {
 			this->button_transpose_down->Font = (gcnew System::Drawing::Font(L"Bauhaus 93", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button_transpose_down->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->button_transpose_down->Location = System::Drawing::Point(1120, 288);
+			this->button_transpose_down->Location = System::Drawing::Point(1120, 263);
 			this->button_transpose_down->Name = L"button_transpose_down";
-			this->button_transpose_down->Size = System::Drawing::Size(94, 288);
+			this->button_transpose_down->Size = System::Drawing::Size(94, 259);
 			this->button_transpose_down->TabIndex = 7;
 			this->button_transpose_down->UseVisualStyleBackColor = true;
 			this->button_transpose_down->Click += gcnew System::EventHandler(this, &UI_Transposer::button_transpose_down_Click);
@@ -288,10 +296,10 @@ namespace UI_Transposer {
 			this->INPUT_QUICKTRANSPOSE->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->INPUT_QUICKTRANSPOSE->BackColor = System::Drawing::SystemColors::ControlLightLight;
-			this->INPUT_QUICKTRANSPOSE->Location = System::Drawing::Point(736, 3);
+			this->INPUT_QUICKTRANSPOSE->Location = System::Drawing::Point(736, 56);
 			this->INPUT_QUICKTRANSPOSE->Multiline = true;
 			this->INPUT_QUICKTRANSPOSE->Name = L"INPUT_QUICKTRANSPOSE";
-			this->INPUT_QUICKTRANSPOSE->Size = System::Drawing::Size(377, 889);
+			this->INPUT_QUICKTRANSPOSE->Size = System::Drawing::Size(377, 836);
 			this->INPUT_QUICKTRANSPOSE->TabIndex = 9;
 			this->INPUT_QUICKTRANSPOSE->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::INPUT_QUICKTRANSPOSE_TextChanged);
 			// 
@@ -307,12 +315,15 @@ namespace UI_Transposer {
 			this->TABCONTROL_MENU->SelectedIndex = 0;
 			this->TABCONTROL_MENU->Size = System::Drawing::Size(1506, 1031);
 			this->TABCONTROL_MENU->TabIndex = 10;
-			this->TABCONTROL_MENU->TabIndexChanged += gcnew System::EventHandler(this, &UI_Transposer::button1_Click);
 			this->TABCONTROL_MENU->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &UI_Transposer::TABCONTROL_MENU_DragDrop);
 			this->TABCONTROL_MENU->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &UI_Transposer::TABCONTROL_MENU_DragEnter);
 			// 
 			// main_tab
 			// 
+			this->main_tab->Controls->Add(this->BUTTON_QUICKTRANSPOSE_DOWN);
+			this->main_tab->Controls->Add(this->BUTTON_QUICKTRANSPOSE_UP);
+			this->main_tab->Controls->Add(this->BUTTON_EDIT_SONG_MAIN);
+			this->main_tab->Controls->Add(this->BUTTON_EDIT_PLAYLIST_MAIN);
 			this->main_tab->Controls->Add(this->DISPLAY_SONGLYRICS);
 			this->main_tab->Controls->Add(this->DISPLAY_FEEDBACK);
 			this->main_tab->Controls->Add(this->INPUT_QUICKTRANSPOSE);
@@ -331,6 +342,51 @@ namespace UI_Transposer {
 			this->main_tab->Text = L"Main";
 			this->main_tab->UseVisualStyleBackColor = true;
 			this->main_tab->Enter += gcnew System::EventHandler(this, &UI_Transposer::main_tab_Enter);
+			// 
+			// BUTTON_QUICKTRANSPOSE_DOWN
+			// 
+			this->BUTTON_QUICKTRANSPOSE_DOWN->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_QUICKTRANSPOSE_DOWN->Location = System::Drawing::Point(929, 4);
+			this->BUTTON_QUICKTRANSPOSE_DOWN->Name = L"BUTTON_QUICKTRANSPOSE_DOWN";
+			this->BUTTON_QUICKTRANSPOSE_DOWN->Size = System::Drawing::Size(184, 46);
+			this->BUTTON_QUICKTRANSPOSE_DOWN->TabIndex = 13;
+			this->BUTTON_QUICKTRANSPOSE_DOWN->Text = L"Down";
+			this->BUTTON_QUICKTRANSPOSE_DOWN->UseVisualStyleBackColor = true;
+			this->BUTTON_QUICKTRANSPOSE_DOWN->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_QUICKTRANSPOSE_DOWN_Click);
+			// 
+			// BUTTON_QUICKTRANSPOSE_UP
+			// 
+			this->BUTTON_QUICKTRANSPOSE_UP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_QUICKTRANSPOSE_UP->Location = System::Drawing::Point(737, 4);
+			this->BUTTON_QUICKTRANSPOSE_UP->Name = L"BUTTON_QUICKTRANSPOSE_UP";
+			this->BUTTON_QUICKTRANSPOSE_UP->Size = System::Drawing::Size(186, 46);
+			this->BUTTON_QUICKTRANSPOSE_UP->TabIndex = 12;
+			this->BUTTON_QUICKTRANSPOSE_UP->Text = L"Up";
+			this->BUTTON_QUICKTRANSPOSE_UP->UseVisualStyleBackColor = true;
+			this->BUTTON_QUICKTRANSPOSE_UP->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_QUICKTRANSPOSE_UP_Click);
+			// 
+			// BUTTON_EDIT_SONG_MAIN
+			// 
+			this->BUTTON_EDIT_SONG_MAIN->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_EDIT_SONG_MAIN->Location = System::Drawing::Point(6, 4);
+			this->BUTTON_EDIT_SONG_MAIN->Name = L"BUTTON_EDIT_SONG_MAIN";
+			this->BUTTON_EDIT_SONG_MAIN->Size = System::Drawing::Size(724, 46);
+			this->BUTTON_EDIT_SONG_MAIN->TabIndex = 11;
+			this->BUTTON_EDIT_SONG_MAIN->Text = L"Edit Song";
+			this->BUTTON_EDIT_SONG_MAIN->UseVisualStyleBackColor = true;
+			this->BUTTON_EDIT_SONG_MAIN->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_SONG_Click);
+			// 
+			// BUTTON_EDIT_PLAYLIST_MAIN
+			// 
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Location = System::Drawing::Point(1120, 529);
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Name = L"BUTTON_EDIT_PLAYLIST_MAIN";
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Size = System::Drawing::Size(374, 44);
+			this->BUTTON_EDIT_PLAYLIST_MAIN->TabIndex = 10;
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Text = L"Edit Playlist";
+			this->BUTTON_EDIT_PLAYLIST_MAIN->UseVisualStyleBackColor = true;
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_PLAYLIST_Click);
 			// 
 			// options_tab
 			// 
@@ -366,91 +422,6 @@ namespace UI_Transposer {
 			this->options_save_tab->Text = L"Edit / Save";
 			this->options_save_tab->UseVisualStyleBackColor = true;
 			// 
-			// BUTTON_OPEN_SONG_DIR
-			// 
-			this->BUTTON_OPEN_SONG_DIR->Location = System::Drawing::Point(418, 734);
-			this->BUTTON_OPEN_SONG_DIR->Name = L"BUTTON_OPEN_SONG_DIR";
-			this->BUTTON_OPEN_SONG_DIR->Size = System::Drawing::Size(369, 85);
-			this->BUTTON_OPEN_SONG_DIR->TabIndex = 9;
-			this->BUTTON_OPEN_SONG_DIR->Text = L"Open Song Directory";
-			this->BUTTON_OPEN_SONG_DIR->UseVisualStyleBackColor = true;
-			this->BUTTON_OPEN_SONG_DIR->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_OPEN_SONG_DIR_Click);
-			// 
-			// BUTTON_OPEN_PLAYLIST_DIR
-			// 
-			this->BUTTON_OPEN_PLAYLIST_DIR->Location = System::Drawing::Point(19, 734);
-			this->BUTTON_OPEN_PLAYLIST_DIR->Name = L"BUTTON_OPEN_PLAYLIST_DIR";
-			this->BUTTON_OPEN_PLAYLIST_DIR->Size = System::Drawing::Size(369, 85);
-			this->BUTTON_OPEN_PLAYLIST_DIR->TabIndex = 8;
-			this->BUTTON_OPEN_PLAYLIST_DIR->Text = L"Open Playlist Directory";
-			this->BUTTON_OPEN_PLAYLIST_DIR->UseVisualStyleBackColor = true;
-			this->BUTTON_OPEN_PLAYLIST_DIR->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_OPEN_PLAYLIST_DIR_Click);
-			// 
-			// BUTTON_HOME
-			// 
-			this->BUTTON_HOME->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_HOME->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->BUTTON_HOME->Location = System::Drawing::Point(1199, 9);
-			this->BUTTON_HOME->Name = L"BUTTON_HOME";
-			this->BUTTON_HOME->Size = System::Drawing::Size(264, 843);
-			this->BUTTON_HOME->TabIndex = 7;
-			this->BUTTON_HOME->Text = L"Home";
-			this->BUTTON_HOME->UseVisualStyleBackColor = true;
-			this->BUTTON_HOME->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_HOME_Click);
-			// 
-			// BUTTON_EDIT_SONG
-			// 
-			this->BUTTON_EDIT_SONG->Location = System::Drawing::Point(418, 491);
-			this->BUTTON_EDIT_SONG->Name = L"BUTTON_EDIT_SONG";
-			this->BUTTON_EDIT_SONG->Size = System::Drawing::Size(369, 211);
-			this->BUTTON_EDIT_SONG->TabIndex = 6;
-			this->BUTTON_EDIT_SONG->Text = L"Edit Song";
-			this->BUTTON_EDIT_SONG->UseVisualStyleBackColor = true;
-			this->BUTTON_EDIT_SONG->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_SONG_Click);
-			// 
-			// BUTTON_EDIT_PLAYLIST
-			// 
-			this->BUTTON_EDIT_PLAYLIST->Location = System::Drawing::Point(19, 491);
-			this->BUTTON_EDIT_PLAYLIST->Name = L"BUTTON_EDIT_PLAYLIST";
-			this->BUTTON_EDIT_PLAYLIST->Size = System::Drawing::Size(369, 211);
-			this->BUTTON_EDIT_PLAYLIST->TabIndex = 5;
-			this->BUTTON_EDIT_PLAYLIST->Text = L"Edit Playlist";
-			this->BUTTON_EDIT_PLAYLIST->UseVisualStyleBackColor = true;
-			this->BUTTON_EDIT_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_PLAYLIST_Click);
-			// 
-			// BUTTON_SAVE_ALL
-			// 
-			this->BUTTON_SAVE_ALL->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_SAVE_ALL->Location = System::Drawing::Point(21, 9);
-			this->BUTTON_SAVE_ALL->Name = L"BUTTON_SAVE_ALL";
-			this->BUTTON_SAVE_ALL->Size = System::Drawing::Size(1159, 214);
-			this->BUTTON_SAVE_ALL->TabIndex = 4;
-			this->BUTTON_SAVE_ALL->Text = L"Save All";
-			this->BUTTON_SAVE_ALL->UseVisualStyleBackColor = true;
-			this->BUTTON_SAVE_ALL->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_ALL_Click);
-			// 
-			// BUTTON_SAVE_ALL_SONGS
-			// 
-			this->BUTTON_SAVE_ALL_SONGS->Location = System::Drawing::Point(812, 247);
-			this->BUTTON_SAVE_ALL_SONGS->Name = L"BUTTON_SAVE_ALL_SONGS";
-			this->BUTTON_SAVE_ALL_SONGS->Size = System::Drawing::Size(368, 211);
-			this->BUTTON_SAVE_ALL_SONGS->TabIndex = 3;
-			this->BUTTON_SAVE_ALL_SONGS->Text = L"Save All Songs";
-			this->BUTTON_SAVE_ALL_SONGS->UseVisualStyleBackColor = true;
-			this->BUTTON_SAVE_ALL_SONGS->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_ALL_SONGS_Click);
-			// 
-			// BUTTON_SAVE_CURRENT_SONG
-			// 
-			this->BUTTON_SAVE_CURRENT_SONG->Location = System::Drawing::Point(418, 247);
-			this->BUTTON_SAVE_CURRENT_SONG->Name = L"BUTTON_SAVE_CURRENT_SONG";
-			this->BUTTON_SAVE_CURRENT_SONG->Size = System::Drawing::Size(369, 211);
-			this->BUTTON_SAVE_CURRENT_SONG->TabIndex = 2;
-			this->BUTTON_SAVE_CURRENT_SONG->Text = L"Save Current Song";
-			this->BUTTON_SAVE_CURRENT_SONG->UseVisualStyleBackColor = true;
-			this->BUTTON_SAVE_CURRENT_SONG->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_CURRENT_SONG_Click);
-			// 
 			// statusStrip1
 			// 
 			this->statusStrip1->ImageScalingSize = System::Drawing::Size(30, 30);
@@ -468,22 +439,9 @@ namespace UI_Transposer {
 			this->DISPLAY_SAVE_TAB_STATUSBAR->Text = L"Save Feedback";
 			this->DISPLAY_SAVE_TAB_STATUSBAR->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
-			// BUTTON_SAVE_PLAYLIST
-			// 
-			this->BUTTON_SAVE_PLAYLIST->Location = System::Drawing::Point(19, 247);
-			this->BUTTON_SAVE_PLAYLIST->Name = L"BUTTON_SAVE_PLAYLIST";
-			this->BUTTON_SAVE_PLAYLIST->Size = System::Drawing::Size(369, 211);
-			this->BUTTON_SAVE_PLAYLIST->TabIndex = 0;
-			this->BUTTON_SAVE_PLAYLIST->Text = L"Save Playlist";
-			this->BUTTON_SAVE_PLAYLIST->UseVisualStyleBackColor = true;
-			this->BUTTON_SAVE_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_PLAYLIST_Click);
-			// 
-			// saveFileDialog1
-			// 
-			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &UI_Transposer::saveFileDialog1_FileOk);
-			// 
 			// PANEL_OPTIONS_EDITSAVE
 			// 
+			this->PANEL_OPTIONS_EDITSAVE->AutoScroll = true;
 			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_OPEN_SONG_DIR);
 			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_EDIT_PLAYLIST);
 			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_OPEN_PLAYLIST_DIR);
@@ -499,16 +457,115 @@ namespace UI_Transposer {
 			this->PANEL_OPTIONS_EDITSAVE->Size = System::Drawing::Size(1478, 907);
 			this->PANEL_OPTIONS_EDITSAVE->TabIndex = 10;
 			// 
+			// BUTTON_OPEN_SONG_DIR
+			// 
+			this->BUTTON_OPEN_SONG_DIR->Location = System::Drawing::Point(418, 734);
+			this->BUTTON_OPEN_SONG_DIR->Name = L"BUTTON_OPEN_SONG_DIR";
+			this->BUTTON_OPEN_SONG_DIR->Size = System::Drawing::Size(369, 85);
+			this->BUTTON_OPEN_SONG_DIR->TabIndex = 9;
+			this->BUTTON_OPEN_SONG_DIR->Text = L"Open Song Directory";
+			this->BUTTON_OPEN_SONG_DIR->UseVisualStyleBackColor = true;
+			this->BUTTON_OPEN_SONG_DIR->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_OPEN_SONG_DIR_Click);
+			// 
+			// BUTTON_EDIT_PLAYLIST
+			// 
+			this->BUTTON_EDIT_PLAYLIST->Location = System::Drawing::Point(19, 491);
+			this->BUTTON_EDIT_PLAYLIST->Name = L"BUTTON_EDIT_PLAYLIST";
+			this->BUTTON_EDIT_PLAYLIST->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_EDIT_PLAYLIST->TabIndex = 5;
+			this->BUTTON_EDIT_PLAYLIST->Text = L"Edit Playlist";
+			this->BUTTON_EDIT_PLAYLIST->UseVisualStyleBackColor = true;
+			this->BUTTON_EDIT_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_PLAYLIST_Click);
+			// 
+			// BUTTON_OPEN_PLAYLIST_DIR
+			// 
+			this->BUTTON_OPEN_PLAYLIST_DIR->Location = System::Drawing::Point(19, 734);
+			this->BUTTON_OPEN_PLAYLIST_DIR->Name = L"BUTTON_OPEN_PLAYLIST_DIR";
+			this->BUTTON_OPEN_PLAYLIST_DIR->Size = System::Drawing::Size(369, 85);
+			this->BUTTON_OPEN_PLAYLIST_DIR->TabIndex = 8;
+			this->BUTTON_OPEN_PLAYLIST_DIR->Text = L"Open Playlist Directory";
+			this->BUTTON_OPEN_PLAYLIST_DIR->UseVisualStyleBackColor = true;
+			this->BUTTON_OPEN_PLAYLIST_DIR->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_OPEN_PLAYLIST_DIR_Click);
+			// 
+			// BUTTON_SAVE_PLAYLIST
+			// 
+			this->BUTTON_SAVE_PLAYLIST->Location = System::Drawing::Point(19, 247);
+			this->BUTTON_SAVE_PLAYLIST->Name = L"BUTTON_SAVE_PLAYLIST";
+			this->BUTTON_SAVE_PLAYLIST->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_SAVE_PLAYLIST->TabIndex = 0;
+			this->BUTTON_SAVE_PLAYLIST->Text = L"Save Playlist";
+			this->BUTTON_SAVE_PLAYLIST->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_PLAYLIST_Click);
+			// 
+			// BUTTON_HOME
+			// 
+			this->BUTTON_HOME->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_HOME->DialogResult = System::Windows::Forms::DialogResult::Cancel;
+			this->BUTTON_HOME->Location = System::Drawing::Point(1199, 9);
+			this->BUTTON_HOME->Name = L"BUTTON_HOME";
+			this->BUTTON_HOME->Size = System::Drawing::Size(264, 843);
+			this->BUTTON_HOME->TabIndex = 7;
+			this->BUTTON_HOME->Text = L"Home";
+			this->BUTTON_HOME->UseVisualStyleBackColor = true;
+			this->BUTTON_HOME->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_HOME_Click);
+			// 
+			// BUTTON_SAVE_CURRENT_SONG
+			// 
+			this->BUTTON_SAVE_CURRENT_SONG->Location = System::Drawing::Point(418, 247);
+			this->BUTTON_SAVE_CURRENT_SONG->Name = L"BUTTON_SAVE_CURRENT_SONG";
+			this->BUTTON_SAVE_CURRENT_SONG->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_SAVE_CURRENT_SONG->TabIndex = 2;
+			this->BUTTON_SAVE_CURRENT_SONG->Text = L"Save Current Song";
+			this->BUTTON_SAVE_CURRENT_SONG->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_CURRENT_SONG->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_CURRENT_SONG_Click);
+			// 
+			// BUTTON_EDIT_SONG
+			// 
+			this->BUTTON_EDIT_SONG->Location = System::Drawing::Point(418, 491);
+			this->BUTTON_EDIT_SONG->Name = L"BUTTON_EDIT_SONG";
+			this->BUTTON_EDIT_SONG->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_EDIT_SONG->TabIndex = 6;
+			this->BUTTON_EDIT_SONG->Text = L"Edit Song";
+			this->BUTTON_EDIT_SONG->UseVisualStyleBackColor = true;
+			this->BUTTON_EDIT_SONG->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_SONG_Click);
+			// 
+			// BUTTON_SAVE_ALL_SONGS
+			// 
+			this->BUTTON_SAVE_ALL_SONGS->Location = System::Drawing::Point(812, 247);
+			this->BUTTON_SAVE_ALL_SONGS->Name = L"BUTTON_SAVE_ALL_SONGS";
+			this->BUTTON_SAVE_ALL_SONGS->Size = System::Drawing::Size(368, 211);
+			this->BUTTON_SAVE_ALL_SONGS->TabIndex = 3;
+			this->BUTTON_SAVE_ALL_SONGS->Text = L"Save All Songs";
+			this->BUTTON_SAVE_ALL_SONGS->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_ALL_SONGS->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_ALL_SONGS_Click);
+			// 
+			// BUTTON_SAVE_ALL
+			// 
+			this->BUTTON_SAVE_ALL->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_SAVE_ALL->Location = System::Drawing::Point(21, 9);
+			this->BUTTON_SAVE_ALL->Name = L"BUTTON_SAVE_ALL";
+			this->BUTTON_SAVE_ALL->Size = System::Drawing::Size(1159, 214);
+			this->BUTTON_SAVE_ALL->TabIndex = 4;
+			this->BUTTON_SAVE_ALL->Text = L"Save All";
+			this->BUTTON_SAVE_ALL->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_ALL->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_ALL_Click);
+			// 
+			// saveFileDialog1
+			// 
+			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &UI_Transposer::saveFileDialog1_FileOk);
+			// 
 			// UI_Transposer
 			// 
 			this->AcceptButton = this->BUTTON_SEND;
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScroll = true;
 			this->ClientSize = System::Drawing::Size(1506, 1031);
 			this->Controls->Add(this->TABCONTROL_MENU);
 			this->Name = L"UI_Transposer";
 			this->Text = L"UI_Transposer";
-			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &UI_Transposer::UI_Transposer_Load);
 			this->TABCONTROL_MENU->ResumeLayout(false);
 			this->main_tab->ResumeLayout(false);
@@ -580,34 +637,6 @@ private: System::Void DISPLAY_SONGLYRICS_TextChanged(System::Object^  sender, Sy
 private: System::Void flowLayoutPanel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 }
 
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-
-		System::Windows::Forms::TabPage^ newTab = (gcnew System::Windows::Forms::TabPage());
-
-		newTab->Location = System::Drawing::Point(4, 52);
-		newTab->Name = L"newTab";
-		newTab->Padding = System::Windows::Forms::Padding(3);
-		newTab->Size = System::Drawing::Size(1500, 973);
-		newTab->TabIndex = 1;
-		newTab->Text = L"newTab";
-		newTab->UseVisualStyleBackColor = true;
-
-		//new transposer
-		
-
-		//
-
-		//
-
-		//controlling the tabs
-		static int i = 2;
-		this->TABCONTROL_MENU->Controls->Add(newTab);
-		this->TABCONTROL_MENU->SelectTab(i);
-		this->TABCONTROL_MENU->Focus();
-		this->DISPLAY_FEEDBACK->Text = gcnew String(to_string(this->TABCONTROL_MENU->SelectedIndex).c_str());
-		i++;
-	
-}
 private: System::Void UI_Transposer_Load(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void TABCONTROL_MENU_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
@@ -620,10 +649,14 @@ private: System::Void TABCONTROL_MENU_DragEnter(System::Object^  sender, System:
 }
 private: System::Void TABCONTROL_MENU_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
 	array<String^ > ^files = (array<String^>^) e->Data->GetData(DataFormats::FileDrop);
-	System::String^ fp = gcnew String(files[0]);
-	string filepath = msclr::interop::marshal_as<std::string>(fp);
+	for each (String^ file in files)
+	{
+		System::String^ fp = gcnew String(file);
+		string filepath = msclr::interop::marshal_as<std::string>(fp);
+
+		transposer->AddSong(filepath);
+	}
 	
-	transposer->AddSong(filepath);
 
 	//refresh view
 	transposer->Update();
@@ -686,6 +719,14 @@ private: System::Void BUTTON_OPEN_PLAYLIST_DIR_Click(System::Object^  sender, Sy
 }
 private: System::Void BUTTON_OPEN_SONG_DIR_Click(System::Object^  sender, System::EventArgs^  e) {
 	TransposerCLR::WindowsMethods::OpenFile(".\\Songs");
+}
+private: System::Void BUTTON_QUICKTRANSPOSE_UP_Click(System::Object^  sender, System::EventArgs^  e) {
+	transposer->QuickTransposeUp();
+	INPUT_QUICKTRANSPOSE->Text = gcnew String(transposer->INPUT_QUICKTRANSPOSE.c_str());
+}
+private: System::Void BUTTON_QUICKTRANSPOSE_DOWN_Click(System::Object^  sender, System::EventArgs^  e) {
+	transposer->QuickTransposeDown();
+	INPUT_QUICKTRANSPOSE->Text = gcnew String(transposer->INPUT_QUICKTRANSPOSE.c_str());
 }
 };
 }

@@ -46,15 +46,23 @@ void Transposer::TransposeUp(){
 	int idx = curIdx + 1;
 	myList->transpose(idx, "e", "f");
 	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
-	INPUT_QUICKTRANSPOSE = s->TransposeStr(INPUT_QUICKTRANSPOSE, Song::E, Song::F);
+
 	return;
 }
 void Transposer::TransposeDown(){
 	int idx = curIdx + 1;
 	myList->transpose(idx, "f", "e");
 	DISPLAY_SONGLYRICS = to_string(idx) + ". " + myList->SongToString(idx);
-	INPUT_QUICKTRANSPOSE = s->TransposeStr(INPUT_QUICKTRANSPOSE, Song::F, Song::E);
+
 	return;
+}
+
+void Transposer::QuickTransposeUp(){
+	INPUT_QUICKTRANSPOSE = s->TransposeStr(INPUT_QUICKTRANSPOSE, Song::E, Song::F);
+}
+
+void Transposer::QuickTransposeDown(){
+	INPUT_QUICKTRANSPOSE = s->TransposeStr(INPUT_QUICKTRANSPOSE, Song::F, Song::E);
 }
 
 Transposer::COMMAND Transposer::Parse(string input){
@@ -370,6 +378,7 @@ void Transposer::SaveAllSongs(){
 }
 
 void Transposer::UpdateActivePlaylist(){
+	int index = 1;
 	ostringstream oss;
 	fstream file;
 	file.open(songListDIR + FILENAME_ACTIVE);
@@ -378,7 +387,7 @@ void Transposer::UpdateActivePlaylist(){
 	vector<string> titles = myList->filenames;
 	vector<string>::iterator iter;
 	for (iter = titles.begin(); iter != titles.end(); ++iter){
-		oss << (*iter) << "\r\n";
+		oss << index << ". " << (*iter) << "\r\n";
 		file << (*iter) << "\n";
 	}
 

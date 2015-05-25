@@ -35,6 +35,8 @@ public:
 	void Previous();
 	void TransposeUp();
 	void TransposeDown();
+	void QuickTransposeUp();
+	void QuickTransposeDown();
 	void NewWindow();
 	void AddSong(string directory);
 	void CreateSong(string filename, vector<string> songContent);
