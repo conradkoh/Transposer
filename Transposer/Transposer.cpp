@@ -396,3 +396,16 @@ void Transposer::UpdateActivePlaylist(){
 
 	return;
 }
+
+vector<string> Transposer::GetFileNames(){
+	return myList->UpdateFileNames();
+}
+
+string Transposer::GetDirectory(string fileExtension){
+	if (fileExtension == ".txt"){
+		return "\\Songs";
+	}
+	else{
+		return "\\Playlists";
+	}
+}

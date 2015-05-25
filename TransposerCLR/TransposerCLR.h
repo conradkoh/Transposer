@@ -4,6 +4,7 @@
 #pragma comment(lib, "shell32.lib")
 #include <Windows.h>
 #include "StringMethods.h"
+#include <msclr\marshal_cppstd.h>
 using namespace std;
 using namespace System;
 
@@ -13,6 +14,20 @@ namespace TransposerCLR {
 	{
 
 	public:
+		static bool OpenFile(String^ path){
+			string fp = msclr::interop::marshal_as<std::string>(path);
+
+			bool isSuccessful = false;
+			wchar_t buffer[4096];
+			mbstowcs(buffer, fp.c_str(), 4096);
+			HINSTANCE errornumber = ShellExecuteW(NULL, L"open", buffer, NULL, NULL, SW_SHOW);
+
+			if ((int)errornumber > 32){
+				isSuccessful = true;
+			}
+			return isSuccessful;
+
+		}
 		static bool OpenFile(const char* path){
 
 			bool isSuccessful = false;
@@ -38,32 +53,45 @@ namespace TransposerCLR {
 			string command = (string)applicationPath + " \"" + (string)argument + "\"";
 			
 
-		bool isSuccessful = false;
+			bool isSuccessful = false;
 
-		wchar_t pathbuffer[4096];
-		wchar_t cmdbuffer[4096];
-		mbstowcs(pathbuffer, applicationPath, 4096);
-		mbstowcs(cmdbuffer, command.c_str(), 4096);
-
-
-		//LPCTSTR APPPATH = L"C:\\Windows\\notepad.exe";
-		STARTUPINFOW si;
-		PROCESS_INFORMATION pi;
-
-		ZeroMemory(&si, sizeof(si));
-		si.cb = sizeof(si);
-		ZeroMemory(&pi, sizeof(pi));
+			wchar_t pathbuffer[4096];
+			wchar_t cmdbuffer[4096];
+			mbstowcs(pathbuffer, applicationPath, 4096);
+			mbstowcs(cmdbuffer, command.c_str(), 4096);
 
 
-		if (CreateProcess(pathbuffer, cmdbuffer, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)){
-			WaitForSingleObject(pi.hProcess, INFINITE);
-			CloseHandle(pi.hProcess);
-			CloseHandle(pi.hThread);
-			isSuccessful = true;
+			//LPCTSTR APPPATH = L"C:\\Windows\\notepad.exe";
+			STARTUPINFOW si;
+			PROCESS_INFORMATION pi;
+
+			ZeroMemory(&si, sizeof(si));
+			si.cb = sizeof(si);
+			ZeroMemory(&pi, sizeof(pi));
+
+
+			if (CreateProcess(pathbuffer, cmdbuffer, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)){
+				WaitForSingleObject(pi.hProcess, INFINITE);
+				CloseHandle(pi.hProcess);
+				CloseHandle(pi.hThread);
+				isSuccessful = true;
+			}
+
+			return isSuccessful;
 		}
 
-		return isSuccessful;
-	}
+		static bool CreateNewFile(String^ directory, String^ filename){
+			String^ filePath = directory + L"\\" + filename;
+			bool result = false;
+			if (System::IO::File::Exists(filePath)){
+			}
+			else{
+				System::IO::FileStream ^filestream = System::IO::File::Create(filePath);
+				filestream->Close();
+				result = true;
+			}
+			return result;
+		}
 
 
 	};

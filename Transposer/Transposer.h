@@ -65,6 +65,8 @@ public:
 	string UpdateSongListFile();
 	bool FileExists(string directory);
 	void UpdateActivePlaylist();
+	vector<string> GetFileNames();
+	string GetDirectory(string fileExtension);
 	
 
 
