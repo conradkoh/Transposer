@@ -25,11 +25,11 @@ void Songlist::loadAll(){
 	ifstream songFileNames(FILENAME.c_str());
 	string filename_current_song;
 	while (getline(songFileNames, filename_current_song)){
-		if (FileExists(Song::songDIR + filename_current_song)){
+		//if (FileExists(Song::songDIR + filename_current_song)){
 			filenames.push_back(filename_current_song);
 			Song* currentSong = new Song(filename_current_song);
 			songs.push_back(currentSong);
-		}
+		//}
 	}
 	songFileNames.close();
 	return;
@@ -51,11 +51,10 @@ bool Songlist::FileExists(string filename){
 }
 
 void Songlist::addSong(string filename){
-	if (FileExists(Song::songDIR + filename)){
-		Song* currentSong = new Song(filename);
-		songs.push_back(currentSong);
-		songCount++;
-	}
+	Song* currentSong = new Song(filename);
+	songs.push_back(currentSong);
+	songCount++;
+	UpdateFileNamesVectorFromSong();
 	return;
 }
 
@@ -106,11 +105,18 @@ string Songlist::ChordsToString(int index){
 
 string Songlist::SongToString(int index){
 	string output;
-	if (index <= songCount){
+	if (index <= songs.size() && index > 0){
 		output = songs[index - 1]->ToString();
 	}
 	else{
-		output = "invalid index\n";
+		if (index > songs.size() && songs.size()!= 0){
+			index = index % songs.size();
+			output = songs[index - 1]->ToString();
+		}
+		else{
+			output = "";
+		}
+
 	}
 	return output;
 }
@@ -193,7 +199,7 @@ string Songlist::GetFileNames(){
 	return out.str();
 }
 
-vector<string> Songlist::UpdateFileNames(){
+vector<string> Songlist::UpdateFileNamesVectorFromSong(){
 	ostringstream out;
 	filenames.clear();
 	for (int i = 0; i < songs.size(); i++){

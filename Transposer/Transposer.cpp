@@ -221,19 +221,19 @@ bool Transposer::Execute(Transposer::COMMAND command, string input){
 			if (getline(getfilename, filename)){
 				filename = filename.substr(1, filename.length() - 1);
 				string filenamedir = songListDIR + filename;
-				if (FileExists(filenamedir)){
+				//if (FileExists(filenamedir)){
 					delete myList;
 					myList = new Songlist(filenamedir);
 					DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
 					DISPLAY_SONGLIST = myList->ToString();
 					INPUT_COMMAND_LINE = "";
 					curIdx = 0;
-					UpdateActiveFile(filename);
+					SetActivePlaylist(filename);
 					DISPLAY_FEEDBACK = "Loaded: " + filename;
-				}
-				else{
+				//}
+				/*else{
 					DISPLAY_FEEDBACK = "File does not exist";
-				}
+				}*/
 			}
 			else{
 				return false;
@@ -270,10 +270,15 @@ string Transposer::GetActiveFile(){
 }
 
 string Transposer::GetCurrentSongPath(){
-	return myList->filenames[curIdx];
+	string output;
+	if (!myList->filenames.empty()){
+		output = myList->filenames[curIdx];
+	}
+	return output;
+	
 }
 
-string Transposer::UpdateActiveFile(string filename){
+string Transposer::SetActivePlaylist(string filename){
 	ofstream out;
 	out.open(FILENAME_ACTIVE_CONTAINER.c_str(), ios::trunc);
 	out << filename;
@@ -281,6 +286,17 @@ string Transposer::UpdateActiveFile(string filename){
 	return "filename updated";
 }
 
+void Transposer::AddSongToCurrentPlaylist(string filename){
+	myList->addSong(filename);
+	int dbg = myList->songs.size();
+	UpdateSongListFile();
+}
+
+void Transposer::UpdateDisplays(){
+	DISPLAY_SONGLYRICS = to_string(curIdx + 1) + ". " + myList->SongToString(curIdx + 1);
+	DISPLAY_SONGLIST = myList->ToString();
+	FILENAME_ACTIVE = GetActiveFile();
+}
 string Transposer::UpdateSongListFile(){
 	string output;
 
@@ -317,29 +333,28 @@ void Transposer::AddSong(string directory){
 	if (startIdx2 > startIdx){
 		startIdx = startIdx2;
 	}
+	if (startIdx != string::npos){
+		int length = directory.length() - startIdx - 1;
+		string filename = directory.substr(startIdx + 1, length);
 
-	int length = directory.length() - startIdx - 1;
-	string filename = directory.substr(startIdx + 1, length);
-	
-	//open the file to be added
-	ifstream newSongFile;
-	newSongFile.open(directory.c_str());
-	vector<string> newSongContent;
-	string buffer;
-	while (getline(newSongFile, buffer)){
-		newSongContent.push_back(buffer);
+		//open the file to be added
+		ifstream newSongFile;
+		newSongFile.open(directory.c_str());
+		vector<string> newSongContent;
+		string buffer;
+		while (getline(newSongFile, buffer)){
+			newSongContent.push_back(buffer);
+		}
+
+		//create song in song directory
+		CreateSong(filename, newSongContent);
+		myList->addSong(filename);
+
+		//update views
+		DISPLAY_SONGLIST = myList->ToString();
+		UpdateSongListFile();
 	}
-
-	//create song in song directory
-	CreateSong(filename, newSongContent);
 	
-
-
-	myList->addSong(filename);
-
-	//update views
-	DISPLAY_SONGLIST = myList->ToString();
-	UpdateSongListFile();
 }
 
 void Transposer::CreateSong(string filename, vector<string> songContent){
@@ -364,7 +379,7 @@ void Transposer::SavePlaylist(){
 
 void Transposer::SaveSong(){
 	int index = curIdx + 1;
-	DISPLAY_SAVE_TAB_STATUSBAR = myList->saveSong(index);
+	DISPLAY_SAVE_TAB_STATUSBAR = "Song saved as \"" + myList->saveSong(index) + "\"";
 	return;
 }
 
@@ -377,13 +392,24 @@ void Transposer::SaveAllSongs(){
 	return;
 }
 
+void Transposer::Reinitialize(){
+	FILENAME_ACTIVE = GetActiveFile();
+	delete myList;
+	s = new Song();
+	myList = new Songlist(songListDIR + FILENAME_ACTIVE);
+	DISPLAY_SONGLYRICS = to_string(1) + ". " + myList->SongToString(1);;
+	DISPLAY_SONGLIST = myList->ToString();
+	INPUT_COMMAND_LINE = "";
+	curIdx = 0;
+}
+
 void Transposer::UpdateActivePlaylist(){
 	int index = 1;
 	ostringstream oss;
 	fstream file;
-	file.open(songListDIR + FILENAME_ACTIVE);
+	file.open(songListDIR + FILENAME_ACTIVE, ios::trunc);
 
-	myList->UpdateFileNames();
+	myList->UpdateFileNamesVectorFromSong();
 	vector<string> titles = myList->filenames;
 	vector<string>::iterator iter;
 	for (iter = titles.begin(); iter != titles.end(); ++iter){
@@ -392,13 +418,14 @@ void Transposer::UpdateActivePlaylist(){
 	}
 
 	DISPLAY_SONGLIST = oss.str();
+	DISPLAY_SAVE_TAB_STATUSBAR = "Playlist content updated.";
 	
 
 	return;
 }
 
 vector<string> Transposer::GetFileNames(){
-	return myList->UpdateFileNames();
+	return myList->UpdateFileNamesVectorFromSong();
 }
 
 string Transposer::GetDirectory(string fileExtension){

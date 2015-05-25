@@ -57,7 +57,7 @@ public:
 	//======================================================
 	//PRIVATE
 	//======================================================
-	vector<string> UpdateFileNames();
+	vector<string> UpdateFileNamesVectorFromSong();
 
 };
 

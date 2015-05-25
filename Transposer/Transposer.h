@@ -50,8 +50,17 @@ public:
 	void SaveSong();
 	void SaveAllSongs();
 
+	//==============================================
+	//PUBLIC
+	//==============================================
+	void Reinitialize();
+	string SetActivePlaylist(string filename);
+	void AddSongToCurrentPlaylist(string filename);
 
-
+	//==============================================
+	//PRIVATE
+	//==============================================
+	void UpdateDisplays();
 
 	//==============================================
 	//MISC
@@ -61,7 +70,7 @@ public:
 	bool IndexIsValid(int index); //1 based index
 	string GetActiveFile();
 	string GetCurrentSongPath();
-	string UpdateActiveFile(string filename);
+
 	string UpdateSongListFile();
 	bool FileExists(string directory);
 	void UpdateActivePlaylist();
