@@ -1,6 +1,7 @@
 #pragma once
 #include "Transposer.h"
 #include <msclr\marshal_cppstd.h>
+
 namespace UI_Transposer {
 
 	using namespace System;
@@ -52,18 +53,41 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::Button^  button_transpose_down;
 	private: System::Windows::Forms::TextBox^  DISPLAY_FEEDBACK;
 	private: System::Windows::Forms::TextBox^  INPUT_QUICKTRANSPOSE;
-	private: System::Windows::Forms::TabControl^  tabControl1;
+	private: System::Windows::Forms::TabControl^  TABCONTROL_MENU;
+
+
 	private: System::Windows::Forms::TabPage^  main_tab;
 	private: System::Windows::Forms::TabPage^  options_tab;
-	private: System::Windows::Forms::TabControl^  tabControl2;
-	private: System::Windows::Forms::TabPage^  options_edit_tab;
-	private: System::Windows::Forms::TabPage^  options_save_tab;
-	private: System::Windows::Forms::Button^  BUTTON_SAVE_PLAYLIST;
+
+
+
+
+
 
 	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
+	private: System::Windows::Forms::TabControl^  TABCONTROL_OPTIONS;
+	private: System::Windows::Forms::TabPage^  options_save_tab;
+	private: System::Windows::Forms::Button^  BUTTON_HOME;
+	private: System::Windows::Forms::Button^  BUTTON_EDIT_SONG;
+	private: System::Windows::Forms::Button^  BUTTON_EDIT_PLAYLIST;
+	private: System::Windows::Forms::Button^  BUTTON_SAVE_ALL;
+	private: System::Windows::Forms::Button^  BUTTON_SAVE_ALL_SONGS;
+	private: System::Windows::Forms::Button^  BUTTON_SAVE_CURRENT_SONG;
 	private: System::Windows::Forms::StatusStrip^  statusStrip1;
 	private: System::Windows::Forms::ToolStripStatusLabel^  DISPLAY_SAVE_TAB_STATUSBAR;
-	private: System::Windows::Forms::Button^  BUTTON_SAVE_SONG;
+	private: System::Windows::Forms::Button^  BUTTON_SAVE_PLAYLIST;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -109,23 +133,27 @@ namespace UI_Transposer {
 			this->button_transpose_down = (gcnew System::Windows::Forms::Button());
 			this->DISPLAY_FEEDBACK = (gcnew System::Windows::Forms::TextBox());
 			this->INPUT_QUICKTRANSPOSE = (gcnew System::Windows::Forms::TextBox());
-			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->TABCONTROL_MENU = (gcnew System::Windows::Forms::TabControl());
 			this->main_tab = (gcnew System::Windows::Forms::TabPage());
 			this->options_tab = (gcnew System::Windows::Forms::TabPage());
-			this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
-			this->options_edit_tab = (gcnew System::Windows::Forms::TabPage());
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->options_save_tab = (gcnew System::Windows::Forms::TabPage());
+			this->BUTTON_SAVE_PLAYLIST = (gcnew System::Windows::Forms::Button());
 			this->statusStrip1 = (gcnew System::Windows::Forms::StatusStrip());
 			this->DISPLAY_SAVE_TAB_STATUSBAR = (gcnew System::Windows::Forms::ToolStripStatusLabel());
-			this->BUTTON_SAVE_PLAYLIST = (gcnew System::Windows::Forms::Button());
-			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->BUTTON_SAVE_SONG = (gcnew System::Windows::Forms::Button());
-			this->tabControl1->SuspendLayout();
+			this->BUTTON_SAVE_CURRENT_SONG = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_SAVE_ALL_SONGS = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_SAVE_ALL = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_EDIT_PLAYLIST = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_EDIT_SONG = (gcnew System::Windows::Forms::Button());
+			this->BUTTON_HOME = (gcnew System::Windows::Forms::Button());
+			this->TABCONTROL_OPTIONS = (gcnew System::Windows::Forms::TabControl());
+			this->TABCONTROL_MENU->SuspendLayout();
 			this->main_tab->SuspendLayout();
 			this->options_tab->SuspendLayout();
-			this->tabControl2->SuspendLayout();
 			this->options_save_tab->SuspendLayout();
 			this->statusStrip1->SuspendLayout();
+			this->TABCONTROL_OPTIONS->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// DISPLAY_SONGLYRICS
@@ -260,21 +288,21 @@ namespace UI_Transposer {
 			this->INPUT_QUICKTRANSPOSE->TabIndex = 9;
 			this->INPUT_QUICKTRANSPOSE->TextChanged += gcnew System::EventHandler(this, &UI_Transposer::INPUT_QUICKTRANSPOSE_TextChanged);
 			// 
-			// tabControl1
+			// TABCONTROL_MENU
 			// 
-			this->tabControl1->AllowDrop = true;
-			this->tabControl1->Controls->Add(this->main_tab);
-			this->tabControl1->Controls->Add(this->options_tab);
-			this->tabControl1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tabControl1->Location = System::Drawing::Point(0, 0);
-			this->tabControl1->Name = L"tabControl1";
-			this->tabControl1->Padding = System::Drawing::Point(6, 12);
-			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(1506, 1031);
-			this->tabControl1->TabIndex = 10;
-			this->tabControl1->TabIndexChanged += gcnew System::EventHandler(this, &UI_Transposer::button1_Click);
-			this->tabControl1->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &UI_Transposer::tabControl1_DragDrop);
-			this->tabControl1->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &UI_Transposer::tabControl1_DragEnter);
+			this->TABCONTROL_MENU->AllowDrop = true;
+			this->TABCONTROL_MENU->Controls->Add(this->main_tab);
+			this->TABCONTROL_MENU->Controls->Add(this->options_tab);
+			this->TABCONTROL_MENU->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->TABCONTROL_MENU->Location = System::Drawing::Point(0, 0);
+			this->TABCONTROL_MENU->Name = L"TABCONTROL_MENU";
+			this->TABCONTROL_MENU->Padding = System::Drawing::Point(6, 12);
+			this->TABCONTROL_MENU->SelectedIndex = 0;
+			this->TABCONTROL_MENU->Size = System::Drawing::Size(1506, 1031);
+			this->TABCONTROL_MENU->TabIndex = 10;
+			this->TABCONTROL_MENU->TabIndexChanged += gcnew System::EventHandler(this, &UI_Transposer::button1_Click);
+			this->TABCONTROL_MENU->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &UI_Transposer::TABCONTROL_MENU_DragDrop);
+			this->TABCONTROL_MENU->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &UI_Transposer::TABCONTROL_MENU_DragEnter);
 			// 
 			// main_tab
 			// 
@@ -295,10 +323,11 @@ namespace UI_Transposer {
 			this->main_tab->TabIndex = 11;
 			this->main_tab->Text = L"Main";
 			this->main_tab->UseVisualStyleBackColor = true;
+			this->main_tab->Enter += gcnew System::EventHandler(this, &UI_Transposer::main_tab_Enter);
 			// 
 			// options_tab
 			// 
-			this->options_tab->Controls->Add(this->tabControl2);
+			this->options_tab->Controls->Add(this->TABCONTROL_OPTIONS);
 			this->options_tab->Location = System::Drawing::Point(4, 52);
 			this->options_tab->Name = L"options_tab";
 			this->options_tab->Padding = System::Windows::Forms::Padding(3);
@@ -307,45 +336,43 @@ namespace UI_Transposer {
 			this->options_tab->Text = L"Options";
 			this->options_tab->UseVisualStyleBackColor = true;
 			// 
-			// tabControl2
+			// saveFileDialog1
 			// 
-			this->tabControl2->Controls->Add(this->options_edit_tab);
-			this->tabControl2->Controls->Add(this->options_save_tab);
-			this->tabControl2->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tabControl2->Location = System::Drawing::Point(3, 3);
-			this->tabControl2->Name = L"tabControl2";
-			this->tabControl2->SelectedIndex = 0;
-			this->tabControl2->Size = System::Drawing::Size(1492, 969);
-			this->tabControl2->TabIndex = 0;
-			// 
-			// options_edit_tab
-			// 
-			this->options_edit_tab->Location = System::Drawing::Point(4, 34);
-			this->options_edit_tab->Name = L"options_edit_tab";
-			this->options_edit_tab->Padding = System::Windows::Forms::Padding(3);
-			this->options_edit_tab->Size = System::Drawing::Size(1484, 931);
-			this->options_edit_tab->TabIndex = 0;
-			this->options_edit_tab->Text = L"Edit";
-			this->options_edit_tab->UseVisualStyleBackColor = true;
+			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &UI_Transposer::saveFileDialog1_FileOk);
 			// 
 			// options_save_tab
 			// 
-			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_SONG);
+			this->options_save_tab->Controls->Add(this->BUTTON_HOME);
+			this->options_save_tab->Controls->Add(this->BUTTON_EDIT_SONG);
+			this->options_save_tab->Controls->Add(this->BUTTON_EDIT_PLAYLIST);
+			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_ALL);
+			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_ALL_SONGS);
+			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_CURRENT_SONG);
 			this->options_save_tab->Controls->Add(this->statusStrip1);
 			this->options_save_tab->Controls->Add(this->BUTTON_SAVE_PLAYLIST);
-			this->options_save_tab->Location = System::Drawing::Point(4, 34);
+			this->options_save_tab->Location = System::Drawing::Point(4, 52);
 			this->options_save_tab->Name = L"options_save_tab";
 			this->options_save_tab->Padding = System::Windows::Forms::Padding(3);
-			this->options_save_tab->Size = System::Drawing::Size(1484, 931);
+			this->options_save_tab->Size = System::Drawing::Size(1484, 913);
 			this->options_save_tab->TabIndex = 1;
-			this->options_save_tab->Text = L"Save";
+			this->options_save_tab->Text = L"Edit / Save";
 			this->options_save_tab->UseVisualStyleBackColor = true;
+			// 
+			// BUTTON_SAVE_PLAYLIST
+			// 
+			this->BUTTON_SAVE_PLAYLIST->Location = System::Drawing::Point(34, 266);
+			this->BUTTON_SAVE_PLAYLIST->Name = L"BUTTON_SAVE_PLAYLIST";
+			this->BUTTON_SAVE_PLAYLIST->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_SAVE_PLAYLIST->TabIndex = 0;
+			this->BUTTON_SAVE_PLAYLIST->Text = L"Save Playlist";
+			this->BUTTON_SAVE_PLAYLIST->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_PLAYLIST_Click);
 			// 
 			// statusStrip1
 			// 
 			this->statusStrip1->ImageScalingSize = System::Drawing::Size(30, 30);
 			this->statusStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->DISPLAY_SAVE_TAB_STATUSBAR });
-			this->statusStrip1->Location = System::Drawing::Point(3, 892);
+			this->statusStrip1->Location = System::Drawing::Point(3, 874);
 			this->statusStrip1->Name = L"statusStrip1";
 			this->statusStrip1->Size = System::Drawing::Size(1478, 36);
 			this->statusStrip1->TabIndex = 1;
@@ -358,29 +385,81 @@ namespace UI_Transposer {
 			this->DISPLAY_SAVE_TAB_STATUSBAR->Text = L"Save Feedback";
 			this->DISPLAY_SAVE_TAB_STATUSBAR->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
-			// BUTTON_SAVE_PLAYLIST
+			// BUTTON_SAVE_CURRENT_SONG
 			// 
-			this->BUTTON_SAVE_PLAYLIST->Location = System::Drawing::Point(27, 44);
-			this->BUTTON_SAVE_PLAYLIST->Name = L"BUTTON_SAVE_PLAYLIST";
-			this->BUTTON_SAVE_PLAYLIST->Size = System::Drawing::Size(417, 211);
-			this->BUTTON_SAVE_PLAYLIST->TabIndex = 0;
-			this->BUTTON_SAVE_PLAYLIST->Text = L"Save Playlist";
-			this->BUTTON_SAVE_PLAYLIST->UseVisualStyleBackColor = true;
-			this->BUTTON_SAVE_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_PLAYLIST_Click);
+			this->BUTTON_SAVE_CURRENT_SONG->Location = System::Drawing::Point(433, 266);
+			this->BUTTON_SAVE_CURRENT_SONG->Name = L"BUTTON_SAVE_CURRENT_SONG";
+			this->BUTTON_SAVE_CURRENT_SONG->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_SAVE_CURRENT_SONG->TabIndex = 2;
+			this->BUTTON_SAVE_CURRENT_SONG->Text = L"Save Current Song";
+			this->BUTTON_SAVE_CURRENT_SONG->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_CURRENT_SONG->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_CURRENT_SONG_Click);
 			// 
-			// saveFileDialog1
+			// BUTTON_SAVE_ALL_SONGS
 			// 
-			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &UI_Transposer::saveFileDialog1_FileOk);
+			this->BUTTON_SAVE_ALL_SONGS->Location = System::Drawing::Point(827, 266);
+			this->BUTTON_SAVE_ALL_SONGS->Name = L"BUTTON_SAVE_ALL_SONGS";
+			this->BUTTON_SAVE_ALL_SONGS->Size = System::Drawing::Size(368, 211);
+			this->BUTTON_SAVE_ALL_SONGS->TabIndex = 3;
+			this->BUTTON_SAVE_ALL_SONGS->Text = L"Save All Songs";
+			this->BUTTON_SAVE_ALL_SONGS->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_ALL_SONGS->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_ALL_SONGS_Click);
 			// 
-			// BUTTON_SAVE_SONG
+			// BUTTON_SAVE_ALL
 			// 
-			this->BUTTON_SAVE_SONG->Location = System::Drawing::Point(534, 44);
-			this->BUTTON_SAVE_SONG->Name = L"BUTTON_SAVE_SONG";
-			this->BUTTON_SAVE_SONG->Size = System::Drawing::Size(417, 211);
-			this->BUTTON_SAVE_SONG->TabIndex = 2;
-			this->BUTTON_SAVE_SONG->Text = L"Save Song";
-			this->BUTTON_SAVE_SONG->UseVisualStyleBackColor = true;
-			this->BUTTON_SAVE_SONG->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_SONG_Click);
+			this->BUTTON_SAVE_ALL->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_SAVE_ALL->Location = System::Drawing::Point(36, 28);
+			this->BUTTON_SAVE_ALL->Name = L"BUTTON_SAVE_ALL";
+			this->BUTTON_SAVE_ALL->Size = System::Drawing::Size(1159, 214);
+			this->BUTTON_SAVE_ALL->TabIndex = 4;
+			this->BUTTON_SAVE_ALL->Text = L"Save All";
+			this->BUTTON_SAVE_ALL->UseVisualStyleBackColor = true;
+			this->BUTTON_SAVE_ALL->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_SAVE_ALL_Click);
+			// 
+			// BUTTON_EDIT_PLAYLIST
+			// 
+			this->BUTTON_EDIT_PLAYLIST->Location = System::Drawing::Point(34, 510);
+			this->BUTTON_EDIT_PLAYLIST->Name = L"BUTTON_EDIT_PLAYLIST";
+			this->BUTTON_EDIT_PLAYLIST->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_EDIT_PLAYLIST->TabIndex = 5;
+			this->BUTTON_EDIT_PLAYLIST->Text = L"Edit Playlist";
+			this->BUTTON_EDIT_PLAYLIST->UseVisualStyleBackColor = true;
+			this->BUTTON_EDIT_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_PLAYLIST_Click);
+			// 
+			// BUTTON_EDIT_SONG
+			// 
+			this->BUTTON_EDIT_SONG->Location = System::Drawing::Point(433, 510);
+			this->BUTTON_EDIT_SONG->Name = L"BUTTON_EDIT_SONG";
+			this->BUTTON_EDIT_SONG->Size = System::Drawing::Size(369, 211);
+			this->BUTTON_EDIT_SONG->TabIndex = 6;
+			this->BUTTON_EDIT_SONG->Text = L"Edit Song";
+			this->BUTTON_EDIT_SONG->UseVisualStyleBackColor = true;
+			this->BUTTON_EDIT_SONG->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_EDIT_SONG_Click);
+			// 
+			// BUTTON_HOME
+			// 
+			this->BUTTON_HOME->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_HOME->DialogResult = System::Windows::Forms::DialogResult::Cancel;
+			this->BUTTON_HOME->Location = System::Drawing::Point(1214, 28);
+			this->BUTTON_HOME->Name = L"BUTTON_HOME";
+			this->BUTTON_HOME->Size = System::Drawing::Size(264, 843);
+			this->BUTTON_HOME->TabIndex = 7;
+			this->BUTTON_HOME->Text = L"Home";
+			this->BUTTON_HOME->UseVisualStyleBackColor = true;
+			this->BUTTON_HOME->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_HOME_Click);
+			// 
+			// TABCONTROL_OPTIONS
+			// 
+			this->TABCONTROL_OPTIONS->Controls->Add(this->options_save_tab);
+			this->TABCONTROL_OPTIONS->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->TABCONTROL_OPTIONS->Location = System::Drawing::Point(3, 3);
+			this->TABCONTROL_OPTIONS->Name = L"TABCONTROL_OPTIONS";
+			this->TABCONTROL_OPTIONS->Padding = System::Drawing::Point(6, 12);
+			this->TABCONTROL_OPTIONS->SelectedIndex = 0;
+			this->TABCONTROL_OPTIONS->Size = System::Drawing::Size(1492, 969);
+			this->TABCONTROL_OPTIONS->TabIndex = 0;
 			// 
 			// UI_Transposer
 			// 
@@ -388,20 +467,20 @@ namespace UI_Transposer {
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1506, 1031);
-			this->Controls->Add(this->tabControl1);
+			this->Controls->Add(this->TABCONTROL_MENU);
 			this->Name = L"UI_Transposer";
 			this->Text = L"UI_Transposer";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &UI_Transposer::UI_Transposer_Load);
-			this->tabControl1->ResumeLayout(false);
+			this->TABCONTROL_MENU->ResumeLayout(false);
 			this->main_tab->ResumeLayout(false);
 			this->main_tab->PerformLayout();
 			this->options_tab->ResumeLayout(false);
-			this->tabControl2->ResumeLayout(false);
 			this->options_save_tab->ResumeLayout(false);
 			this->options_save_tab->PerformLayout();
 			this->statusStrip1->ResumeLayout(false);
 			this->statusStrip1->PerformLayout();
+			this->TABCONTROL_OPTIONS->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -456,7 +535,7 @@ private: System::Void DISPLAY_SONGLYRICS_TextChanged(System::Object^  sender, Sy
 			 this->new_page->TabIndex = 1;
 			 this->new_page->Text = L"new_page";
 			 this->new_page->UseVisualStyleBackColor = true;
-			 this->tabControl1->Controls->Add(this->new_page);
+			 this->TABCONTROL_MENU->Controls->Add(this->new_page);
 		 }*/
 
 private: System::Void flowLayoutPanel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
@@ -483,16 +562,16 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 
 		//controlling the tabs
 		static int i = 2;
-		this->tabControl1->Controls->Add(newTab);
-		this->tabControl1->SelectTab(i);
-		this->tabControl1->Focus();
-		this->DISPLAY_FEEDBACK->Text = gcnew String(to_string(this->tabControl1->SelectedIndex).c_str());
+		this->TABCONTROL_MENU->Controls->Add(newTab);
+		this->TABCONTROL_MENU->SelectTab(i);
+		this->TABCONTROL_MENU->Focus();
+		this->DISPLAY_FEEDBACK->Text = gcnew String(to_string(this->TABCONTROL_MENU->SelectedIndex).c_str());
 		i++;
 	
 }
 private: System::Void UI_Transposer_Load(System::Object^  sender, System::EventArgs^  e) {
 }
-private: System::Void tabControl1_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
+private: System::Void TABCONTROL_MENU_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
 	if (e->Data->GetDataPresent(DataFormats::FileDrop)){
 		e->Effect = DragDropEffects::All;
 	}
@@ -500,7 +579,7 @@ private: System::Void tabControl1_DragEnter(System::Object^  sender, System::Win
 		e->Effect = DragDropEffects::None;
 	}
 }
-private: System::Void tabControl1_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
+private: System::Void TABCONTROL_MENU_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
 	array<String^ > ^files = (array<String^>^) e->Data->GetData(DataFormats::FileDrop);
 	System::String^ fp = gcnew String(files[0]);
 	string filepath = msclr::interop::marshal_as<std::string>(fp);
@@ -518,10 +597,50 @@ private: System::Void tabControl1_DragDrop(System::Object^  sender, System::Wind
 private: System::Void saveFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 }
 private: System::Void BUTTON_SAVE_PLAYLIST_Click(System::Object^  sender, System::EventArgs^  e) {
+	transposer->UpdateActivePlaylist();
+	DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
 }
-private: System::Void BUTTON_SAVE_SONG_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void BUTTON_SAVE_CURRENT_SONG_Click(System::Object^  sender, System::EventArgs^  e) {
 	transposer->SaveSong();
 	DISPLAY_SAVE_TAB_STATUSBAR->Text = gcnew String(transposer->DISPLAY_SAVE_TAB_STATUSBAR.c_str());
 }
+	private: System::Void BUTTON_EDIT_PLAYLIST_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		string filepath = ".\\Playlists\\" + transposer->GetActiveFile();
+
+		if (!TransposerCLR::WindowsMethods::OpenFile(filepath.c_str())){
+			string message = "Unable to open songlist " + filepath;
+			MessageBox::Show(gcnew String(message.c_str()));
+		}
+
+	}
+private: System::Void BUTTON_HOME_Click(System::Object^  sender, System::EventArgs^  e) {
+	TABCONTROL_MENU->SelectedTab = main_tab;
+}
+private: System::Void BUTTON_EDIT_SONG_Click(System::Object^  sender, System::EventArgs^  e) {
+	string filepath = ".\\Songs\\" + transposer->GetCurrentSongPath();
+
+	if (!TransposerCLR::WindowsMethods::OpenFile(filepath.c_str())){
+		string message = "Unable to open song " + filepath;
+		MessageBox::Show(gcnew String(message.c_str()));
+	}
+}
+private: System::Void main_tab_Enter(System::Object^  sender, System::EventArgs^  e) {
+	//transposer->INPUT_COMMAND_LINE = "reload";
+	//transposer->Update();
+	//DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
+	//DISPLAY_SONGLYRICS->Text = gcnew String(transposer->DISPLAY_SONGLYRICS.c_str());
+	//DISPLAY_FEEDBACK->Text = gcnew String(transposer->DISPLAY_FEEDBACK.c_str());
+	//INPUT_COMMAND_LINE->Text = "";
+}
+private: System::Void BUTTON_SAVE_ALL_SONGS_Click(System::Object^  sender, System::EventArgs^  e) {
+	transposer->SaveAllSongs();
+	DISPLAY_SAVE_TAB_STATUSBAR->Text = gcnew String(transposer->DISPLAY_SAVE_TAB_STATUSBAR.c_str());
+}
+private: System::Void BUTTON_SAVE_ALL_Click(System::Object^  sender, System::EventArgs^  e) {
+	transposer->SaveAllSongs();
+	transposer->SavePlaylist();
+}
+
 };
 }

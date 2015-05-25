@@ -25,18 +25,9 @@ Song::Song(string filename)
 	title_visible = filename;
 
 	ifstream lyricStream(songDIR + filename.c_str());
-	int count = 1;
 	string currentLine;
 	while (getline(lyricStream, currentLine)){		
-		if(count%2 == 1){
-			chords.push_back(currentLine);
-		}
-
-		else{
-			lyrics.push_back(currentLine);
-		}
-		lineCount = lyrics.size();
-		count++;
+		songLines.push_back(currentLine);
 	}
 	lyricStream.close();
 }
@@ -83,11 +74,16 @@ void Song::transpose(KEY startKEY, KEY endKEY){
 	title_visible = TransposeStr(title_visible, startKEY, endKEY);
 	title_visible = StringMethods::ReplaceStr(title_visible, "( ", "(");
 	title_visible = StringMethods::ReplaceStr(title_visible, " )", ")");
-	for(int i = 0; i<lineCount; i++){
-		string lyricline = StringMethods::ReplaceStr(lyrics[i], "	", "         ");
-		string chordline = StringMethods::ReplaceStr(chords[i], "	", "         ");
-		lyrics[i] = TransposeStr(lyricline, startKEY, endKEY);
-		chords[i] = TransposeStr(chordline, startKEY, endKEY);
+
+	for(int i = 0; i<songLines.size(); i++){
+
+		string currentLine = StringMethods::ReplaceStr(songLines[i], "	", "         ");
+		songLines[i] = TransposeStr(currentLine, startKEY, endKEY);
+
+		//string lyricline = StringMethods::ReplaceStr(lyrics[i], "	", "         ");
+		//string chordline = StringMethods::ReplaceStr(chords[i], "	", "         ");
+		//lyrics[i] = TransposeStr(lyricline, startKEY, endKEY);
+		//chords[i] = TransposeStr(chordline, startKEY, endKEY);
 	}
 }
 
@@ -128,7 +124,7 @@ vector<string> Song::transposeLine(vector<string> lineChords, KEY startKEY, KEY 
 
 	for (int i = 0; i < lineChords.size(); i++){
 		//replace all chords within this case
-		//string transposedChord = findEquivalent(lineChords[i], startKEY, endKEY);
+
 		int checkemptychord = lineChords[i].find_first_not_of(" ");
 		if (checkemptychord != string::npos){
 			int offset = endKEY - startKEY;
@@ -254,9 +250,10 @@ string Song::transposeSlashChord(string remainder, int offset){
 void Song::save(string filename){
 
 	ofstream out(filename.c_str());
-	for (int i = 0; i< lineCount; i++){
-		out << chords[i] << "\n";
-		out << lyrics[i] << "\n";
+	for (int i = 0; i< songLines.size(); i++){
+		out << songLines[i] << "\n";
+		/*out << chords[i] << "\n";
+		out << lyrics[i] << "\n";*/
 	}
 	return;
 }
@@ -265,9 +262,10 @@ string Song::save(){
 	string title_valid = StringMethods::RemoveNewlines(title_visible);
 	string filename = songDIR + title_valid + ".txt";
 	ofstream out(filename);
-	for (int i = 0; i< lineCount; i++){
-		out << chords[i] << "\n";
-		out << lyrics[i] << "\n";
+	for (int i = 0; i< songLines.size(); i++){
+		out << songLines[i] << "\n";
+		/*out << chords[i] << "\n";
+		out << lyrics[i] << "\n";*/
 	}
 	return filename;
 }
@@ -280,9 +278,10 @@ string Song::ToString(){
 		title_visible = title_visible.substr(0, found);
 	}
 	oss << title_visible << "\r\n" << "\r\n";
-		for (int i = 0; i< lineCount; i++){
-			oss << chords[i] << "\r\n";
-			oss << lyrics[i] << "\r\n";
+	for (int i = 0; i < songLines.size(); i++){
+		oss << songLines[i] << "\r\n";
+		/*oss << chords[i] << "\r\n";
+		oss << lyrics[i] << "\r\n";*/
 	}
 
 		oss << "=========================================================" << "\r\n" << "\r\n";
@@ -291,8 +290,11 @@ string Song::ToString(){
 
 string Song::Chords(){
 	ostringstream oss;
-	for (int i = 0; i< lineCount; i++){
-		oss << chords[i] << "\r\n";
+	for (int i = 0; i< songLines.size(); i++){
+		if (i % 2 == 1){
+			oss << songLines[i] << "\r\n";
+		}
+		
 	}
 	oss << "=========================================================" << "\r\n" << "\r\n";
 	return oss.str();
@@ -366,4 +368,14 @@ bool Song::IsValidChord(string base, string details){
 		isValid = false;
 	}
 	return isValid;
+}
+
+string Song::GetFileName(){
+	ostringstream out;
+	int found = title_visible.find_first_of(".");
+	if (found != string::npos){
+		title_visible = title_visible.substr(0, found);
+	}
+	out << title_visible << ".txt";
+	return out.str();
 }

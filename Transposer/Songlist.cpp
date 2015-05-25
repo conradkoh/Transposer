@@ -26,6 +26,7 @@ void Songlist::loadAll(){
 	string filename_current_song;
 	while (getline(songFileNames, filename_current_song)){
 		if (FileExists(Song::songDIR + filename_current_song)){
+			filenames.push_back(filename_current_song);
 			Song* currentSong = new Song(filename_current_song);
 			songs.push_back(currentSong);
 		}
@@ -124,7 +125,7 @@ void Songlist::transpose(int index, string startkey, string endkey){
 }
 
 void Songlist::saveSong(int index, string filename){
-	if (index <= songCount){
+	if (index <= songCount && index > 0){
 		songs[index - 1]->save(Song::saveDIR + filename);
 	}
 	return;
@@ -132,7 +133,7 @@ void Songlist::saveSong(int index, string filename){
 
 string Songlist::saveSong(int index){
 	string feedback;
-	if (index <= songCount){
+	if (index <= songCount && index > 0){
 		feedback = songs[index - 1]->save();
 	}
 	else{
@@ -180,4 +181,24 @@ Song::KEY Songlist::stringToKEY(string input){
 	}
 	
 	return Song::KEY::INVALID;
+}
+
+string Songlist::GetFileNames(){
+	ostringstream out;
+	vector<string>::iterator iter;
+	for (iter = filenames.begin(); iter != filenames.end(); ++iter){
+		out << (*iter) << endl;
+	}
+
+	return out.str();
+}
+
+vector<string> Songlist::UpdateFileNames(){
+	ostringstream out;
+	filenames.clear();
+	for (int i = 0; i < songs.size(); i++){
+		string currentfilename = songs[i]->GetFileName();
+		filenames.push_back(currentfilename);
+	}
+	return filenames;
 }

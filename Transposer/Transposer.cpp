@@ -261,6 +261,10 @@ string Transposer::GetActiveFile(){
 	return "temp.slist";
 }
 
+string Transposer::GetCurrentSongPath(){
+	return myList->filenames[curIdx];
+}
+
 string Transposer::UpdateActiveFile(string filename){
 	ofstream out;
 	out.open(FILENAME_ACTIVE_CONTAINER.c_str(), ios::trunc);
@@ -353,5 +357,33 @@ void Transposer::SavePlaylist(){
 void Transposer::SaveSong(){
 	int index = curIdx + 1;
 	DISPLAY_SAVE_TAB_STATUSBAR = myList->saveSong(index);
+	return;
+}
+
+void Transposer::SaveAllSongs(){
+	for (int i = 0; i < myList->songCount; i++){
+		myList->saveSong(i + 1);
+	}
+
+	DISPLAY_SAVE_TAB_STATUSBAR = "All songs in list saved.";
+	return;
+}
+
+void Transposer::UpdateActivePlaylist(){
+	ostringstream oss;
+	fstream file;
+	file.open(songListDIR + FILENAME_ACTIVE);
+
+	myList->UpdateFileNames();
+	vector<string> titles = myList->filenames;
+	vector<string>::iterator iter;
+	for (iter = titles.begin(); iter != titles.end(); ++iter){
+		oss << (*iter) << "\r\n";
+		file << (*iter) << "\n";
+	}
+
+	DISPLAY_SONGLIST = oss.str();
+	
+
 	return;
 }

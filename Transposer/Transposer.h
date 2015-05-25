@@ -24,6 +24,7 @@ public:
 	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
 	bool spawn = false;
+
 	//==============================================
 	//MAIN TAB
 	//==============================================
@@ -45,6 +46,7 @@ public:
 	string DISPLAY_SAVE_TAB_STATUSBAR;
 	void SavePlaylist();
 	void SaveSong();
+	void SaveAllSongs();
 
 
 
@@ -56,9 +58,11 @@ public:
 	bool Execute(COMMAND command, string input);
 	bool IndexIsValid(int index); //1 based index
 	string GetActiveFile();
+	string GetCurrentSongPath();
 	string UpdateActiveFile(string filename);
 	string UpdateSongListFile();
 	bool FileExists(string directory);
+	void UpdateActivePlaylist();
 	
 
 
