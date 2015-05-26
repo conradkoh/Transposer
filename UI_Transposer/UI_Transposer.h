@@ -20,6 +20,8 @@ namespace UI_Transposer {
 		Transposer* transposer;
 		UI_Transposer(void)
 		{
+			MaintainDirectories();
+			MaintainSystemFiles();
 			InitializeComponent();
 			//CONSTRUCTOR CODE
 			transposer = new Transposer();
@@ -1018,6 +1020,20 @@ private: System::Void main_tab_Click(System::Object^  sender, System::EventArgs^
 private: System::Void ReloadFromFile(System::Object^  sender, System::EventArgs^  e){
 	transposer->Reinitialize();
 	Update_All();
+}
+
+private: System::Void MaintainDirectories(){
+	System::IO::Directory::CreateDirectory(".\\Songs");
+	System::IO::Directory::CreateDirectory(".\\Playlists");
+	System::IO::Directory::CreateDirectory(".\\SYSTEM");
+	System::IO::Directory::CreateDirectory(".\\Saved");
+}
+
+private: System::Void MaintainSystemFiles(){
+	if (!System::IO::File::Exists(".\\SYSTEM\\active.tsys")){
+		System::IO::FileStream^ file = System::IO::File::Create(".\\SYSTEM\\active.tsys");
+		file->Close();
+	}
 }
 };
 }
