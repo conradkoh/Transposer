@@ -31,6 +31,7 @@ namespace UI_Transposer {
 			Update_Main();
 			Update_Options_New();
 			COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->SelectedIndex = 0; //select .txt as default file extension
+			INPUT_OPTIONS_NEW->Text = "New File";
 
 		}
 
@@ -101,6 +102,7 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::Button^  BUTTON_OPTIONS_NEW_HOME;
 	private: System::Windows::Forms::TextBox^  DISPLAY_MAIN_PLAYLIST;
 	private: System::Windows::Forms::Button^  BUTTON_MAIN_RELOAD;
+	private: System::Windows::Forms::Button^  BUTTON_NEW_PLAYLIST;
 
 
 
@@ -188,6 +190,7 @@ namespace UI_Transposer {
 			this->BUTTON_SAVE_ALL = (gcnew System::Windows::Forms::Button());
 			this->options_new_tab = (gcnew System::Windows::Forms::TabPage());
 			this->PANEL_OPTIONS_NEW = (gcnew System::Windows::Forms::Panel());
+			this->BUTTON_NEW_PLAYLIST = (gcnew System::Windows::Forms::Button());
 			this->BUTTON_OPTIONS_NEW_HOME = (gcnew System::Windows::Forms::Button());
 			this->LISTBOX_OPTIONS_NEW = (gcnew System::Windows::Forms::ListBox());
 			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS = (gcnew System::Windows::Forms::ComboBox());
@@ -634,6 +637,7 @@ namespace UI_Transposer {
 			// PANEL_OPTIONS_NEW
 			// 
 			this->PANEL_OPTIONS_NEW->AutoScroll = true;
+			this->PANEL_OPTIONS_NEW->Controls->Add(this->BUTTON_NEW_PLAYLIST);
 			this->PANEL_OPTIONS_NEW->Controls->Add(this->BUTTON_OPTIONS_NEW_HOME);
 			this->PANEL_OPTIONS_NEW->Controls->Add(this->LISTBOX_OPTIONS_NEW);
 			this->PANEL_OPTIONS_NEW->Controls->Add(this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS);
@@ -645,6 +649,16 @@ namespace UI_Transposer {
 			this->PANEL_OPTIONS_NEW->Name = L"PANEL_OPTIONS_NEW";
 			this->PANEL_OPTIONS_NEW->Size = System::Drawing::Size(1486, 914);
 			this->PANEL_OPTIONS_NEW->TabIndex = 1;
+			// 
+			// BUTTON_NEW_PLAYLIST
+			// 
+			this->BUTTON_NEW_PLAYLIST->Location = System::Drawing::Point(20, 87);
+			this->BUTTON_NEW_PLAYLIST->Name = L"BUTTON_NEW_PLAYLIST";
+			this->BUTTON_NEW_PLAYLIST->Size = System::Drawing::Size(324, 108);
+			this->BUTTON_NEW_PLAYLIST->TabIndex = 9;
+			this->BUTTON_NEW_PLAYLIST->Text = L"New Playlist";
+			this->BUTTON_NEW_PLAYLIST->UseVisualStyleBackColor = true;
+			this->BUTTON_NEW_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_NEW_PLAYLIST_Click);
 			// 
 			// BUTTON_OPTIONS_NEW_HOME
 			// 
@@ -676,9 +690,9 @@ namespace UI_Transposer {
 			// 
 			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->FormattingEnabled = true;
 			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L".txt", L".slist" });
-			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->Location = System::Drawing::Point(368, 87);
+			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->Location = System::Drawing::Point(716, 87);
 			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->Name = L"COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS";
-			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->Size = System::Drawing::Size(824, 33);
+			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->Size = System::Drawing::Size(476, 33);
 			this->COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS->TabIndex = 3;
 			// 
 			// INPUT_OPTIONS_NEW
@@ -691,6 +705,7 @@ namespace UI_Transposer {
 			this->INPUT_OPTIONS_NEW->Name = L"INPUT_OPTIONS_NEW";
 			this->INPUT_OPTIONS_NEW->Size = System::Drawing::Size(1175, 30);
 			this->INPUT_OPTIONS_NEW->TabIndex = 0;
+			this->INPUT_OPTIONS_NEW->Click += gcnew System::EventHandler(this, &UI_Transposer::INPUT_OPTIONS_NEW_Click);
 			// 
 			// LABEL_OPTIONS_NEW_FILENAME
 			// 
@@ -704,7 +719,7 @@ namespace UI_Transposer {
 			// BUTTON_OPTIONS_NEW_FILE
 			// 
 			this->BUTTON_OPTIONS_NEW_FILE->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->BUTTON_OPTIONS_NEW_FILE->Location = System::Drawing::Point(20, 87);
+			this->BUTTON_OPTIONS_NEW_FILE->Location = System::Drawing::Point(376, 87);
 			this->BUTTON_OPTIONS_NEW_FILE->Name = L"BUTTON_OPTIONS_NEW_FILE";
 			this->BUTTON_OPTIONS_NEW_FILE->Size = System::Drawing::Size(324, 108);
 			this->BUTTON_OPTIONS_NEW_FILE->TabIndex = 1;
@@ -927,29 +942,15 @@ namespace UI_Transposer {
 				}
 				String^ filepath = directory + "\\" + finalFilename + fileextension;
 				if (fileextension == ".slist"){
-					if (MessageBox::Show(gcnew String("Creating a new playlist will discard your changes, do you want to continue?"), gcnew String("New Playlist"), MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == ::System::Windows::Forms::DialogResult::OK){
-						TransposerCLR::WindowsMethods::CreateNewFile(directory, finalFilename + fileextension);
-						transposer->SetActivePlaylist(msclr::interop::marshal_as<std::string>(finalFilename + fileextension));
-						transposer->Reinitialize();
-						transposer->UpdateDisplays();
-						Update_Main();
-						Update_Options_New();
-						TransposerCLR::WindowsMethods::OpenFile(filepath);
-					}
+					CreateNewPlaylist(directory, finalFilename + fileextension);
 					
 				}
 				else{
 					if (fileextension == ".txt"){
-						TransposerCLR::WindowsMethods::CreateNewFile(directory, finalFilename + fileextension);
-						transposer->AddSongToCurrentPlaylist(msclr::interop::marshal_as<std::string>(finalFilename + fileextension));
-						transposer->UpdateDisplays();
-						Update_Main();
-						Update_Options_New();
-						TransposerCLR::WindowsMethods::OpenFile(filepath);
+						CreateNewSong(directory, finalFilename + fileextension);
 					}
 				}
 				
-
 			}
 		}
 		INPUT_OPTIONS_NEW->SelectAll();
@@ -1034,6 +1035,52 @@ private: System::Void MaintainSystemFiles(){
 		System::IO::FileStream^ file = System::IO::File::Create(".\\SYSTEM\\active.tsys");
 		file->Close();
 	}
+}
+private: System::Void BUTTON_NEW_PLAYLIST_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ currentDirectory = System::IO::Directory::GetCurrentDirectory();
+	String^ fileextension = ".slist";
+	String^ subDirectory = gcnew String(transposer->GetDirectory(msclr::interop::marshal_as<std::string>(fileextension)).c_str());
+	String^ directory = currentDirectory + subDirectory;
+
+	String^ filename = INPUT_OPTIONS_NEW->Text;
+	String^ finalFilename = filename;
+	int index = 0;
+	if (finalFilename == ""){
+		MessageBox::Show(gcnew String("No title entered."), gcnew String("Error"));
+	}
+	else{
+		while (System::IO::File::Exists(directory + "\\" + finalFilename + fileextension)){
+			index++;
+			finalFilename = filename + L"(" + index + L")";
+		}
+		CreateNewPlaylist(directory, finalFilename + fileextension);
+	}
+	
+}
+
+private: System::Void CreateNewPlaylist(String^ directory, String^ filename){
+	if (MessageBox::Show(gcnew String("Creating a new playlist will discard your changes, do you want to continue?"), gcnew String("New Playlist"), MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == ::System::Windows::Forms::DialogResult::OK){
+		TransposerCLR::WindowsMethods::CreateNewFile(directory, filename);
+		transposer->SetActivePlaylist(msclr::interop::marshal_as<std::string>(filename));
+		transposer->Reinitialize();
+		transposer->UpdateDisplays();
+		Update_Main();
+		Update_Options_New();
+		TransposerCLR::WindowsMethods::OpenFile(directory + "\\" + filename);
+	}
+}
+
+private: System::Void CreateNewSong(String^ directory, String^ filename){
+		TransposerCLR::WindowsMethods::CreateNewFile(directory, filename);
+	transposer->AddSongToCurrentPlaylist(msclr::interop::marshal_as<std::string>(filename));
+	transposer->UpdateDisplays();
+	Update_Main();
+	Update_Options_New();
+	TransposerCLR::WindowsMethods::OpenFile(directory + "\\" + filename);
+}
+
+private: System::Void INPUT_OPTIONS_NEW_Click(System::Object^  sender, System::EventArgs^  e) {
+	INPUT_OPTIONS_NEW->SelectAll();
 }
 };
 }
