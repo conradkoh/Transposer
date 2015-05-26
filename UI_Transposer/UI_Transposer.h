@@ -940,6 +940,7 @@ namespace UI_Transposer {
 					index++;
 					finalFilename = filename + L"(" + index + L")";
 				}
+
 				String^ filepath = directory + "\\" + finalFilename + fileextension;
 				if (fileextension == ".slist"){
 					CreateNewPlaylist(directory, finalFilename + fileextension);
@@ -1071,7 +1072,7 @@ private: System::Void CreateNewPlaylist(String^ directory, String^ filename){
 }
 
 private: System::Void CreateNewSong(String^ directory, String^ filename){
-		TransposerCLR::WindowsMethods::CreateNewFile(directory, filename);
+	TransposerCLR::WindowsMethods::CreateNewFile(directory, filename);
 	transposer->AddSongToCurrentPlaylist(msclr::interop::marshal_as<std::string>(filename));
 	transposer->UpdateDisplays();
 	Update_Main();
