@@ -371,7 +371,7 @@ namespace UI_Transposer {
 			this->main_tab->Controls->Add(this->BUTTON_PREVIOUS);
 			this->main_tab->Location = System::Drawing::Point(4, 52);
 			this->main_tab->Name = L"main_tab";
-			this->main_tab->Padding = System::Windows::Forms::Padding(3, 3, 3, 3);
+			this->main_tab->Padding = System::Windows::Forms::Padding(3);
 			this->main_tab->Size = System::Drawing::Size(1500, 976);
 			this->main_tab->TabIndex = 11;
 			this->main_tab->Text = L"Main";
@@ -439,10 +439,10 @@ namespace UI_Transposer {
 			// options_tab
 			// 
 			this->options_tab->Controls->Add(this->TABCONTROL_OPTIONS);
-			this->options_tab->Location = System::Drawing::Point(4, 51);
+			this->options_tab->Location = System::Drawing::Point(4, 52);
 			this->options_tab->Name = L"options_tab";
-			this->options_tab->Padding = System::Windows::Forms::Padding(3, 3, 3, 3);
-			this->options_tab->Size = System::Drawing::Size(1500, 977);
+			this->options_tab->Padding = System::Windows::Forms::Padding(3);
+			this->options_tab->Size = System::Drawing::Size(1500, 976);
 			this->options_tab->TabIndex = 12;
 			this->options_tab->Text = L"Options";
 			this->options_tab->UseVisualStyleBackColor = true;
@@ -456,7 +456,7 @@ namespace UI_Transposer {
 			this->TABCONTROL_OPTIONS->Name = L"TABCONTROL_OPTIONS";
 			this->TABCONTROL_OPTIONS->Padding = System::Drawing::Point(6, 12);
 			this->TABCONTROL_OPTIONS->SelectedIndex = 0;
-			this->TABCONTROL_OPTIONS->Size = System::Drawing::Size(1494, 971);
+			this->TABCONTROL_OPTIONS->Size = System::Drawing::Size(1494, 970);
 			this->TABCONTROL_OPTIONS->TabIndex = 1;
 			this->TABCONTROL_OPTIONS->Enter += gcnew System::EventHandler(this, &UI_Transposer::TABCONTROL_OPTIONS_Enter);
 			// 
@@ -466,8 +466,8 @@ namespace UI_Transposer {
 			this->options_save_tab->Controls->Add(this->PANEL_OPTIONS_EDITSAVE);
 			this->options_save_tab->Location = System::Drawing::Point(4, 52);
 			this->options_save_tab->Name = L"options_save_tab";
-			this->options_save_tab->Padding = System::Windows::Forms::Padding(3, 3, 3, 3);
-			this->options_save_tab->Size = System::Drawing::Size(1486, 915);
+			this->options_save_tab->Padding = System::Windows::Forms::Padding(3);
+			this->options_save_tab->Size = System::Drawing::Size(1486, 914);
 			this->options_save_tab->TabIndex = 1;
 			this->options_save_tab->Text = L"Edit / Save";
 			this->options_save_tab->UseVisualStyleBackColor = true;
@@ -477,7 +477,7 @@ namespace UI_Transposer {
 			// 
 			this->statusStrip1->ImageScalingSize = System::Drawing::Size(30, 30);
 			this->statusStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->DISPLAY_SAVE_TAB_STATUSBAR });
-			this->statusStrip1->Location = System::Drawing::Point(3, 876);
+			this->statusStrip1->Location = System::Drawing::Point(3, 875);
 			this->statusStrip1->Name = L"statusStrip1";
 			this->statusStrip1->Padding = System::Windows::Forms::Padding(2, 0, 14, 0);
 			this->statusStrip1->Size = System::Drawing::Size(1480, 36);
@@ -506,7 +506,7 @@ namespace UI_Transposer {
 			this->PANEL_OPTIONS_EDITSAVE->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->PANEL_OPTIONS_EDITSAVE->Location = System::Drawing::Point(3, 3);
 			this->PANEL_OPTIONS_EDITSAVE->Name = L"PANEL_OPTIONS_EDITSAVE";
-			this->PANEL_OPTIONS_EDITSAVE->Size = System::Drawing::Size(1480, 909);
+			this->PANEL_OPTIONS_EDITSAVE->Size = System::Drawing::Size(1480, 908);
 			this->PANEL_OPTIONS_EDITSAVE->TabIndex = 10;
 			// 
 			// BUTTON_OPEN_SONG_DIR
@@ -556,7 +556,7 @@ namespace UI_Transposer {
 			this->BUTTON_HOME->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->BUTTON_HOME->Location = System::Drawing::Point(1210, 9);
 			this->BUTTON_HOME->Name = L"BUTTON_HOME";
-			this->BUTTON_HOME->Size = System::Drawing::Size(264, 874);
+			this->BUTTON_HOME->Size = System::Drawing::Size(264, 846);
 			this->BUTTON_HOME->TabIndex = 7;
 			this->BUTTON_HOME->Text = L"Home";
 			this->BUTTON_HOME->UseVisualStyleBackColor = true;
@@ -608,9 +608,9 @@ namespace UI_Transposer {
 			// options_new_tab
 			// 
 			this->options_new_tab->Controls->Add(this->PANEL_OPTIONS_NEW);
-			this->options_new_tab->Location = System::Drawing::Point(4, 51);
+			this->options_new_tab->Location = System::Drawing::Point(4, 52);
 			this->options_new_tab->Name = L"options_new_tab";
-			this->options_new_tab->Size = System::Drawing::Size(1484, 913);
+			this->options_new_tab->Size = System::Drawing::Size(1486, 914);
 			this->options_new_tab->TabIndex = 2;
 			this->options_new_tab->Text = L"New";
 			this->options_new_tab->UseVisualStyleBackColor = true;
@@ -628,7 +628,7 @@ namespace UI_Transposer {
 			this->PANEL_OPTIONS_NEW->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->PANEL_OPTIONS_NEW->Location = System::Drawing::Point(0, 0);
 			this->PANEL_OPTIONS_NEW->Name = L"PANEL_OPTIONS_NEW";
-			this->PANEL_OPTIONS_NEW->Size = System::Drawing::Size(1484, 913);
+			this->PANEL_OPTIONS_NEW->Size = System::Drawing::Size(1486, 914);
 			this->PANEL_OPTIONS_NEW->TabIndex = 1;
 			// 
 			// BUTTON_OPTIONS_NEW_HOME
@@ -636,9 +636,9 @@ namespace UI_Transposer {
 			this->BUTTON_OPTIONS_NEW_HOME->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->BUTTON_OPTIONS_NEW_HOME->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->BUTTON_OPTIONS_NEW_HOME->Location = System::Drawing::Point(1217, 3);
+			this->BUTTON_OPTIONS_NEW_HOME->Location = System::Drawing::Point(1221, 3);
 			this->BUTTON_OPTIONS_NEW_HOME->Name = L"BUTTON_OPTIONS_NEW_HOME";
-			this->BUTTON_OPTIONS_NEW_HOME->Size = System::Drawing::Size(264, 910);
+			this->BUTTON_OPTIONS_NEW_HOME->Size = System::Drawing::Size(264, 902);
 			this->BUTTON_OPTIONS_NEW_HOME->TabIndex = 8;
 			this->BUTTON_OPTIONS_NEW_HOME->Text = L"Home";
 			this->BUTTON_OPTIONS_NEW_HOME->UseVisualStyleBackColor = true;
@@ -653,7 +653,7 @@ namespace UI_Transposer {
 			this->LISTBOX_OPTIONS_NEW->ItemHeight = 25;
 			this->LISTBOX_OPTIONS_NEW->Location = System::Drawing::Point(20, 210);
 			this->LISTBOX_OPTIONS_NEW->Name = L"LISTBOX_OPTIONS_NEW";
-			this->LISTBOX_OPTIONS_NEW->Size = System::Drawing::Size(1194, 629);
+			this->LISTBOX_OPTIONS_NEW->Size = System::Drawing::Size(1196, 604);
 			this->LISTBOX_OPTIONS_NEW->TabIndex = 1;
 			this->LISTBOX_OPTIONS_NEW->SelectedIndexChanged += gcnew System::EventHandler(this, &UI_Transposer::LISTBOX_OPTIONS_NEW_SelectedIndexChanged);
 			// 
@@ -674,7 +674,7 @@ namespace UI_Transposer {
 			this->INPUT_OPTIONS_NEW->Location = System::Drawing::Point(20, 42);
 			this->INPUT_OPTIONS_NEW->Multiline = true;
 			this->INPUT_OPTIONS_NEW->Name = L"INPUT_OPTIONS_NEW";
-			this->INPUT_OPTIONS_NEW->Size = System::Drawing::Size(1173, 30);
+			this->INPUT_OPTIONS_NEW->Size = System::Drawing::Size(1175, 30);
 			this->INPUT_OPTIONS_NEW->TabIndex = 0;
 			// 
 			// LABEL_OPTIONS_NEW_FILENAME
@@ -816,10 +816,7 @@ namespace UI_Transposer {
 
 		//refresh view
 		transposer->UpdateDisplays();
-		DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
-		DISPLAY_SONGLYRICS->Text = gcnew String(transposer->DISPLAY_SONGLYRICS.c_str());
-		DISPLAY_FEEDBACK->Text = gcnew String(transposer->DISPLAY_FEEDBACK.c_str());
-		INPUT_COMMAND_LINE->Text = "";
+		Update_All();
 
 	}
 	private: System::Void saveFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
@@ -907,28 +904,36 @@ namespace UI_Transposer {
 				MessageBox::Show(gcnew String("No title entered."), gcnew String("Error"));
 			}
 			else{
-				while (!TransposerCLR::WindowsMethods::CreateNewFile(directory, finalFilename + fileextension)){
+				
+				while (System::IO::File::Exists(directory + "\\" + finalFilename + fileextension)){
 					index++;
 					finalFilename = filename + L"(" + index + L")";
 				}
 				String^ filepath = directory + "\\" + finalFilename + fileextension;
 				if (fileextension == ".slist"){
-					transposer->SetActivePlaylist(msclr::interop::marshal_as<std::string>(finalFilename + fileextension));
-					transposer->Reinitialize();
-					transposer->UpdateDisplays();
-					Update_Main();
-					Update_Options_New();
+					if (MessageBox::Show(gcnew String("Creating a new playlist will discard your changes, do you want to continue?"), gcnew String("New Playlist"), MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == ::System::Windows::Forms::DialogResult::OK){
+						TransposerCLR::WindowsMethods::CreateNewFile(directory, finalFilename + fileextension);
+						transposer->SetActivePlaylist(msclr::interop::marshal_as<std::string>(finalFilename + fileextension));
+						transposer->Reinitialize();
+						transposer->UpdateDisplays();
+						Update_Main();
+						Update_Options_New();
+						TransposerCLR::WindowsMethods::OpenFile(filepath);
+					}
+					
 				}
 				else{
 					if (fileextension == ".txt"){
+						TransposerCLR::WindowsMethods::CreateNewFile(directory, finalFilename + fileextension);
 						transposer->AddSongToCurrentPlaylist(msclr::interop::marshal_as<std::string>(finalFilename + fileextension));
 						transposer->UpdateDisplays();
 						Update_Main();
 						Update_Options_New();
+						TransposerCLR::WindowsMethods::OpenFile(filepath);
 					}
 				}
 				
-				TransposerCLR::WindowsMethods::OpenFile(filepath);
+
 			}
 		}
 		INPUT_OPTIONS_NEW->SelectAll();
@@ -979,7 +984,7 @@ private: System::Void Update_All(){
 	}
 
 	private: System::Void options_new_tab_Enter(System::Object^  sender, System::EventArgs^  e) {
-		this->AcceptButton = this->BUTTON_SAVE_ALL;
+		this->AcceptButton = this->BUTTON_OPTIONS_NEW_FILE;
 		this->CancelButton = this->BUTTON_OPTIONS_NEW_HOME;
 		INPUT_OPTIONS_NEW->Focus();
 	}
