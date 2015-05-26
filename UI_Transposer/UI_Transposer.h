@@ -98,6 +98,7 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::ComboBox^  COMBOBOX_OPTIONS_NEW_FILEEXTENSIONS;
 	private: System::Windows::Forms::Button^  BUTTON_OPTIONS_NEW_HOME;
 	private: System::Windows::Forms::TextBox^  DISPLAY_MAIN_PLAYLIST;
+	private: System::Windows::Forms::Button^  BUTTON_MAIN_RELOAD;
 
 
 
@@ -162,6 +163,7 @@ namespace UI_Transposer {
 			this->INPUT_QUICKTRANSPOSE = (gcnew System::Windows::Forms::TextBox());
 			this->TABCONTROL_MENU = (gcnew System::Windows::Forms::TabControl());
 			this->main_tab = (gcnew System::Windows::Forms::TabPage());
+			this->BUTTON_MAIN_RELOAD = (gcnew System::Windows::Forms::Button());
 			this->DISPLAY_MAIN_PLAYLIST = (gcnew System::Windows::Forms::TextBox());
 			this->BUTTON_QUICKTRANSPOSE_DOWN = (gcnew System::Windows::Forms::Button());
 			this->BUTTON_QUICKTRANSPOSE_UP = (gcnew System::Windows::Forms::Button());
@@ -354,6 +356,7 @@ namespace UI_Transposer {
 			// 
 			// main_tab
 			// 
+			this->main_tab->Controls->Add(this->BUTTON_MAIN_RELOAD);
 			this->main_tab->Controls->Add(this->DISPLAY_MAIN_PLAYLIST);
 			this->main_tab->Controls->Add(this->BUTTON_QUICKTRANSPOSE_DOWN);
 			this->main_tab->Controls->Add(this->BUTTON_QUICKTRANSPOSE_UP);
@@ -378,6 +381,16 @@ namespace UI_Transposer {
 			this->main_tab->UseVisualStyleBackColor = true;
 			this->main_tab->Click += gcnew System::EventHandler(this, &UI_Transposer::main_tab_Click);
 			this->main_tab->Enter += gcnew System::EventHandler(this, &UI_Transposer::main_tab_Enter);
+			// 
+			// BUTTON_MAIN_RELOAD
+			// 
+			this->BUTTON_MAIN_RELOAD->Location = System::Drawing::Point(3, 4);
+			this->BUTTON_MAIN_RELOAD->Name = L"BUTTON_MAIN_RELOAD";
+			this->BUTTON_MAIN_RELOAD->Size = System::Drawing::Size(113, 46);
+			this->BUTTON_MAIN_RELOAD->TabIndex = 15;
+			this->BUTTON_MAIN_RELOAD->Text = L"Reload";
+			this->BUTTON_MAIN_RELOAD->UseVisualStyleBackColor = true;
+			this->BUTTON_MAIN_RELOAD->Click += gcnew System::EventHandler(this, &UI_Transposer::ReloadFromFile);
 			// 
 			// DISPLAY_MAIN_PLAYLIST
 			// 
@@ -417,9 +430,9 @@ namespace UI_Transposer {
 			// 
 			this->BUTTON_EDIT_SONG_MAIN->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_EDIT_SONG_MAIN->Location = System::Drawing::Point(8, 4);
+			this->BUTTON_EDIT_SONG_MAIN->Location = System::Drawing::Point(122, 4);
 			this->BUTTON_EDIT_SONG_MAIN->Name = L"BUTTON_EDIT_SONG_MAIN";
-			this->BUTTON_EDIT_SONG_MAIN->Size = System::Drawing::Size(724, 46);
+			this->BUTTON_EDIT_SONG_MAIN->Size = System::Drawing::Size(610, 46);
 			this->BUTTON_EDIT_SONG_MAIN->TabIndex = 11;
 			this->BUTTON_EDIT_SONG_MAIN->Text = L"Edit Song";
 			this->BUTTON_EDIT_SONG_MAIN->UseVisualStyleBackColor = true;
@@ -854,6 +867,7 @@ namespace UI_Transposer {
 	}
 	private: System::Void main_tab_Enter(System::Object^  sender, System::EventArgs^  e) {
 		this->AcceptButton = this->BUTTON_SEND;
+
 		//transposer->INPUT_COMMAND_LINE = "reload";
 		//transposer->Update();
 		//DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
@@ -999,6 +1013,11 @@ private: System::Void TABCONTROL_OPTIONS_Enter(System::Object^  sender, System::
 	TABCONTROL_OPTIONS->SelectedTab->Focus();
 }
 private: System::Void main_tab_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+
+private: System::Void ReloadFromFile(System::Object^  sender, System::EventArgs^  e){
+	transposer->Reinitialize();
+	Update_All();
 }
 };
 }
