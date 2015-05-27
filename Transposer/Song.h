@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cassert>
 #include "StringMethods.h"
 using namespace std;
 

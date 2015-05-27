@@ -249,7 +249,9 @@ string Song::transposeSlashChord(string remainder, int offset){
 
 void Song::save(string filename){
 
-	ofstream out(filename.c_str());
+	ofstream out;
+	out.open(filename.c_str());
+	assert(out);
 	for (int i = 0; i< songLines.size(); i++){
 		out << songLines[i] << "\n";
 		/*out << chords[i] << "\n";
@@ -262,6 +264,7 @@ string Song::save(){
 	string title_valid = StringMethods::RemoveNewlines(title_visible);
 	string filename = songDIR + title_valid + ".txt";
 	ofstream out(filename);
+	assert(out);
 	for (int i = 0; i< songLines.size(); i++){
 		out << songLines[i] << "\n";
 		/*out << chords[i] << "\n";

@@ -19,7 +19,7 @@ public:
 	Song* s; // used to access methods from Song
 	string FILENAME_ACTIVE_CONTAINER = "SYSTEM\\active.tsys";
 	string ALL_SONGS = "ALL.slist";
-	string songListDIR = "Playlists\\";
+	string songListDIR = ".\\Playlists\\";
 	string songDIR = Song::songDIR;
 	string FILENAME_ACTIVE;
 	int curIdx; // 0 based
@@ -37,6 +37,7 @@ public:
 	void TransposeDown();
 	void QuickTransposeUp();
 	void QuickTransposeDown();
+	void Load(string playlistFile);
 	void NewWindow();
 	void AddSong(string directory);
 	void CreateSong(string filename, vector<string> songContent);
@@ -73,7 +74,6 @@ public:
 
 	string UpdateSongListFile();
 	bool FileExists(string directory);
-	void UpdateActivePlaylist();
 	vector<string> GetFileNames();
 	string GetDirectory(string fileExtension);
 	

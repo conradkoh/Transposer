@@ -103,6 +103,7 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::TextBox^  DISPLAY_MAIN_PLAYLIST;
 	private: System::Windows::Forms::Button^  BUTTON_MAIN_RELOAD;
 	private: System::Windows::Forms::Button^  BUTTON_NEW_PLAYLIST;
+	private: System::Windows::Forms::Button^  BUTTON_MAIN_LOAD_PLAYLIST;
 
 
 
@@ -167,6 +168,7 @@ namespace UI_Transposer {
 			this->INPUT_QUICKTRANSPOSE = (gcnew System::Windows::Forms::TextBox());
 			this->TABCONTROL_MENU = (gcnew System::Windows::Forms::TabControl());
 			this->main_tab = (gcnew System::Windows::Forms::TabPage());
+			this->BUTTON_MAIN_LOAD_PLAYLIST = (gcnew System::Windows::Forms::Button());
 			this->BUTTON_MAIN_RELOAD = (gcnew System::Windows::Forms::Button());
 			this->DISPLAY_MAIN_PLAYLIST = (gcnew System::Windows::Forms::TextBox());
 			this->BUTTON_QUICKTRANSPOSE_DOWN = (gcnew System::Windows::Forms::Button());
@@ -361,6 +363,7 @@ namespace UI_Transposer {
 			// 
 			// main_tab
 			// 
+			this->main_tab->Controls->Add(this->BUTTON_MAIN_LOAD_PLAYLIST);
 			this->main_tab->Controls->Add(this->BUTTON_MAIN_RELOAD);
 			this->main_tab->Controls->Add(this->DISPLAY_MAIN_PLAYLIST);
 			this->main_tab->Controls->Add(this->BUTTON_QUICKTRANSPOSE_DOWN);
@@ -386,6 +389,17 @@ namespace UI_Transposer {
 			this->main_tab->UseVisualStyleBackColor = true;
 			this->main_tab->Click += gcnew System::EventHandler(this, &UI_Transposer::main_tab_Click);
 			this->main_tab->Enter += gcnew System::EventHandler(this, &UI_Transposer::main_tab_Enter);
+			// 
+			// BUTTON_MAIN_LOAD_PLAYLIST
+			// 
+			this->BUTTON_MAIN_LOAD_PLAYLIST->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->BUTTON_MAIN_LOAD_PLAYLIST->Location = System::Drawing::Point(1120, 529);
+			this->BUTTON_MAIN_LOAD_PLAYLIST->Name = L"BUTTON_MAIN_LOAD_PLAYLIST";
+			this->BUTTON_MAIN_LOAD_PLAYLIST->Size = System::Drawing::Size(192, 43);
+			this->BUTTON_MAIN_LOAD_PLAYLIST->TabIndex = 16;
+			this->BUTTON_MAIN_LOAD_PLAYLIST->Text = L"Load Playlist";
+			this->BUTTON_MAIN_LOAD_PLAYLIST->UseVisualStyleBackColor = true;
+			this->BUTTON_MAIN_LOAD_PLAYLIST->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_MAIN_LOAD_PLAYLIST_Click);
 			// 
 			// BUTTON_MAIN_RELOAD
 			// 
@@ -446,9 +460,9 @@ namespace UI_Transposer {
 			// BUTTON_EDIT_PLAYLIST_MAIN
 			// 
 			this->BUTTON_EDIT_PLAYLIST_MAIN->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->BUTTON_EDIT_PLAYLIST_MAIN->Location = System::Drawing::Point(1120, 529);
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Location = System::Drawing::Point(1318, 529);
 			this->BUTTON_EDIT_PLAYLIST_MAIN->Name = L"BUTTON_EDIT_PLAYLIST_MAIN";
-			this->BUTTON_EDIT_PLAYLIST_MAIN->Size = System::Drawing::Size(370, 43);
+			this->BUTTON_EDIT_PLAYLIST_MAIN->Size = System::Drawing::Size(172, 43);
 			this->BUTTON_EDIT_PLAYLIST_MAIN->TabIndex = 10;
 			this->BUTTON_EDIT_PLAYLIST_MAIN->Text = L"Edit Playlist";
 			this->BUTTON_EDIT_PLAYLIST_MAIN->UseVisualStyleBackColor = true;
@@ -734,6 +748,7 @@ namespace UI_Transposer {
 			// openFileDialog1
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
+			this->openFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &UI_Transposer::openFileDialog1_FileOk);
 			// 
 			// UI_Transposer
 			// 
@@ -852,17 +867,17 @@ namespace UI_Transposer {
 	private: System::Void saveFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 	}
 	private: System::Void BUTTON_SAVE_PLAYLIST_Click(System::Object^  sender, System::EventArgs^  e) {
-		transposer->UpdateActivePlaylist();
-		Update_Main();
-		Update_Options_Save();
-		Update_Options_New();
+		transposer->SavePlaylist();
+		Update_All();
 	}
 	private: System::Void BUTTON_SAVE_CURRENT_SONG_Click(System::Object^  sender, System::EventArgs^  e) {
 		transposer->SaveSong();
-		Update_Options_Save();
+		Update_All();
 	}
 	private: System::Void BUTTON_EDIT_PLAYLIST_Click(System::Object^  sender, System::EventArgs^  e) {
-
+		transposer->SaveAllSongs();
+		transposer->SavePlaylist();
+		Update_All();
 		string filepath = ".\\Playlists\\" + transposer->GetActiveFile();
 
 		if (!TransposerCLR::WindowsMethods::OpenFile(filepath.c_str())){
@@ -884,22 +899,17 @@ namespace UI_Transposer {
 	}
 	private: System::Void main_tab_Enter(System::Object^  sender, System::EventArgs^  e) {
 		this->AcceptButton = this->BUTTON_SEND;
-
-		//transposer->INPUT_COMMAND_LINE = "reload";
-		//transposer->Update();
-		//DISPLAY_SONGLIST->Text = gcnew String(transposer->DISPLAY_SONGLIST.c_str());
-		//DISPLAY_SONGLYRICS->Text = gcnew String(transposer->DISPLAY_SONGLYRICS.c_str());
-		//DISPLAY_FEEDBACK->Text = gcnew String(transposer->DISPLAY_FEEDBACK.c_str());
-		//INPUT_COMMAND_LINE->Text = "";
+		Update_All();
 	}
 	private: System::Void BUTTON_SAVE_ALL_SONGS_Click(System::Object^  sender, System::EventArgs^  e) {
 		transposer->SaveAllSongs();
-		Update_Options_Save();
+		Update_All();
 	}
 	private: System::Void BUTTON_SAVE_ALL_Click(System::Object^  sender, System::EventArgs^  e) {
 		transposer->SaveAllSongs();
 		transposer->SavePlaylist();
-		Update_Options_Save();
+		
+		Update_All();
 	}
 
 	private: System::Void BUTTON_OPEN_PLAYLIST_DIR_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -1061,6 +1071,7 @@ private: System::Void BUTTON_NEW_PLAYLIST_Click(System::Object^  sender, System:
 
 private: System::Void CreateNewPlaylist(String^ directory, String^ filename){
 	if (MessageBox::Show(gcnew String("Creating a new playlist will discard your changes, do you want to continue?"), gcnew String("New Playlist"), MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == ::System::Windows::Forms::DialogResult::OK){
+		
 		TransposerCLR::WindowsMethods::CreateNewFile(directory, filename);
 		transposer->SetActivePlaylist(msclr::interop::marshal_as<std::string>(filename));
 		transposer->Reinitialize();
@@ -1082,6 +1093,53 @@ private: System::Void CreateNewSong(String^ directory, String^ filename){
 
 private: System::Void INPUT_OPTIONS_NEW_Click(System::Object^  sender, System::EventArgs^  e) {
 	INPUT_OPTIONS_NEW->SelectAll();
+}
+private: System::Void BUTTON_MAIN_LOAD_PLAYLIST_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ currentDirectory = System::IO::Directory::GetCurrentDirectory();
+	openFileDialog1 = gcnew OpenFileDialog();
+	openFileDialog1->Filter = "Songlist Files (*.slist) |*.slist";
+	openFileDialog1->FilterIndex = 2;
+	openFileDialog1->InitialDirectory = currentDirectory + "\\Playlists\\";
+	openFileDialog1->Title = "Choose a playlist to open";
+
+	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK){
+		
+		String^ filepath = openFileDialog1->FileName;
+		String^ filename = TransposerCLR::WindowsMethods::GetFileName(filepath);
+		String^ filename_local = currentDirectory + "\\Playlists\\" + filename;
+		if (System::IO::File::Exists(filepath)){
+			if (!System::IO::File::Exists(filename_local)){
+				System::IO::File::Copy(filepath, filename_local);
+
+				string filename_s = msclr::interop::marshal_as<std::string>(filename); //convert the name of the file to string and load it
+				transposer->Load(filename_s);
+				Update_All();
+			}
+			else{
+				if (filepath == filename_local){
+					string filename_s = msclr::interop::marshal_as<std::string>(filename); //convert the name of the file to string and load it
+					transposer->Load(filename_s);
+					Update_All();
+				}
+				else{
+					if (MessageBox::Show("A file with the same name already exists locally. Would you like to overwrite this file?", "Warning", MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == ::System::Windows::Forms::DialogResult::OK){
+						wchar_t* filename_local_wchar = TransposerCLR::WindowsMethods::To_wchar_t(filename_local);
+						DeleteFileW(filename_local_wchar);
+						System::IO::File::Copy(filepath, filename_local);
+						string filename_s = msclr::interop::marshal_as<std::string>(filename); //convert the name of the file to string and load it
+						transposer->Load(filename_s);
+						Update_All();
+					}
+				}
+			}
+			
+
+		}
+
+	}
+
+}
+private: System::Void openFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 }
 };
 }

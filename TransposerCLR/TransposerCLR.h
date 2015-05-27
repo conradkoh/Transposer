@@ -93,6 +93,40 @@ namespace TransposerCLR {
 			return result;
 		}
 
+		static String^ GetFileName(String^ filepath){
+			string fp = msclr::interop::marshal_as<std::string>(filepath);
+			string filename_s = fp;
 
+			int found = fp.find_last_of("\\");
+			if (found != string::npos){
+				int length = fp.length() - found - 1;
+				filename_s = fp.substr(found + 1, length);
+			}
+			
+			String^ filename = gcnew String(filename_s.c_str());
+
+			return filename;
+		}
+
+		static String^ GetFileNameNoExt(String^ filepath){
+			string fn = msclr::interop::marshal_as<std::string>(GetFileName(filepath));
+			string title_s = fn;
+
+			int found = fn.find_last_of(".");
+			if (found != string::npos){
+				title_s = fn.substr(0, found);
+			}
+
+			String^ filename = gcnew String(title_s.c_str());
+
+			return filename;
+		}
+
+		static wchar_t* To_wchar_t(String^ input){
+			string text = msclr::interop::marshal_as<std::string>(input);
+			wchar_t output[4096];
+			mbstowcs(output, text.c_str(), 4096);
+			return output;
+		}
 	};
 }
