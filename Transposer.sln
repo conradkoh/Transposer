@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleEXE", "ConsoleEXE\Co
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TransposerCLR", "TransposerCLR\TransposerCLR.vcxproj", "{EA65FE46-EF90-488C-8D9A-327828295476}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Transposer_Setup", "Transposer_Setup\Transposer_Setup.vdproj", "{6861C4F0-AFC0-4F82-B762-525315EBD047}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|ARM = CD_ROM|ARM
@@ -132,6 +134,21 @@ Global
 		{EA65FE46-EF90-488C-8D9A-327828295476}.SingleImage|Win32.ActiveCfg = Release|Win32
 		{EA65FE46-EF90-488C-8D9A-327828295476}.SingleImage|Win32.Build.0 = Release|Win32
 		{EA65FE46-EF90-488C-8D9A-327828295476}.SingleImage|x64.ActiveCfg = Release|Win32
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.CD_ROM|ARM.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.CD_ROM|Win32.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.CD_ROM|x64.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.Debug|ARM.ActiveCfg = Debug
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.Debug|Win32.ActiveCfg = Debug
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.Debug|x64.ActiveCfg = Debug
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.DVD-5|ARM.ActiveCfg = Debug
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.DVD-5|Win32.ActiveCfg = Debug
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.DVD-5|x64.ActiveCfg = Debug
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.Release|ARM.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.Release|Win32.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.Release|x64.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.SingleImage|ARM.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.SingleImage|Win32.ActiveCfg = Release
+		{6861C4F0-AFC0-4F82-B762-525315EBD047}.SingleImage|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
