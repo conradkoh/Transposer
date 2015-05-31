@@ -304,7 +304,7 @@ string Song::Chords(){
 }
 
 bool Song::IsValidChord(string base, string details){
-	const int maxAug = 20;
+	const int maxAug = 19;
 	string aug[maxAug];
 	aug[0] = "dim";
 	aug[1] = "aug";
@@ -319,13 +319,12 @@ bool Song::IsValidChord(string base, string details){
 	aug[10] = "11";
 	aug[11] = "13";
 	aug[12] = "m";
-	aug[13] = "M";
+	aug[13] = "#";
 	aug[14] = "1";
 	aug[15] = "add";
 	aug[16] = "6";
 	aug[17] = "4";
 	aug[18] = "b";
-	aug[19] = "#";
 	const int maxInvalid = 20;
 	string invalidchars[maxInvalid];
 
@@ -334,8 +333,8 @@ bool Song::IsValidChord(string base, string details){
 	bool isInvalidAug = true;
 	bool isInvalid = true;
 	
-	int findInvalidDetail = details.find_first_of("cefhklopqrtvwxyzHKLOPQRTVWXYZ");
-	int findInvalidBase = base.find_first_of("cefhklopqrtvwxyzHKLOPQRTVWXYZ");
+	int findInvalidDetail = details.find_first_of("cefhklopqrtvwxyzHKLOPQRTVWXYZIJMNSU");
+	int findInvalidBase = base.find_first_of("cefhklopqrtvwxyzHKLOPQRTVWXYZIJMNSU");
 	if (findInvalidDetail == string::npos && findInvalidBase == string::npos){
 		isInvalid = false;
 	}
