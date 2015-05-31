@@ -40,7 +40,9 @@ public:
 	void Load(string playlistFile);
 	void NewWindow();
 	void AddSong(string directory);
+	void AddSongToMaster(string direcctory);
 	void CreateSong(string filename, vector<string> songContent);
+	void CreateSongInMaster(string filename, vector<string> songContent);
 
 	//==============================================
 	//OPTIONS TAB

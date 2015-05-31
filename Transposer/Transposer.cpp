@@ -365,6 +365,7 @@ void Transposer::AddSong(string directory){
 
 		//create song in song directory
 		CreateSong(filename, newSongContent);
+		CreateSongInMaster(filename, newSongContent);
 		myList->addSong(filename);
 
 		//update views
@@ -374,9 +375,48 @@ void Transposer::AddSong(string directory){
 	
 }
 
+void Transposer::AddSongToMaster(string directory){
+	//get the expected filename
+	int startIdx = directory.find_last_of("/");
+	int startIdx2 = directory.find_last_of("\\");
+	if (startIdx2 > startIdx){
+		startIdx = startIdx2;
+	}
+	if (startIdx != string::npos){
+		int length = directory.length() - startIdx - 1;
+		string filename = directory.substr(startIdx + 1, length);
+
+		//open the file to be added
+		ifstream newSongFile;
+		newSongFile.open(directory.c_str());
+		vector<string> newSongContent;
+		string buffer;
+		while (getline(newSongFile, buffer)){
+			newSongContent.push_back(buffer);
+		}
+
+		//create song in song directory
+		CreateSongInMaster(filename, newSongContent);
+		return;
+	}
+}
+
 void Transposer::CreateSong(string filename, vector<string> songContent){
 	ofstream of;
 	of.open(Song::songDIR + filename.c_str());
+	assert(of);
+
+	vector<string>::iterator iter;
+	for (iter = songContent.begin(); iter != songContent.end(); ++iter){
+		of << (*iter) << endl;
+	}
+
+	return;
+}
+
+void Transposer::CreateSongInMaster(string filename, vector<string> songContent){
+	ofstream of;
+	of.open(Song::masterSongDIR + filename.c_str());
 	assert(of);
 
 	vector<string>::iterator iter;

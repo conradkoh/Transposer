@@ -104,6 +104,7 @@ namespace UI_Transposer {
 	private: System::Windows::Forms::Button^  BUTTON_MAIN_RELOAD;
 	private: System::Windows::Forms::Button^  BUTTON_NEW_PLAYLIST;
 	private: System::Windows::Forms::Button^  BUTTON_MAIN_LOAD_PLAYLIST;
+	private: System::Windows::Forms::Button^  BUTTON_OPTIONS_OPEN_MASTER_DIR;
 
 
 
@@ -201,6 +202,7 @@ namespace UI_Transposer {
 			this->BUTTON_OPTIONS_NEW_FILE = (gcnew System::Windows::Forms::Button());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR = (gcnew System::Windows::Forms::Button());
 			this->TABCONTROL_MENU->SuspendLayout();
 			this->main_tab->SuspendLayout();
 			this->options_tab->SuspendLayout();
@@ -526,6 +528,7 @@ namespace UI_Transposer {
 			// PANEL_OPTIONS_EDITSAVE
 			// 
 			this->PANEL_OPTIONS_EDITSAVE->AutoScroll = true;
+			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_OPTIONS_OPEN_MASTER_DIR);
 			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_OPEN_SONG_DIR);
 			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_EDIT_PLAYLIST);
 			this->PANEL_OPTIONS_EDITSAVE->Controls->Add(this->BUTTON_OPEN_PLAYLIST_DIR);
@@ -750,6 +753,16 @@ namespace UI_Transposer {
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			this->openFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &UI_Transposer::openFileDialog1_FileOk);
 			// 
+			// BUTTON_OPTIONS_OPEN_MASTER_DIR
+			// 
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR->Location = System::Drawing::Point(812, 734);
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR->Name = L"BUTTON_OPTIONS_OPEN_MASTER_DIR";
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR->Size = System::Drawing::Size(368, 85);
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR->TabIndex = 10;
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR->Text = L"Open Master Directory";
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR->UseVisualStyleBackColor = true;
+			this->BUTTON_OPTIONS_OPEN_MASTER_DIR->Click += gcnew System::EventHandler(this, &UI_Transposer::BUTTON_OPTIONS_OPEN_MASTER_DIR_Click);
+			// 
 			// UI_Transposer
 			// 
 			this->AcceptButton = this->BUTTON_SEND;
@@ -856,6 +869,7 @@ namespace UI_Transposer {
 			string filepath = msclr::interop::marshal_as<std::string>(fp);
 
 			transposer->AddSong(filepath);
+			transposer->AddSongToMaster(filepath);
 		}
 
 
@@ -917,6 +931,9 @@ namespace UI_Transposer {
 	}
 	private: System::Void BUTTON_OPEN_SONG_DIR_Click(System::Object^  sender, System::EventArgs^  e) {
 		TransposerCLR::WindowsMethods::OpenFile(".\\Songs");
+	}
+	private: System::Void BUTTON_OPTIONS_OPEN_MASTER_DIR_Click(System::Object^  sender, System::EventArgs^  e) {
+		TransposerCLR::WindowsMethods::OpenFile(".\\Master");
 	}
 	private: System::Void BUTTON_QUICKTRANSPOSE_UP_Click(System::Object^  sender, System::EventArgs^  e) {
 		transposer->QuickTransposeUp();
@@ -1039,6 +1056,7 @@ private: System::Void MaintainDirectories(){
 	System::IO::Directory::CreateDirectory(".\\Playlists");
 	System::IO::Directory::CreateDirectory(".\\SYSTEM");
 	System::IO::Directory::CreateDirectory(".\\Saved");
+	System::IO::Directory::CreateDirectory(".\\Master");
 }
 
 private: System::Void MaintainSystemFiles(){
@@ -1141,5 +1159,6 @@ private: System::Void BUTTON_MAIN_LOAD_PLAYLIST_Click(System::Object^  sender, S
 }
 private: System::Void openFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 }
+
 };
 }

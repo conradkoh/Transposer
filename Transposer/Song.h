@@ -19,6 +19,7 @@ public:
 	string spaces = "    ";
 	string title_visible;
 	static const string songDIR;
+	static const string masterSongDIR;
 	static const string saveDIR;
 
 	static string notes[12];

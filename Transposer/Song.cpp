@@ -8,6 +8,7 @@ using namespace std;
 //enum KEY { C, D, E, F, G, A, B, INVALID };
 const string Song::songDIR = ".\\Songs\\";
 const string Song::saveDIR = ".\\Saved\\";
+const string Song::masterSongDIR = ".\\Master\\";
 
 string Song::notes[12];
 string Song::notes_alias[12];
